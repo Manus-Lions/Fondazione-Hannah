@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -9,12 +10,12 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  downloadPDF() {
-    const link = document.createElement('a');
-    link.href = '../../assets/Logica.pdf';
-    link.download = 'Logica.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  safeUrl: SafeResourceUrl;
+
+  constructor(private sanitizer: DomSanitizer) {
+    this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/assets/Logica.pdf');
+   
   }
+
+
 }
