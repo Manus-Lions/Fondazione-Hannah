@@ -21,12 +21,8 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/assets",
-              { 
-                
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/assets",          
+              "src/favicon.ico"       
             ],
             "styles": [
               "src/styles.css"
@@ -86,12 +82,8 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              "src/assets",
-              { 
-                
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/assets",           
+              "src/favicon.ico"      
             ],
             "styles": [
               "src/styles.css"
@@ -100,7 +92,10 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/my-philosophy-blog/"
+          }
         }
       }
     }
