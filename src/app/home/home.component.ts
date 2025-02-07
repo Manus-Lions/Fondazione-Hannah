@@ -13,7 +13,7 @@ export class HomeComponent {
   safeUrl: SafeResourceUrl;
 
   constructor(private sanitizer: DomSanitizer) {
-    this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://manus-lions.github.io/Fondazione-Hannah/assets/Logica2.pdf');
+    this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://manus-lions.github.io/Fondazione-Hannah/assets/Logica2');
    
   }
 
