@@ -2,11 +2,34 @@
   <h1>Fondazione Hannah</h1>
   <h2>Nell'innocenza della gioia</h2>
   <h3>Logica: prima edizione</h3>
-  <div>
+  <div class="iframe-container">
     <iframe 
-    [src]="safeUrl" 
-    width="1200px" 
-    height="1200px">
-  </iframe>
+      [src]="safeUrl" 
+      width="100%" 
+      height="100%" 
+      style="min-height: 300px;">
+    </iframe>
   </div>
 </div>
+
+<style>
+  .iframe-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 80vh; /* Occupa l'80% dell'altezza della finestra */
+    min-height: 400px; /* Evita che l'iframe diventi troppo piccolo */
+    margin: 0 auto; /* Centra il contenuto */
+  }
+
+  @media (max-width: 768px) {
+    .iframe-container {
+      height: 60vh; /* Riduce l'altezza su schermi più piccoli */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .iframe-container {
+      height: 50vh; /* Ulteriore riduzione per schermi molto piccoli */
+    }
+  }
+</style>
