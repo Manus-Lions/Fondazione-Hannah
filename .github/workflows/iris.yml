@@ -1,15 +1,24 @@
 name: Raccolta IRIS
 
-# Ogni notte alle 4:00 (ora italiana, 2:00 UTC) raccoglie dagli archivi IRIS i metadati
+# Il 1° di ogni mese alle 4:00 (ora italiana, 2:00 UTC) raccoglie dagli archivi IRIS i metadati
 # delle pubblicazioni di filosofia e li salva in data/iris.json sul branch gh-pages,
 # dove l'Osservatorio li legge. Si può lanciare anche a mano da Actions → "Raccolta IRIS" → Run workflow.
+#
+# Se una raccolta non finisce nel tempo disponibile (succede la prima volta, quando deve
+# scorrere tutto dal gennaio dell'anno precedente), si rilancia da sola per continuare,
+# al massimo 10 volte di fila.
 on:
   schedule:
-    - cron: "0 2 * * *"
+    - cron: "0 2 1 * *"
   workflow_dispatch:
+    inputs:
+      giro:
+        description: "Numero del rilancio automatico (lasciare 0)"
+        default: "0"
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: raccolta-iris
@@ -48,3 +57,16 @@ jobs:
           if git diff --cached --quiet; then echo "Nessuna novità"; exit 0; fi
           git commit -m "Dati IRIS aggiornati ($(date -u +%Y-%m-%d))"
           git push
+
+      - name: Continua se la raccolta è incompleta
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GIRO: ${{ github.event.inputs.giro || '0' }}
+        run: |
+          PARZIALE=$(python -c "import json;d=json.load(open('site/data/iris.json'));print(any(a.get('parziale') for a in d['atenei']))")
+          if [ "$PARZIALE" = "True" ] && [ "$GIRO" -lt 10 ]; then
+            echo "Raccolta incompleta: rilancio (giro $((GIRO+1)))"
+            gh workflow run iris.yml --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME" -f giro=$((GIRO+1))
+          else
+            echo "Raccolta completa (o limite di rilanci raggiunto)."
+          fi
