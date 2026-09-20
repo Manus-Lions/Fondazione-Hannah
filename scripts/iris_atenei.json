@@ -1,0 +1,23 @@
+{
+  "_nota": "Archivi IRIS da raccogliere. Prima di attivare un ateneo verificare le sue condizioni d'uso dei metadati e annotarle qui (condizioni = link alla policy, uso = sintesi, verificato = data). 'attivo': false lo salta.",
+  "atenei": [
+    {"id": "unimi", "nome": "Università degli Studi di Milano", "oai": "https://air.unimi.it/oai/request", "attivo": true,
+     "condizioni": "https://air.unimi.it/sr/static/Policy_di_AIR.html",
+     "uso": "Metadati liberamente riutilizzabili per fini non di lucro; escluso ogni vantaggio economico privato; indicare i dati bibliografici e il link alla pagina originale.",
+     "verificato": "2026-09-20"},
+    {"id": "unito", "nome": "Università degli Studi di Torino", "oai": "https://iris.unito.it/oai/request", "attivo": true,
+     "condizioni": "https://iris.unito.it/sr/htm/politiche.html",
+     "uso": "Metadati liberamente riutilizzabili per fini non di lucro; escluso ogni vantaggio economico privato.",
+     "verificato": "2026-09-20"},
+    {"id": "unipd", "nome": "Università degli Studi di Padova", "oai": "https://www.research.unipd.it/oai/request", "attivo": false,
+     "condizioni": "https://wwwassets.unipd.it/sites/default/files/pdf_imported_files/PolicyAccessoAperto_Unipd_rev20251030_0.pdf",
+     "uso": "La policy dichiara l'archivio interoperabile via OAI-PMH ma non indica una licenza per il riuso dei metadati: chiedere conferma alla biblioteca prima di attivare.",
+     "verificato": "2026-09-20"},
+    {"id": "uniroma1", "nome": "Sapienza Università di Roma", "oai": "https://iris.uniroma1.it/oai/request", "attivo": false,
+     "condizioni": "https://www.uniroma1.it/sites/default/files/field_file_allegati/dr_3489_modifica_policy_open_access_0.pdf",
+     "uso": "La policy open access non dice nulla sul riuso dei metadati: chiedere conferma prima di attivare.",
+     "verificato": "2026-09-20"},
+    {"id": "unibo", "nome": "Alma Mater Studiorum – Università di Bologna", "oai": "https://cris.unibo.it/oai/request", "attivo": false,
+     "uso": "Endpoint non verificato (non ha risposto) e condizioni non verificate."}
+  ]
+}
