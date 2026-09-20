@@ -144,6 +144,7 @@ footer.site a{color:var(--ink-soft)}
 .obs .kicker{margin-bottom:.6rem}
 .obs h2{font-size:1.7rem; line-height:1.2; font-weight:400; letter-spacing:-.01em; margin:0 0 .6rem}
 .obs .lede{color:var(--ink-soft); font-size:.95rem; margin:0 0 1.6rem; max-width:38rem}
+.obs .lede a{color:inherit}
 .obs .ui{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
 .obs .bar-row{display:flex; flex-wrap:wrap; gap:.75rem 1.25rem; align-items:center; margin-bottom:1.4rem}
 .obs .seg{display:inline-flex; border:1px solid var(--rule); border-radius:999px; overflow:hidden}
@@ -235,8 +236,13 @@ footer.site a{color:var(--ink-soft)}
       <section class="obs ui" id="osservatorio" aria-labelledby="obs-title">
         <p class="kicker">Osservatorio</p>
         <h2 id="obs-title">Di che cosa si scrive in filosofia</h2>
-        <p class="lede">Che cosa pubblicano i filosofi in Italia e in Europa nell'ultimo anno. I dati di Italia ed Europa
-          arrivano dal vivo da OpenAlex; quelli degli archivi IRIS sono raccolti ogni notte dai depositi istituzionali degli atenei italiani.</p>
+        <p class="lede">Che cosa pubblicano i filosofi in Italia e in Europa nell'ultimo anno. L'Osservatorio non legge i testi:
+          lavora sui <em>metadati</em>, cioè le schede bibliografiche delle pubblicazioni (titolo, autori, anno, rivista, argomento).
+          Per Italia ed Europa le schede vengono da <a href="https://openalex.org" rel="noopener noreferrer" target="_blank">OpenAlex</a>,
+          un catalogo aperto e gratuito della letteratura scientifica mondiale, costruito raccogliendo i dati di editori, riviste
+          e archivi, e interrogato dal vivo a ogni visita. Per gli archivi IRIS le schede vengono dai depositi istituzionali in cui
+          i docenti degli atenei italiani registrano le proprie pubblicazioni, e sono raccolte una volta al mese:
+          prendiamo solo le schede, senza scaricare i PDF, i testi integrali o gli abstract.</p>
         <div class="bar-row">
           <div class="seg" role="group" aria-label="Fonte e area">
             <button type="button" data-area="it" aria-pressed="true">Italia</button>
@@ -577,7 +583,7 @@ footer.site a{color:var(--ink-soft)}
       if(lastQ) count(lastQ);
     }).catch(function(){
       if(area !== "iris") return;
-      list.innerHTML = empty("I dati IRIS non sono ancora stati raccolti. Compariranno qui dopo la prima esecuzione della raccolta automatica.");
+      list.innerHTML = empty("I dati IRIS non sono ancora stati raccolti. Compariranno qui dopo la prima raccolta automatica, che si ripete una volta al mese.");
     });
   }
 
