@@ -1,1 +1,50 @@
+name: Raccolta IRIS
 
+# Ogni notte alle 4:00 (ora italiana, 2:00 UTC) raccoglie dagli archivi IRIS i metadati
+# delle pubblicazioni di filosofia e li salva in data/iris.json sul branch gh-pages,
+# dove l'Osservatorio li legge. Si può lanciare anche a mano da Actions → "Raccolta IRIS" → Run workflow.
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: raccolta-iris
+  cancel-in-progress: false
+
+jobs:
+  raccolta:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - name: Script (branch main)
+        uses: actions/checkout@v4
+        with:
+          path: main
+
+      - name: Sito (branch gh-pages)
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Raccolta
+        run: python main/scripts/iris_harvest.py --config main/scripts/iris_atenei.json --out site/data --minuti 300
+
+      - name: Pubblica i dati
+        if: always()
+        working-directory: site
+        run: |
+          git config user.name "raccolta-iris[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/iris.json data/iris-stato.json 2>/dev/null || true
+          if git diff --cached --quiet; then echo "Nessuna novità"; exit 0; fi
+          git commit -m "Dati IRIS aggiornati ($(date -u +%Y-%m-%d))"
+          git push
