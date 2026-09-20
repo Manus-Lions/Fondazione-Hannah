@@ -160,6 +160,19 @@ footer.site a{color:var(--ink-soft)}
   background:var(--ink); color:var(--bg); border:1px solid var(--ink)}
 .obs .hit{font-size:.85rem; color:var(--ink-soft); min-height:1.4rem; margin:0 0 2rem}
 .obs .hit b{color:var(--ink); font-variant-numeric:tabular-nums}
+.obs .funnel{display:block; margin:.8rem 0 .2rem; border-left:2px solid var(--rule); padding-left:.8rem}
+.obs .funnel > span{display:flex; justify-content:space-between; gap:1rem; font-size:.8rem; color:var(--ink-faint); padding:.12rem 0}
+.obs .funnel > span:first-child{color:var(--ink-soft)}
+.obs .why{display:block; font-size:.8rem; color:var(--parresia); margin:.6rem 0 .2rem}
+.obs .reflabel{display:block; margin:1.1rem 0 .5rem; font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-faint)}
+.obs ol.refs{margin:0; padding:0 0 0 1.3rem; font-size:.85rem}
+.obs ol.refs li{margin:0 0 1rem; padding-left:.2rem; color:var(--ink-faint)}
+.obs ol.refs .t{display:block; color:var(--ink); text-decoration:none; font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif; font-size:1rem; line-height:1.35}
+.obs ol.refs .t:hover{text-decoration:underline; text-decoration-color:var(--rule)}
+.obs ol.refs .by{display:block; font-size:.76rem; color:var(--ink-faint); margin:.15rem 0 .3rem}
+.obs ol.refs .ex{display:block; color:var(--ink-soft); line-height:1.5; font-size:.82rem}
+.obs ol.refs .ex.none{font-style:italic; color:var(--ink-faint)}
+.obs mark{background:color-mix(in srgb, var(--parresia) 22%, transparent); color:inherit; padding:0 .1em; border-radius:2px}
 .obs ol.kw{list-style:none; margin:0; padding:0; counter-reset:kw}
 .obs ol.kw > li{counter-increment:kw; border-bottom:1px solid var(--rule)}
 .obs ol.kw button.row{all:unset; box-sizing:border-box; cursor:pointer; width:100%; display:grid;
@@ -237,7 +250,7 @@ footer.site a{color:var(--ink-soft)}
         <p class="note">Conteggi da <a href="https://openalex.org" rel="noopener noreferrer" target="_blank">OpenAlex</a>:
           lavori con argomento principale «Philosophy», pubblicati negli ultimi 12 mesi, con almeno un autore affiliato
           nell'area scelta. Le parole chiave sono assegnate automaticamente da OpenAlex, quasi sempre in inglese; la ricerca
-          libera cerca il termine in titolo e abstract. Le pubblicazioni italiane senza abstract o non indicizzate sono
+          libera cerca il termine come la ricerca di OpenAlex (titolo, abstract e, dove c'è, testo integrale) e mostra quanti risultati si perdono a ogni restrizione. Le pubblicazioni italiane senza abstract o non indicizzate sono
           sottorappresentate. Tocca una parola chiave per vedere i lavori più citati.</p>
       </section>
     </div>
@@ -485,17 +498,80 @@ footer.site a{color:var(--ink-soft)}
     }).catch(function(){ box.innerHTML = "<li>Non riesco a caricare i lavori.</li>"; });
   }
 
+  function abstractOf(inv){
+    if(!inv) return "";
+    var words = [];
+    Object.keys(inv).forEach(function(w){ inv[w].forEach(function(i){ words[i] = w; }); });
+    return words.filter(function(x){ return x != null; }).join(" ");
+  }
+  function norm(s){ return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+  function mark(text, term){
+    var words = term.split(/\s+/).filter(Boolean).map(norm), t = norm(text), spans = [];
+    words.forEach(function(w){ var i = 0; while((i = t.indexOf(w, i)) > -1){ spans.push([i, i + w.length]); i += w.length; } });
+    if(!spans.length) return esc(text);
+    spans.sort(function(a, b){ return a[0] - b[0]; });
+    var out = "", pos = 0;
+    spans.forEach(function(sp){ if(sp[0] < pos) return; out += esc(text.slice(pos, sp[0])) + "<mark>" + esc(text.slice(sp[0], sp[1])) + "</mark>"; pos = sp[1]; });
+    return out + esc(text.slice(pos));
+  }
+  function excerpt(text, term){
+    var words = term.split(/\s+/).filter(Boolean).map(norm), t = norm(text), at = -1;
+    for(var i = 0; i < words.length && at < 0; i++) at = t.indexOf(words[i]);
+    if(at < 0) return null;
+    var a = Math.max(0, at - 160), b = Math.min(text.length, at + 200);
+    while(a > 0 && text[a - 1] !== " ") a--;
+    while(b < text.length && text[b] !== " ") b++;
+    return (a > 0 ? "… " : "") + mark(text.slice(a, b), term) + (b < text.length ? " …" : "");
+  }
+  function ref(w, term){
+    var title = w.display_name || "Senza titolo";
+    var au = (w.authorships || []).map(function(x){ return x.author && x.author.display_name; }).filter(Boolean);
+    var authors = au.slice(0, 3).join(", ") + (au.length > 3 ? " e altri" : "");
+    var src = w.primary_location && w.primary_location.source && w.primary_location.source.display_name;
+    var abs = abstractOf(w.abstract_inverted_index);
+    var inTitle = norm(title).indexOf(norm(term.split(/\s+/)[0] || "")) > -1;
+    var ex = abs ? excerpt(abs, term) : null;
+    var where = ex ? '<span class="ex">' + ex + '</span>'
+      : '<span class="ex none">' + (inTitle ? "Il termine compare nel titolo." : (abs ? "Il termine non compare in titolo e abstract: OpenAlex l'ha trovato nel testo integrale." : "Abstract non disponibile: OpenAlex l'ha trovato nel testo integrale o nei metadati.")) + '</span>';
+    return '<li><a class="t" href="' + esc(w.doi || w.id) + '" rel="noopener noreferrer" target="_blank">' + mark(title, term) + '</a>'
+      + '<span class="by">' + esc([authors, src, w.publication_year].filter(Boolean).join(" · ")) + '</span>' + where + '</li>';
+  }
+
+  var yFrom = "from_publication_date:" + iso(from) + ",to_publication_date:" + iso(to);
   function count(q){
-    var a = area;
-    hitEl.textContent = "Conto «" + q + "»…";
-    var term = q.replace(/[,|]/g, " ").trim();
-    get({filter: filt(a, "title_and_abstract.search:" + term), per_page: "1", select: "id"}).then(function(d){
+    var a = area, term = q.trim();
+    hitEl.innerHTML = "Conto «" + esc(q) + "»…";
+    var levels = [
+      {label: "Filosofia · " + AREA[a].label + " · ultimi 12 mesi", filter: filt(a)},
+      {label: "Filosofia · tutto il mondo · ultimi 12 mesi", filter: "primary_topic.subfield.id:1211,is_paratext:false," + yFrom},
+      {label: "Filosofia · tutto il mondo · tutti gli anni", filter: "primary_topic.subfield.id:1211,is_paratext:false"},
+      {label: "Tutto OpenAlex, senza filtri", filter: null}
+    ];
+    Promise.all(levels.map(function(l){
+      var p = {search: term, per_page: "10", sort: "publication_date:desc", select: "id,display_name,publication_year,publication_date,doi,authorships,primary_location,abstract_inverted_index"};
+      if(l.filter) p.filter = l.filter;
+      return get(p).then(function(d){ return {n: d.meta ? d.meta.count : 0, r: d.results || []}; },
+                         function(){ return null; });
+    })).then(function(res){
       if(a !== area) return;
-      var n = d.meta ? d.meta.count : 0, tot = parseInt(totalEl.dataset.total, 10);
-      var pct = tot ? " — " + (100 * n / tot).toLocaleString("it-IT", {maximumFractionDigits: 1}) + "% del totale" : "";
-      hitEl.innerHTML = "«" + esc(q) + "» compare in <b>" + nf.format(n) + "</b> pubblicazioni ("
+      if(res[0] === null && res[3] === null){ hitEl.textContent = "Ricerca non riuscita. Riprova."; return; }
+      var n0 = res[0] ? res[0].n : 0, tot = parseInt(totalEl.dataset.total, 10);
+      var pct = tot && n0 ? " — " + (100 * n0 / tot).toLocaleString("it-IT", {maximumFractionDigits: 1}) + "% del totale" : "";
+      var html = "«" + esc(q) + "» compare in <b>" + nf.format(n0) + "</b> pubblicazioni di filosofia ("
         + AREA[a].label + ", ultimi 12 mesi)" + pct + ".";
-    }).catch(function(){ if(a === area) hitEl.textContent = "Ricerca non riuscita. Riprova."; });
+      html += '<span class="funnel">' + levels.map(function(l, i){
+        return '<span><span>' + esc(l.label) + '</span><b>' + (res[i] ? nf.format(res[i].n) : "—") + '</b></span>';
+      }).join("") + "</span>";
+      var k = -1; for(var i = 0; i < res.length; i++){ if(res[i] && res[i].n){ k = i; break; } }
+      if(k > 0) html += '<span class="why">Nel perimetro dell\'Osservatorio non ci sono risultati: i più recenti si trovano allargando a «'
+        + esc(levels[k].label) + '».</span>';
+      if(k >= 0){
+        var shown = res[k].r.length, of = res[k].n;
+        html += '<span class="reflabel">' + (of > shown ? "I " + shown + " più recenti su " + nf.format(of) : (shown === 1 ? "Il lavoro trovato" : "I lavori trovati")) + '</span>';
+        html += '<ol class="refs">' + res[k].r.map(function(w){ return ref(w, term); }).join("") + "</ol>";
+      }
+      hitEl.innerHTML = html;
+    });
   }
 
   list.addEventListener("click", function(ev){
