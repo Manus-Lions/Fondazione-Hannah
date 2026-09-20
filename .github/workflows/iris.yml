@@ -39,6 +39,8 @@ jobs:
         with:
           ref: gh-pages
           path: site
+          # serve la storia completa: senza, il rebase prima del push non funziona
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -47,16 +49,39 @@ jobs:
       - name: Raccolta
         run: python main/scripts/iris_harvest.py --config main/scripts/iris_atenei.json --out site/data --minuti 300
 
+      # Rete di sicurezza: i dati restano scaricabili dalla pagina della run anche se il push
+      # fallisce. Da qui si recuperano a mano e si caricano sul branch.
+      - name: Copia di sicurezza dei dati
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: iris-dati
+          path: site/data/
+          retention-days: 90
+          if-no-files-found: warn
+
       - name: Pubblica i dati
         if: always()
         working-directory: site
         run: |
           git config user.name "raccolta-iris[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/iris.json data/iris-stato.json 2>/dev/null || true
+          git add data/iris.json data/iris-stato.json
           if git diff --cached --quiet; then echo "Nessuna novità"; exit 0; fi
           git commit -m "Dati IRIS aggiornati ($(date -u +%Y-%m-%d))"
-          git push
+          # Il branch può essere avanzato nel frattempo (caricamenti a mano dal web, altre run).
+          # Si riallinea e si riprova: tocchiamo solo data/, quindi il rebase non trova conflitti.
+          for i in 1 2 3 4 5; do
+            if git push origin HEAD:gh-pages; then
+              echo "Pubblicato."
+              exit 0
+            fi
+            echo "Push rifiutato: riallineo su origin/gh-pages e riprovo (tentativo $i)"
+            git pull --rebase origin gh-pages || { echo "Rebase fallito: i dati restano nell'artefatto iris-dati."; exit 1; }
+            sleep $((5 * i))
+          done
+          echo "Push non riuscito dopo 5 tentativi: i dati restano nell'artefatto iris-dati."
+          exit 1
 
       - name: Continua se la raccolta è incompleta
         env:
