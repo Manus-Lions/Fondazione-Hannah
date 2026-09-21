@@ -9,14 +9,15 @@
   *{ box-sizing:border-box; }
   body{ margin:0; background:var(--carta); color:var(--ink);
         font:16px/1.55 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif; }
-  header{ max-width:72rem; margin:0 auto; padding:1.8rem 1rem .6rem; }
+  header{ max-width:92rem; margin:0 auto; padding:1.6rem 1.2rem .5rem; }
   header h1{ font-size:1.35rem; font-weight:600; margin:0 0 .2rem; }
   header p{ margin:0; font-size:.9rem; color:var(--tenue); max-width:44rem; }
   header a.indietro{ font-size:.85rem; color:var(--tenue); text-decoration:none; border-bottom:1px solid var(--riga); }
-  .telaio{ max-width:72rem; margin:1.2rem auto 4rem; padding:0 1rem;
-           display:grid; grid-template-columns:1fr 22rem; gap:1.2rem; align-items:start; }
+  .telaio{ max-width:92rem; margin:1rem auto 3rem; padding:0 1.2rem;
+           display:grid; grid-template-columns:minmax(0,1fr) 21rem; gap:1.4rem; align-items:start; }
   #mappa{ position:relative; border:1px solid var(--riga); border-radius:8px; background:#eceadf;
           overflow:hidden; touch-action:none; }
+  #mappa svg{ max-height:min(46rem, 78vh); }
   #mappa svg{ display:block; width:100%; height:auto; cursor:grab; }
   #mappa svg.trascino{ cursor:grabbing; }
   #mappa path.terra{ fill:#e2ded0; stroke:#cfc9b6; stroke-width:.25; }
@@ -26,7 +27,21 @@
   .zoom button{ font:inherit; font-size:1rem; line-height:1; width:1.9rem; height:1.9rem; cursor:pointer;
                 background:#fff; border:1px solid var(--riga); border-radius:4px; color:var(--ink); }
   .pannello{ border:1px solid var(--riga); border-radius:8px; padding:1rem 1.1rem; background:#fff;
-             max-height:33rem; overflow:auto; }
+             max-height:min(46rem, 78vh); overflow:auto; }
+  .insieme{ border-bottom:1px solid var(--riga); padding-bottom:1rem; margin-bottom:1rem; }
+  .insieme h2{ font-size:1rem; margin:0 0 .5rem; }
+  .insieme h3{ font-size:.82rem; text-transform:uppercase; letter-spacing:.04em; color:var(--tenue);
+               font-weight:600; margin:1.1rem 0 .4rem; }
+  .insieme .misura{ display:flex; align-items:baseline; gap:.6rem; }
+  .insieme .cifra{ font-size:2.1rem; font-weight:600; line-height:1; font-variant-numeric:tabular-nums; }
+  .insieme .sottocifra{ font-size:.82rem; color:var(--tenue); }
+  .classifica{ list-style:none; margin:0; padding:0; }
+  .classifica li{ margin:.4rem 0; cursor:pointer; }
+  .classifica li:hover .nome{ color:var(--ink); }
+  .classifica .riga{ display:flex; align-items:baseline; gap:.4rem; font-size:.84rem; }
+  .classifica .nome{ color:#3a3a3a; flex:1; }
+  .classifica .quanto{ color:var(--tenue); font-variant-numeric:tabular-nums; font-size:.78rem; }
+  .classifica .asta{ height:6px; border-radius:3px; margin-top:.18rem; min-width:2px; }
   .pannello h2{ font-size:1rem; margin:0 0 .1rem; }
   .pannello .luogo{ font-size:.85rem; color:var(--tenue); margin:0 0 .9rem; }
   .pannello .vuoto{ font-size:.9rem; color:var(--tenue); }
@@ -44,11 +59,11 @@
   .scala{ height:10px; border-radius:5px; margin:.35rem 0 .25rem;
           background:linear-gradient(90deg,#1a7f37 0%,#7a9a2e 25%,#b8860b 50%,#8b3a1a 75%,#111 100%); }
   .estremi{ display:flex; justify-content:space-between; font-size:.75rem; }
-  .avviso{ max-width:72rem; margin:0 auto; padding:0 1rem 1rem; font-size:.88rem; color:var(--tenue); }
-  @media (max-width:52rem){
+  .avviso{ max-width:92rem; margin:0 auto; padding:0 1rem 1rem; font-size:.88rem; color:var(--tenue); }
+  @media (max-width:60rem){
     .telaio{ grid-template-columns:1fr; }
-    #mappa{ height:24rem; }
     .pannello{ max-height:none; }
+    #mappa svg{ max-height:none; }
   }
 </style>
 </head>
@@ -71,6 +86,14 @@
     <div class="zoom"><button id="piu" title="ingrandisci">+</button><button id="meno" title="rimpicciolisci">−</button></div>
   </div>
   <aside class="pannello" id="pannello">
+    <section class="insieme" id="insieme" hidden>
+      <h2>L'insieme</h2>
+      <div class="misura"><span class="cifra" id="agg"></span><span class="sottocifra" id="aggnota"></span></div>
+      <div class="scala"></div>
+      <div class="estremi"><span>0 · concordia</span><span>100 · contraddizione</span></div>
+      <h3>Dove l'impatto sarebbe maggiore</h3>
+      <ol class="classifica" id="classifica"></ol>
+    </section>
     <p class="vuoto" id="vuoto">Carico i dati…</p>
     <div id="dettaglio" hidden>
       <h2 id="ateneo"></h2>
@@ -188,13 +211,50 @@
     applicaVB();
   }
 
+  function insieme(atenei){
+    var num=0, den=0, tot=0, nd=0;
+    atenei.forEach(function(n){
+      n.peso = 0;
+      n.voci.forEach(function(x){
+        tot++;
+        if(x.v.valore === null || x.v.valore === undefined){ nd++; return; }
+        var c = (x.v.contatto === null || x.v.contatto === undefined) ? 1 : x.v.contatto;
+        num += x.v.valore*c; den += c;
+        n.peso += x.v.valore * c / 100;
+      });
+    });
+    var media = den ? Math.round(num/den) : null;
+    document.getElementById("insieme").hidden = false;
+    var cif = document.getElementById("agg");
+    cif.textContent = media === null ? "n.d." : media;
+    cif.style.color = colore(media);
+    document.getElementById("aggnota").textContent =
+      "media su " + atenei.length + (atenei.length===1?" istituzione":" istituzioni") + ", "
+      + tot + (tot===1?" lavoro":" lavori") + (nd ? " (" + nd + " n.d.)" : "");
+
+    var ord = atenei.slice().sort(function(a,b){ return b.peso - a.peso; });
+    var max = ord.length ? ord[0].peso : 0;
+    document.getElementById("classifica").innerHTML = ord.map(function(n){
+      var largh = max ? Math.max(3, Math.round(n.peso/max*100)) : 3;
+      return '<li data-ror="'+esc(n.ror)+'">'
+        + '<div class="riga"><span class="nome">'+esc(n.nome)+'</span>'
+        + '<span class="quanto">'+n.voci.length+'×'+(n.media===null?" n.d.":" "+n.media)+'</span></div>'
+        + '<div class="asta" style="width:'+largh+'%;background:'+colore(n.media)+'"></div></li>';
+    }).join("");
+    document.getElementById("classifica").addEventListener("click", function(e){
+      var li = e.target.closest("li[data-ror]"); if(!li) return;
+      atenei.forEach(function(n){ if(n.ror === li.dataset.ror) mostra(n); });
+    });
+  }
+
   function disegna(atenei){
     if(!atenei.length){
       document.getElementById("vuoto").textContent =
         "Nessuna voce ha ancora un'affiliazione nota: la mappa resta vuota finché i valutatori non ne raccolgono.";
       return;
     }
-    document.getElementById("vuoto").textContent = "Scegli un'istituzione sulla mappa.";
+    document.getElementById("vuoto").textContent = "Scegli un'istituzione sulla mappa o nell'elenco.";
+    insieme(atenei);
     var g = document.getElementById("punti"), svg = document.getElementById("carta");
     atenei.forEach(function(n, i){
       var c = document.createElementNS("http://www.w3.org/2000/svg","circle");
