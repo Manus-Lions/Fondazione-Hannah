@@ -109,6 +109,23 @@ article.card:hover{transform:translateY(-1px); box-shadow:var(--shadow); border-
   border-left:3px solid var(--accent); padding:.2rem 0 .2rem 1.1rem; margin:0 0 2.2rem;
   font-style:italic; color:var(--ink-soft);
 }
+.dialogo{margin:0 0 2.2rem; display:flex; flex-direction:column; gap:.6rem}
+.dialogo.dopo{margin:2.5rem 0 0; padding-top:1.5rem; border-top:1px solid var(--rule)}
+.dialogo a{
+  display:block; text-decoration:none; color:var(--ink-soft); background:var(--bg-alt);
+  border:1px solid var(--rule); border-left:3px solid var(--accent2, var(--ink-faint));
+  border-radius:3px; padding:.7rem .9rem; transition:.18s;
+}
+.dialogo a:hover{color:var(--ink); border-color:var(--ink-faint); border-left-color:var(--accent2, var(--ink-faint)); transform:translateY(-1px); box-shadow:var(--shadow)}
+.dialogo .rel{
+  display:block; font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:.3rem;
+}
+.dialogo .tit{display:block; font-size:1.05rem; line-height:1.3; color:var(--ink)}
+.dialogo .chi{
+  display:block; margin-top:.3rem; font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:.72rem; color:var(--ink-faint);
+}
 .body p{margin:0 0 1.35rem}
 .body p:first-of-type::first-line{font-variant:small-caps; letter-spacing:.02em}
 .body em{font-style:italic}
@@ -143,6 +160,42 @@ footer.site a{color:var(--ink-soft)}
   body{font-size:17px}
   article.card{padding:1.2rem 1.1rem}
 }
+
+  /* ---- valutatore d'impatto ---- */
+  .valutatore{ border-top:2px solid var(--ink); margin-top:3rem; padding-top:1.4rem; }
+  .valutatore h3{ font-size:1rem; font-weight:600; margin:0 0 .15rem; }
+  .valutatore .nota{ font-size:.86rem; opacity:.7; margin:0 0 1.4rem; }
+  .valutatore .misura{ display:flex; align-items:flex-end; gap:1.1rem; }
+  .valutatore .cifra{ font-size:2.8rem; line-height:1; font-weight:600; font-variant-numeric:tabular-nums; }
+  .valutatore .cifra small{ font-size:1rem; font-weight:400; opacity:.6; margin-left:.15rem; }
+  .valutatore .didascalia{ font-size:.88rem; opacity:.7; padding-bottom:.45rem; }
+  .valutatore .barra{ position:relative; height:12px; border-radius:6px; margin:.9rem 0 .4rem;
+    background:linear-gradient(90deg,#1a7f37 0%,#7a9a2e 25%,#b8860b 50%,#8b3a1a 75%,#111 100%); }
+  .valutatore .ago{ position:absolute; top:-6px; width:3px; height:24px; background:var(--ink);
+    box-shadow:0 0 0 2px var(--bg); border-radius:2px; transform:translateX(-50%); }
+  .valutatore .estremi{ display:flex; justify-content:space-between; font-size:.76rem; opacity:.6; }
+  .valutatore .lettura{ margin:1.3rem 0 0; font-size:.95rem; }
+  .valutatore .verifica{ margin:.7rem 0 0; font-size:.86rem; opacity:.7;
+    border-left:2px solid var(--rule,#ddd); padding-left:.7rem; }
+  .valutatore details{ margin-top:1.5rem; }
+  .valutatore summary{ cursor:pointer; font-size:.88rem; opacity:.7; }
+  .valutatore table{ width:100%; border-collapse:collapse; margin-top:1rem; font-size:.88rem; }
+  .valutatore th,.valutatore td{ text-align:left; vertical-align:top; padding:.55rem .45rem;
+    border-bottom:1px solid var(--rule,#ddd); }
+  .valutatore th{ font-size:.75rem; text-transform:uppercase; letter-spacing:.04em; opacity:.6; }
+  .valutatore td.v{ white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .valutatore .pallino{ display:inline-block; width:.6rem; height:.6rem; border-radius:50%; margin-right:.4rem; }
+  .valutatore .letto-fisso[data-stato="true"]{ color:#1a7f37; font-weight:600; }
+  .valutatore .letto-fisso[data-stato="false"]{ color:#8b3a1a; }
+  .valutatore .metodo{ font-size:.84rem; opacity:.72; margin-top:1.3rem; }
+  .valutatore .metodo p{ margin:.5rem 0; }
+  @media (max-width:33rem){
+    .valutatore table, .valutatore thead, .valutatore tbody,
+    .valutatore tr, .valutatore th, .valutatore td{ display:block; }
+    .valutatore thead{ display:none; }
+    .valutatore tr{ border-bottom:1px solid var(--rule,#ddd); padding:.6rem 0; }
+    .valutatore td{ border:0; padding:.12rem 0; }
+  }
 </style>
 </head>
 <body>
@@ -193,7 +246,7 @@ footer.site a{color:var(--ink-soft)}
       scritto da un laureato magistrale in filosofia, e nessun report viene pubblicato senza la sua revisione.
     </p>
     <p>
-      Testo di riferimento: Manuel Leoni, <i>Logica</i>, Fondazione Hannah, Gallarate, prima edizione 2025.
+      Testo di riferimento: Manuel Leoni, <i>Logica</i>, Fondazione Hannah, Gallarate, prima edizione 2024.
       · <a href="logica.html">Leggi il testo</a>
     </p>
   </footer>
@@ -256,6 +309,86 @@ footer.site a{color:var(--ink-soft)}
     }).join("");
   }
 
+  function voce(id){
+    for(var i=0; i<index.length; i++) if(index[i].id === id) return index[i];
+    return null;
+  }
+  function legame(rel, e2){
+    var r2 = ROLE[e2.agent] || {name:e2.agent, color:"var(--ink)"};
+    return '<a href="#/'+esc(e2.id)+'" data-vai="'+esc(e2.id)+'" style="--accent2:'+r2.color+'">'
+      + '<span class="rel">'+esc(rel)+'</span>'
+      + '<span class="tit">'+esc(e2.title)+'</span>'
+      + '<span class="chi">'+esc(r2.name)+' · '+dataLunga(e2.date)+'</span></a>';
+  }
+
+
+  // ---- valutatore d'impatto: reso da e.valutazione, sola lettura ----
+  function vColore(v){
+    if(v === null || v === undefined) return "#9aa0a6";
+    var p = [[0,[26,127,55]],[25,[122,154,46]],[50,[184,134,11]],[75,[139,58,26]],[100,[17,17,17]]];
+    for(var i=0;i<p.length-1;i++){
+      var a=p[i][0], ca=p[i][1], b=p[i+1][0], cb=p[i+1][1];
+      if(v>=a && v<=b){
+        var t=(v-a)/(b-a), out=[];
+        for(var j=0;j<3;j++) out.push(Math.round(ca[j]+(cb[j]-ca[j])*t));
+        return "rgb("+out.join(",")+")";
+      }
+    }
+    return "#111";
+  }
+  function vNome(V, v){
+    if(v === null) return "n.d.";
+    var s = V.metodo.scala.filter(function(x){ return x.valore !== null; }), best = s[0];
+    s.forEach(function(x){ if(Math.abs(x.valore-v) < Math.abs(best.valore-v)) best = x; });
+    return best.nome;
+  }
+  function vSegno(x){ return x === true ? "sì" : x === false ? "no" : "—"; }
+
+  function valutatore(V){
+    if(!V || !V.esito) return "";
+    var agg = V.esito.aggregato;
+    var letti = V.voci.filter(function(v){ return v.letto_autore === true; }).length;
+    var righe = V.voci.map(function(v){
+      var et = v.valore === null ? "n.d." : v.valore;
+      return '<tr>'
+        + '<td><strong>'+esc(v.autore)+'</strong>, «'+esc(v.titolo)+'», '+esc(v.sede)+', '+v.anno+'</td>'
+        + '<td class="v">'+v.citazioni+'</td>'
+        + '<td>'+(v.premessa_fondamentale ? esc(v.premessa_fondamentale)+' — '+esc(v.motivo) : esc(v.motivo))+'</td>'
+        + '<td class="v"><span class="letto-fisso" data-stato="'+v.letto_autore+'">'+vSegno(v.letto_autore)+'</span></td>'
+        + '<td class="v"><span class="pallino" style="background:'+vColore(v.valore)+'"></span>'+et+'</td>'
+        + '</tr>';
+    }).join("");
+    var m = V.metodo;
+    var metodo = '<p><strong>Corpus.</strong> '+esc(m.fonte_corpus)+' '+esc(m.filtro)+'</p>'
+      + '<p><strong>Limite.</strong> '+esc(m.limite_dichiarato)+'</p>'
+      + '<p><strong>Scala.</strong> ' + m.scala.map(function(s){
+            return (s.valore === null ? "n.d." : s.valore) + " — " + esc(s.senso).replace(/\.$/,"").toLowerCase();
+          }).join("; ") + '.</p>'
+      + '<p><strong>Gradazioni intermedie.</strong> '+esc(m.modulazione.descrizione)
+        + ' <em>Portata</em>: '+esc(m.modulazione.portata)
+        + ' <em>Contatto</em>: '+esc(m.modulazione.contatto)+'</p>'
+      + '<p><strong>Aggregato.</strong> '+esc(m.aggregato)+'</p>'
+      + "<p><strong>Verifica dell'autore.</strong> Ogni voce indica se Manuel ha letto quel lavoro. "
+        + "Dove la lettura è confermata il valore misura un confronto avvenuto; altrove un rapporto fra tesi "
+        + "ricostruito dall'esterno.</p>";
+    return '<section class="valutatore">'
+      + "<h3>Valutatore d'impatto</h3>"
+      + '<p class="nota">Misura dell\'apporto polemico rispetto ai lavori più citati sullo stesso argomento.</p>'
+      + '<div class="misura"><div class="cifra" style="color:'+vColore(agg)+'">'+agg+'<small>/100</small></div>'
+      + '<div class="didascalia">'+vNome(V,agg).toLowerCase()+' · '+V.esito.valutate+' lavori valutati, '
+        + V.esito.non_determinate+' n.d.</div></div>'
+      + '<div class="barra"><div class="ago" style="left:'+agg+'%"></div></div>'
+      + '<div class="estremi"><span>0 · concordia</span><span>50</span><span>100 · contraddizione</span></div>'
+      + '<p class="lettura">'+esc(V.esito.lettura)+'</p>'
+      + '<p class="verifica">' + (letti === 0
+          ? "Nessuna lettura di Manuel confermata: i valori registrano un rapporto fra tesi ricostruito dall'esterno, non un confronto avvenuto."
+          : "Letto da Manuel: <strong>"+letti+"</strong> su "+V.voci.length+".") + '</p>'
+      + '<details><summary>Corpus e valutazione voce per voce</summary>'
+      + '<table><thead><tr><th>Lavoro</th><th>Cit.</th><th>Premessa fondamentale</th>'
+        + '<th>Letto da Manuel</th><th>Valore</th></tr></thead><tbody>'+righe+'</tbody></table>'
+      + '<div class="metodo">'+metodo+'</div></details></section>';
+  }
+
   function openReport(id){
     var host = document.getElementById("article");
     document.getElementById("list").classList.add("off");
@@ -266,8 +399,10 @@ footer.site a{color:var(--ink-soft)}
       var html = '<div style="--accent:'+r.color+'">'
         + '<div class="byline"><span>'+esc(r.name)+'</span><span class="role">'+dataLunga(e.date)+'</span></div>'
         + '<h2 class="title">'+esc(e.title)+'</h2>'
-        + '<div class="thesisbox">'+esc(e.thesis)+'</div>'
-        + '<div class="body">'+md(e.body)+'</div>';
+        + '<div class="thesisbox">'+esc(e.thesis)+'</div>';
+      var prec = e.repliesTo ? voce(e.repliesTo) : null;
+      if(prec) html += '<div class="dialogo">'+legame("Riprende", prec)+'</div>';
+      html += '<div class="body">'+md(e.body)+'</div>';
       if(e.targets && e.targets.length){
         html += '<div class="targets"><h3>Oggetti</h3><ul>'
           + e.targets.map(function(t){ return "<li>"+esc(t)+"</li>"; }).join("") + "</ul></div>";
@@ -277,6 +412,12 @@ footer.site a{color:var(--ink-soft)}
           + e.sources.map(function(s){
               return '<li><a href="'+esc(s.url)+'" rel="noopener noreferrer" target="_blank">'+esc(s.title)+"</a></li>";
             }).join("") + "</ol></div>";
+      }
+      if(e.valutazione) html += valutatore(e.valutazione);
+      var dopo = index.filter(function(x){ return x.repliesTo === e.id; });
+      if(dopo.length){
+        html += '<div class="dialogo dopo">'
+          + dopo.map(function(x){ return legame("Ripreso da", x); }).join("") + '</div>';
       }
       host.innerHTML = html + "</div>";
       document.title = e.title + " — A(i)thena";
@@ -330,6 +471,15 @@ footer.site a{color:var(--ink-soft)}
     var saved = localStorage.getItem("aithena-theme");
     if(saved) document.documentElement.setAttribute("data-theme", saved);
   }catch(e){}
+
+  document.getElementById("article").addEventListener("click", function(ev){
+    var a = ev.target.closest && ev.target.closest("a[data-vai]");
+    if(!a) return;
+    ev.preventDefault();
+    var id = a.getAttribute("data-vai"), prima = location.hash;
+    try{ location.hash = "/" + id; }catch(err){}
+    if(location.hash === prima) openReport(id);   // se il frammento non cambia (anteprima in cornice)
+  });
 
   window.addEventListener("hashchange", route);
 
