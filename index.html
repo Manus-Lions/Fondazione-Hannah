@@ -184,6 +184,8 @@ footer.site a{color:var(--ink-soft)}
     border-bottom:1px solid var(--rule,#ddd); }
   .valutatore th{ font-size:.75rem; text-transform:uppercase; letter-spacing:.04em; opacity:.6; }
   .valutatore td.v{ white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .valutatore a.vlink{ color:inherit; text-decoration:none; border-bottom:1px solid var(--rule,#ccc); }
+  .valutatore a.vlink:hover{ border-bottom-color:currentColor; }
   .valutatore .pallino{ display:inline-block; width:.6rem; height:.6rem; border-radius:50%; margin-right:.4rem; }
   .valutatore .letto-fisso[data-stato="true"]{ color:#1a7f37; font-weight:600; }
   .valutatore .letto-fisso[data-stato="false"]{ color:#8b3a1a; }
@@ -343,6 +345,13 @@ footer.site a{color:var(--ink-soft)}
     return best.nome;
   }
   function vSegno(x){ return x === true ? "sì" : x === false ? "no" : "—"; }
+  function vTitolo(v){
+    var t = '«'+esc(v.titolo)+'»';
+    var href = v.doi ? "https://doi.org/"+v.doi : v.url;
+    if(!href) return t;
+    return '<a class="vlink" href="'+esc(href)+'" rel="noopener noreferrer" target="_blank"'
+      + '>'+t+'</a>';
+  }
 
   function valutatore(V){
     if(!V || !V.esito) return "";
@@ -351,7 +360,7 @@ footer.site a{color:var(--ink-soft)}
     var righe = V.voci.map(function(v){
       var et = v.valore === null ? "n.d." : v.valore;
       return '<tr>'
-        + '<td><strong>'+esc(v.autore)+'</strong>, «'+esc(v.titolo)+'», '+esc(v.sede)+', '+v.anno+'</td>'
+        + '<td><strong>'+esc(v.autore)+'</strong>, '+vTitolo(v)+', '+esc(v.sede)+', '+v.anno+'</td>'
         + '<td class="v">'+v.citazioni+'</td>'
         + '<td>'+(v.premessa_fondamentale ? esc(v.premessa_fondamentale)+' — '+esc(v.motivo) : esc(v.motivo))+'</td>'
         + '<td class="v"><span class="letto-fisso" data-stato="'+v.letto_autore+'">'+vSegno(v.letto_autore)+'</span></td>'
