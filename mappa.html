@@ -110,6 +110,12 @@
 <p class="avviso" id="avviso"></p>
 
 <script>
+  function chiaveOpera(v){
+    function norm(s){ return String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(); }
+    var primo = String(v.autore || "").split(/,| e | and /)[0].trim().split(/\s+/).pop();
+    return norm(primo) + "|" + (v.anno || "") + "|" + norm(v.titolo);
+  }
+
 (function(){
   "use strict";
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){
@@ -167,7 +173,7 @@
       var V = r.valutazione;
       if(!V) return;
       vociDi(V).forEach(function(x){
-        var k = [x.v.autore, x.v.titolo, x.v.anno].join("|").toLowerCase();
+        var k = chiaveOpera(x.v);
         var c = { v:x.v, report:r, sezione:x.sezione, peso:x.peso };
         if(!lavori[k]){ lavori[k] = c; ordine.push(k); return; }
         var prec = lavori[k];

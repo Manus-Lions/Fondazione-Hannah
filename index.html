@@ -139,6 +139,7 @@ article.card:hover{transform:translateY(-1px); box-shadow:var(--shadow); border-
   font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-faint);
   margin:0 0 .8rem; font-weight:600;
 }
+.sources.in-testa{margin:0 0 1.8rem; padding:0; border-top:0}
 .sources ol{margin:0; padding-left:1.2rem}
 .sources li{margin-bottom:.7rem}
 .sources a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--rule); overflow-wrap:anywhere}
@@ -226,7 +227,48 @@ footer.site a{color:var(--ink-soft)}
   .avviso-redazione{ position:fixed; left:50%; bottom:1.2rem; transform:translateX(-50%); z-index:20;
     background:var(--ink); color:var(--bg); padding:.6rem 1rem; border-radius:4px; max-width:calc(100vw - 32px);
     font-family:ui-sans-serif,system-ui,-apple-system,sans-serif; font-size:.88rem; box-shadow:var(--shadow); }
+  dialog.redazione.grande{ width:min(64rem, calc(100vw - 32px)); max-height:calc(100vh - 32px); padding:0; }
+  dialog.redazione.grande form{ display:flex; flex-direction:column; max-height:calc(100vh - 34px); }
+  dialog.redazione .ed-testa{ padding:1.1rem 1.4rem .7rem; border-bottom:1px solid var(--rule); }
+  dialog.redazione .ed-corpo{ padding:.2rem 1.4rem 1rem; overflow:auto; flex:1; min-height:0; }
+  dialog.redazione .ed-piede{ padding:.6rem 1.4rem 1rem; border-top:1px solid var(--rule); }
+  dialog.redazione .ed-piede label{ margin-top:0; }
+  dialog.redazione .schede{ display:flex; gap:.35rem; flex-wrap:wrap; }
+  dialog.redazione .schede button{ padding:.3rem .8rem; font-size:.85rem; }
+  dialog.redazione .schede button[aria-selected="true"]{ background:var(--bg-alt); border-color:var(--ink-faint); font-weight:600; }
+  dialog.redazione .ed-riga{ display:flex; align-items:flex-end; justify-content:space-between; gap:.6rem; margin-top:.8rem; }
+  dialog.redazione .ed-riga label{ margin:0; }
+  dialog.redazione .ed-riga button{ padding:.25rem .7rem; font-size:.82rem; }
+  dialog.redazione textarea.codice{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.82rem; line-height:1.5; }
+  dialog.redazione .anteprima{ border:1px solid var(--rule); border-radius:4px; padding:.4rem 1rem; margin-top:.25rem;
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif; font-size:1rem; line-height:1.6; }
+  .barra-redazione{ display:flex; justify-content:flex-end; margin:0 0 1rem; }
+  .barra-redazione button{ font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; font-size:.82rem;
+    padding:.35rem .85rem; border:1px solid var(--rule); background:var(--bg-alt); color:var(--ink); border-radius:4px; cursor:pointer; }
   @media (max-width:33rem){ dialog.redazione .campi{ grid-template-columns:1fr 1fr; } }
+  .coda{ list-style:none; padding:0; margin:1.6rem 0 0; counter-reset:coda; }
+  .coda > li{ counter-increment:coda; display:grid; grid-template-columns:2rem 1fr auto; gap:.2rem .7rem;
+    padding:1.05rem 0; border-top:1px solid var(--rule); }
+  .coda > li::before{ content:counter(coda); font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:.8rem; color:var(--ink-faint); padding-top:.3rem; font-variant-numeric:tabular-nums; }
+  .coda .opera{ font-size:1rem; line-height:1.45; }
+  .coda .opera a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--rule); }
+  .coda .opera a:hover{ border-bottom-color:currentColor; }
+  .coda .dove{ font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; font-size:.76rem;
+    color:var(--ink-faint); margin-top:.35rem; }
+  .coda .dove a{ color:var(--ink-soft); }
+  .coda details{ margin-top:.35rem; }
+  .coda summary{ font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; font-size:.76rem; color:var(--ink-faint); cursor:pointer; }
+  .coda details p{ margin:.4rem 0 0; font-size:.9rem; color:var(--ink-soft); }
+  .coda .misura-coda{ display:flex; flex-direction:column; align-items:flex-end; gap:.45rem; white-space:nowrap;
+    font-variant-numeric:tabular-nums; padding-top:.15rem; }
+  .coda .misura-coda input{ width:1.1rem; height:1.1rem; margin:0; accent-color:#1a7f37; cursor:pointer; }
+  .coda-sintesi{ font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; font-size:.85rem; color:var(--ink-faint); margin:0; }
+  .coda-letti{ margin-top:2.6rem; padding-top:1.4rem; border-top:1px solid var(--rule); }
+  .coda-letti h3{ font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; font-size:.7rem;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 .8rem; font-weight:600; }
+  .coda-letti ul{ margin:0; padding-left:1.2rem; font-size:.92rem; color:var(--ink-soft); }
+  .coda-letti li{ margin-bottom:.45rem; }
   .valutatore .vtitolo{ font-size:1.05rem; margin:0 0 1rem; }
   .valutatore .vsezione{ margin:0 0 2.2rem; }
   .valutatore .vsezione + .vsezione{ border-top:1px solid var(--rule,#ddd); padding-top:1.4rem; }
@@ -263,6 +305,7 @@ footer.site a{color:var(--ink-soft)}
       <a href="logica.html">Leggi la <i>Logica</i></a>
       <a href="osservatorio.html">Osservatorio</a>
       <a href="mappa.html">Mappa della discussione</a>
+      <a href="#/letture" id="codalink" style="display:none">Coda delle letture</a>
       <a href="reports/index.json">Archivio in JSON</a>
       <a href="#" id="themebtn">Cambia tema</a>
     </nav>
@@ -297,17 +340,13 @@ footer.site a{color:var(--ink-soft)}
       Testo di riferimento: Manuel Leoni, <i>Logica</i>, Fondazione Hannah, Gallarate, prima edizione 2024.
       · <a href="logica.html">Leggi il testo</a>
     </p>
-    <p class="redazione"><a href="#" id="redbtn" role="button">Accesso redazione</a></p>
+    <p class="redazione"><a href="#" id="redbtn" role="button">Accesso redazione</a><span id="filebox" hidden> · <a href="#" id="filebtn" role="button">File del sito</a></span></p>
   </footer>
 
 <dialog class="redazione" id="dlg-accesso" aria-labelledby="acc-tit">
   <form id="f-accesso">
     <h3 id="acc-tit">Accesso redazione</h3>
-    <p class="aiuto">Incolla il token GitHub creato per questo repository
-      (<a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">creane uno</a>:
-      tipo <em>fine-grained</em>, solo il repository Fondazione-Hannah, permesso <em>Contents: Read and write</em>).
-      Il token resta in questo browser e serve a salvare le modifiche nel repository a tuo nome.</p>
-    <label>Token<input type="password" id="acc-token" autocomplete="off" spellcheck="false" required></label>
+    <label>Password<input type="password" id="acc-token" autocomplete="current-password" spellcheck="false" required></label>
     <label class="riga"><input type="checkbox" id="acc-ricorda" checked> Ricorda su questo dispositivo</label>
     <p class="errore" id="acc-errore" role="alert"></p>
     <div class="azioni"><button type="button" data-chiudi>Annulla</button><button type="submit" class="primario">Entra</button></div>
@@ -329,10 +368,59 @@ footer.site a{color:var(--ink-soft)}
       <output id="rev-valore" aria-label="Valore risultante"></output>
     </div>
     <label>Ragioni della revisione<textarea id="rev-ragioni" rows="4"></textarea></label>
-    <label>Testo rivisto, titolo (facoltativo)<input id="rev-tt"></label>
-    <label>Testo rivisto, indirizzo (facoltativo)<input id="rev-tu" placeholder="index.html#/2026-09-23-van-cleve"></label>
+    <label>Testo rivisto, titolo<input id="rev-tt"></label>
+    <label>Testo rivisto, indirizzo<input id="rev-tu"></label>
     <p class="errore" id="rev-errore" role="alert"></p>
     <div class="azioni"><button type="button" data-chiudi>Annulla</button><button type="submit" class="primario">Salva nel repository</button></div>
+  </form>
+</dialog>
+
+<dialog class="redazione grande" id="dlg-editor" aria-labelledby="ed-tit">
+  <form id="f-editor">
+    <div class="ed-testa">
+      <h3 id="ed-tit">Modifica</h3>
+      <div class="schede" role="tablist">
+        <button type="button" role="tab" data-scheda="testo" aria-selected="true">Testo</button>
+        <button type="button" role="tab" data-scheda="valutatore" aria-selected="false">Valutatore</button>
+        <button type="button" role="tab" data-scheda="json" aria-selected="false">JSON</button>
+      </div>
+    </div>
+    <div class="ed-corpo">
+      <section data-pannello="testo">
+        <label>Titolo<input id="ed-titolo"></label>
+        <label>Tesi<textarea id="ed-tesi" rows="5"></textarea></label>
+        <div class="ed-riga"><label for="ed-corpo">Testo</label><button type="button" id="ed-anteprima-btn" aria-pressed="false">Anteprima</button></div>
+        <textarea id="ed-corpo" class="codice" rows="22" spellcheck="true"></textarea>
+        <div id="ed-anteprima" class="anteprima" hidden></div>
+        <label>Oggetti<textarea id="ed-oggetti" rows="4"></textarea></label>
+        <label>Fonti<textarea id="ed-fonti" rows="3"></textarea></label>
+      </section>
+      <section data-pannello="valutatore" hidden>
+        <div class="ed-riga"><label for="ed-valutazione">Valutazione</label><button type="button" id="ed-ricalcola">Ricalcola valori e aggregati</button></div>
+        <textarea id="ed-valutazione" class="codice" rows="28" spellcheck="false"></textarea>
+      </section>
+      <section data-pannello="json" hidden>
+        <label>Rapporto<textarea id="ed-json" class="codice" rows="30" spellcheck="false"></textarea></label>
+      </section>
+    </div>
+    <div class="ed-piede">
+      <label>Messaggio del commit<input id="ed-messaggio"></label>
+      <p class="errore" id="ed-errore" role="alert"></p>
+      <div class="azioni"><button type="button" id="ed-annulla">Annulla</button><button type="submit" class="primario">Salva nel repository</button></div>
+    </div>
+  </form>
+</dialog>
+
+<dialog class="redazione grande" id="dlg-file" aria-labelledby="fi-tit">
+  <form id="f-file">
+    <div class="ed-testa"><h3 id="fi-tit">File del sito</h3>
+      <label>File<select id="fi-elenco"></select></label></div>
+    <div class="ed-corpo"><textarea id="fi-testo" class="codice" rows="28" spellcheck="false" disabled aria-label="Contenuto del file"></textarea></div>
+    <div class="ed-piede">
+      <label>Messaggio del commit<input id="fi-messaggio"></label>
+      <p class="errore" id="fi-errore" role="alert"></p>
+      <div class="azioni"><button type="button" id="fi-chiudi">Chiudi</button><button type="submit" class="primario" disabled>Salva nel repository</button></div>
+    </div>
   </form>
 </dialog>
 
@@ -574,21 +662,22 @@ footer.site a{color:var(--ink-soft)}
       corrente = e;
       var r = ROLE[e.agent] || {name:e.agent, role:"", color:"var(--ink)"};
       var html = '<div style="--accent:'+r.color+'">'
+        + (ADMIN.utente ? '<div class="barra-redazione"><button type="button" data-azione="modifica">Modifica</button></div>' : '')
         + '<div class="byline"><span>'+esc(r.name)+'</span><span class="role">'+dataLunga(e.date)+'</span></div>'
-        + '<h2 class="title">'+esc(e.title)+'</h2>'
-        + '<div class="thesisbox">'+esc(e.thesis)+'</div>';
+        + '<h2 class="title">'+esc(e.title)+'</h2>';
+      if(e.sources && e.sources.length){
+        html += '<div class="sources in-testa"><h3>Fonti</h3><ol>'
+          + e.sources.map(function(s){
+              return '<li><a href="'+esc(s.url)+'" rel="noopener noreferrer" target="_blank">'+esc(s.title)+"</a></li>";
+            }).join("") + "</ol></div>";
+      }
+      html += '<div class="thesisbox">'+esc(e.thesis)+'</div>';
       var prec = e.repliesTo ? voce(e.repliesTo) : null;
       if(prec) html += '<div class="dialogo">'+legame("Riprende", prec)+'</div>';
       html += '<div class="body">'+md(e.body)+'</div>';
       if(e.targets && e.targets.length){
         html += '<div class="targets"><h3>Oggetti</h3><ul>'
           + e.targets.map(function(t){ return "<li>"+esc(t)+"</li>"; }).join("") + "</ul></div>";
-      }
-      if(e.sources && e.sources.length){
-        html += '<div class="sources"><h3>Fonti</h3><ol>'
-          + e.sources.map(function(s){
-              return '<li><a href="'+esc(s.url)+'" rel="noopener noreferrer" target="_blank">'+esc(s.title)+"</a></li>";
-            }).join("") + "</ol></div>";
       }
       if(e.valutazione) html += valutatore(e.valutazione);
       var dopo = index.filter(function(x){ return x.repliesTo === e.id; });
@@ -616,7 +705,7 @@ footer.site a{color:var(--ink-soft)}
 
   function route(){
     var h = (location.hash || "").replace(/^#\/?/, "");
-    if(h) openReport(h); else closeReport();
+    if(h === "letture") openCoda(); else if(h) openReport(h); else closeReport();
   }
 
   document.getElementById("article").addEventListener("click", function(ev){
@@ -695,32 +784,60 @@ footer.site a{color:var(--ink-soft)}
     for(var i=0;i<u.length;i+=0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i+0x8000));
     return btoa(s);
   }
-  function percorso(id){ return "/repos/"+REPO+"/contents/reports/"+encodeURIComponent(id)+".json"; }
+  function viaFile(path){ return "/repos/"+REPO+"/contents/"+path.split("/").map(encodeURIComponent).join("/"); }
+  function leggiFile(path){
+    return gh(viaFile(path)+"?ref="+RAMO+"&t="+Date.now()).then(function(f){
+      if(typeof f.content !== "string" || (f.content === "" && f.size > 0)) throw new Error("file troppo grande per l'editor.");
+      return { sha:f.sha, testo:daBase64(f.content) };
+    });
+  }
+  function scriviFile(path, testo, sha, messaggio){
+    return gh(viaFile(path), { method:"PUT", body:JSON.stringify({ message:messaggio, content:aBase64(testo), sha:sha, branch:RAMO }) });
+  }
+  function testoJSON(o){ return JSON.stringify(o, null, 2); }
   function leggiDalRepository(id){
-    return gh(percorso(id)+"?ref="+RAMO+"&t="+Date.now()).then(function(f){ return { sha:f.sha, obj:JSON.parse(daBase64(f.content)) }; });
+    return leggiFile("reports/"+id+".json").then(function(f){ return { sha:f.sha, obj:JSON.parse(f.testo) }; });
   }
   function scriviNelRepository(id, muta, messaggio){
     return leggiDalRepository(id).then(function(f){
       muta(f.obj);
-      return gh(percorso(id), { method:"PUT", body:JSON.stringify({
-        message:messaggio, content:aBase64(JSON.stringify(f.obj, null, 2)), sha:f.sha, branch:RAMO }) })
-        .then(function(){ return f.obj; });
+      return scriviFile("reports/"+id+".json", testoJSON(f.obj), f.sha, messaggio).then(function(){ return f.obj; });
+    });
+  }
+  // allinea la voce di reports/index.json ai campi del rapporto
+  function allineaIndice(obj){
+    return leggiFile("reports/index.json").then(function(f){
+      var lista = JSON.parse(f.testo), e = null;
+      for(var k=0;k<lista.length;k++) if(lista[k].id === obj.id) e = lista[k];
+      if(!e) return null;
+      var prima = JSON.stringify(e);
+      Object.keys(e).forEach(function(c){ if(c in obj) e[c] = obj[c]; });
+      if(JSON.stringify(e) === prima) return lista;
+      return scriviFile("reports/index.json", testoJSON(lista), f.sha, "Indice: "+obj.title+" ["+obj.id+"]").then(function(){ return lista; });
     });
   }
   function verificaAccesso(token){
     ADMIN.token = token;
     return gh("/repos/"+REPO).then(function(j){
-      if(j.permissions && j.permissions.push === false) throw new Error("Questo token non può scrivere nel repository.");
+      if(j.permissions && j.permissions.push === false) throw new Error("questa password non consente di modificare il sito.");
       return gh("/user");
     }).then(function(u){ ADMIN.utente = u.login || "redazione"; return ADMIN.utente; });
   }
   function aggiornaPiede(){
     var b = document.getElementById("redbtn");
     b.textContent = ADMIN.utente ? "Redazione: "+ADMIN.utente+" · Esci" : "Accesso redazione";
+    document.getElementById("filebox").hidden = !ADMIN.utente;
+    document.getElementById("codalink").style.display = ADMIN.utente ? "" : "none";
   }
   function ridisegna(fresco){
     var h = (location.hash || "").replace(/^#\/?/, "");
     if(!h) return;
+    if(h === "letture"){
+      var yc = window.scrollY;
+      if(fresco) cache = {};
+      openCoda().then(function(){ if(!fresco) window.scrollTo(0, yc); });
+      return;
+    }
     if(fresco) delete cache[h];
     if(!fresco && !cache[h]) return;
     // conserva posizione e tabelle aperte quando il rapporto è già in memoria
@@ -765,7 +882,7 @@ footer.site a{color:var(--ink-soft)}
       avviso("Accesso eseguito come "+u+".");
     }).catch(function(e){
       ADMIN.token = null; ADMIN.utente = null;
-      err.textContent = e.status === 401 ? "Token non valido o scaduto." : "Accesso non riuscito: "+e.message;
+      err.textContent = e.status === 401 ? "Password non valida o scaduta." : "Accesso non riuscito: "+e.message;
     }).then(function(){ bt.disabled = false; });
   });
 
@@ -801,8 +918,12 @@ footer.site a{color:var(--ink-soft)}
     var c = ev.target;
     if(!(c && c.matches && c.matches("input[data-voce]")) || !ADMIN.utente || !corrente) return;
     ev.preventDefault();
-    var sid = +c.dataset.sez, i = +c.dataset.voce, v = voceIn(corrente, sid, i);
-    inCorso = { id:corrente.id, sid:sid, i:i, voce:v };
+    var sid = +c.dataset.sez, i = +c.dataset.voce;
+    apriRevisione(corrente.id, sid, i, voceIn(corrente, sid, i));
+  });
+
+  function apriRevisione(id, sid, i, v){
+    inCorso = { id:id, sid:sid, i:i, voce:v };
     if(v.letto_autore === true){
       var pr = v.revisione && v.revisione.prima;
       document.getElementById("tog-testo").textContent = nomeVoce(v) + " tornerà «non letto»"
@@ -814,7 +935,7 @@ footer.site a{color:var(--ink-soft)}
     document.getElementById("rev-chi").textContent = nomeVoce(v);
     document.getElementById("rev-attuale").textContent = "Valutazione attuale: scala "
       + (v.scala === null ? "n.d." : v.scala) + ", portata " + v.portata + ", valore " + (v.valore === null ? "n.d." : v.valore)
-      + ". Lascia i numeri come sono per confermarla.";
+      + ".";
     document.getElementById("rev-scala").value = v.scala === null ? "nd" : String(v.scala);
     document.getElementById("rev-portata").value = v.portata;
     document.getElementById("rev-ragioni").value = "";
@@ -823,7 +944,7 @@ footer.site a{color:var(--ink-soft)}
     document.getElementById("rev-errore").textContent = "";
     aggiornaAnteprima();
     apri("dlg-revisione");
-  });
+  }
 
   function salva(dialogo, errId, muta, messaggio, fatto){
     var bt = dialogo.querySelector("button[type=submit]"), err = document.getElementById(errId), x = inCorso;
@@ -865,6 +986,266 @@ footer.site a{color:var(--ink-soft)}
       if(pr){ v.scala = pr.scala; v.portata = pr.portata; v.valore = pr.valore; }
       delete v.revisione; v.letto_autore = false;
     }, "Tolta la spunta «letto e revisionato»: " + nomeVoce(v0) + " [" + inCorso.id + "]", "Spunta tolta.");
+  });
+
+  // ---- editor del rapporto ----
+  var ED = { id:null, sha:null, bozza:null, scheda:"testo", sporco:false, annulla:0 };
+  function $(id){ return document.getElementById(id); }
+  function fontiTesto(ss){ return (ss || []).map(function(s){ return s.url ? s.title+" | "+s.url : s.title; }).join("\n"); }
+  function fontiDa(txt, vecchie){
+    return txt.split("\n").map(function(r){ return r.trim(); }).filter(Boolean).map(function(r){
+      var k = r.lastIndexOf(" | "), s = k >= 0 ? { title:r.slice(0,k).trim(), url:r.slice(k+3).trim() } : { title:r };
+      (vecchie || []).forEach(function(v){ if(v.title === s.title && v.url === s.url) Object.keys(v).forEach(function(c){ if(!(c in s)) s[c] = v[c]; }); });
+      return s;
+    });
+  }
+  function riempiScheda(s){
+    var b = ED.bozza;
+    if(s === "testo"){
+      $("ed-titolo").value = b.title || ""; $("ed-tesi").value = b.thesis || ""; $("ed-corpo").value = b.body || "";
+      $("ed-oggetti").value = (b.targets || []).join("\n"); $("ed-fonti").value = fontiTesto(b.sources);
+      if(!$("ed-anteprima").hidden) $("ed-anteprima").innerHTML = md(b.body || "");
+    } else if(s === "valutatore"){
+      $("ed-valutazione").value = b.valutazione ? testoJSON(b.valutazione) : "";
+    } else {
+      $("ed-json").value = testoJSON(b);
+    }
+  }
+  function leggiScheda(s){   // porta nella bozza ciò che è scritto nella scheda; errore se il JSON non è valido
+    var b = ED.bozza;
+    if(s === "testo"){
+      b.title = $("ed-titolo").value.trim(); b.thesis = $("ed-tesi").value.trim(); b.body = $("ed-corpo").value;
+      b.targets = $("ed-oggetti").value.split("\n").map(function(r){ return r.trim(); }).filter(Boolean);
+      b.sources = fontiDa($("ed-fonti").value, b.sources);
+    } else if(s === "valutatore"){
+      var v = $("ed-valutazione").value.trim();
+      if(v){ try{ b.valutazione = JSON.parse(v); }catch(e){ throw new Error("JSON del valutatore non valido: "+e.message); } }
+      else delete b.valutazione;
+    } else {
+      var o; try{ o = JSON.parse($("ed-json").value); }catch(e){ throw new Error("JSON non valido: "+e.message); }
+      if(o.id !== ED.id) throw new Error("l'id del rapporto non si può cambiare ("+ED.id+").");
+      ED.bozza = o;
+    }
+  }
+  function mostraScheda(s){
+    try{ leggiScheda(ED.scheda); }catch(e){ $("ed-errore").textContent = e.message; return; }
+    $("ed-errore").textContent = "";
+    ED.scheda = s;
+    Array.prototype.forEach.call(document.querySelectorAll("#dlg-editor [data-scheda]"), function(b){ b.setAttribute("aria-selected", String(b.dataset.scheda === s)); });
+    Array.prototype.forEach.call(document.querySelectorAll("#dlg-editor [data-pannello]"), function(p){ p.hidden = p.dataset.pannello !== s; });
+    riempiScheda(s);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("#dlg-editor [data-scheda]"), function(b){
+    b.addEventListener("click", function(){ if(b.dataset.scheda !== ED.scheda) mostraScheda(b.dataset.scheda); });
+  });
+  $("f-editor").addEventListener("input", function(){ ED.sporco = true; ED.annulla = 0; });
+  $("ed-anteprima-btn").addEventListener("click", function(){
+    var a = $("ed-anteprima"), on = a.hidden;
+    a.hidden = !on; $("ed-corpo").hidden = on; this.setAttribute("aria-pressed", String(on));
+    this.textContent = on ? "Torna al testo" : "Anteprima";
+    if(on) a.innerHTML = md($("ed-corpo").value);
+  });
+  $("ed-anteprima").addEventListener("click", function(ev){
+    var a = ev.target.closest("a"); if(!a) return;
+    if(a.getAttribute("href") === "#"){ ev.preventDefault();
+      var d = a.dataset.nota ? this.querySelector("#nota-"+a.dataset.nota) : a.dataset.rif ? this.querySelector("#rif-"+a.dataset.rif) : null;
+      if(d) d.scrollIntoView({block:"center"}); }
+  });
+  $("ed-ricalcola").addEventListener("click", function(){
+    var V; try{ V = JSON.parse($("ed-valutazione").value); }catch(e){ $("ed-errore").textContent = "JSON del valutatore non valido: "+e.message; return; }
+    function rifai(voci){ voci.forEach(function(v){ if("scala" in v && typeof v.portata === "number") v.valore = valoreDa(v.scala, v.portata); }); }
+    if(V.sezioni){ V.sezioni.forEach(function(s, k){ rifai(s.voci); ricalcolaEsito(V, k); }); }
+    else if(V.voci){ rifai(V.voci); ricalcolaEsito(V, -1); }
+    $("ed-valutazione").value = testoJSON(V); ED.sporco = true; $("ed-errore").textContent = "";
+  });
+  function chiudiEditor(){
+    if(ED.sporco && ED.annulla === 0){ ED.annulla = 1; $("ed-errore").textContent = "Ci sono modifiche non salvate: premi di nuovo Annulla per scartarle."; return false; }
+    ED.sporco = false; chiudi($("dlg-editor")); return true;
+  }
+  $("ed-annulla").addEventListener("click", chiudiEditor);
+  $("dlg-editor").addEventListener("cancel", function(ev){ if(ED.sporco && ED.annulla === 0){ ev.preventDefault(); chiudiEditor(); } });
+
+  function apriEditor(id){
+    leggiDalRepository(id).then(function(f){
+      ED = { id:id, sha:f.sha, bozza:f.obj, scheda:"testo", sporco:false, annulla:0 };
+      $("ed-tit").textContent = "Modifica · " + (f.obj.title || id);
+      $("ed-messaggio").value = "Revisione: " + (f.obj.title || "") + " [" + id + "]";
+      $("ed-errore").textContent = "";
+      $("ed-anteprima").hidden = true; $("ed-corpo").hidden = false;
+      $("ed-anteprima-btn").textContent = "Anteprima"; $("ed-anteprima-btn").setAttribute("aria-pressed","false");
+      Array.prototype.forEach.call(document.querySelectorAll("#dlg-editor [data-scheda]"), function(b){ b.setAttribute("aria-selected", String(b.dataset.scheda === "testo")); });
+      Array.prototype.forEach.call(document.querySelectorAll("#dlg-editor [data-pannello]"), function(p){ p.hidden = p.dataset.pannello !== "testo"; });
+      riempiScheda("testo");
+      apri("dlg-editor");
+    }).catch(function(e){ avviso("Non riesco ad aprire il rapporto: "+e.message); });
+  }
+  $("f-editor").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var bt = this.querySelector("button[type=submit]"), err = $("ed-errore");
+    try{ leggiScheda(ED.scheda); }catch(e){ err.textContent = e.message; return; }
+    var b = ED.bozza;
+    if(b.body !== undefined) b.words = String(b.body).trim().split(/\s+/).filter(Boolean).length;
+    bt.disabled = true; err.textContent = "";
+    scriviFile("reports/"+ED.id+".json", testoJSON(b), ED.sha, $("ed-messaggio").value.trim() || ("Revisione ["+ED.id+"]"))
+      .then(function(r){ ED.sha = r && r.content ? r.content.sha : ED.sha; return allineaIndice(b); })
+      .then(function(lista){
+        cache[ED.id] = b; if(lista) index = lista;
+        ED.sporco = false; chiudi($("dlg-editor")); renderList(); ridisegna();
+        avviso("Salvato. Il sito pubblicato si aggiorna entro qualche minuto.");
+      })
+      .catch(function(e){
+        err.textContent = e.status === 409 ? "Il rapporto è stato modificato altrove dopo l'apertura: chiudi e riapri per ripartire dalla versione nuova."
+                                            : "Salvataggio non riuscito: "+e.message;
+      })
+      .then(function(){ bt.disabled = false; });
+  });
+  $("article").addEventListener("click", function(ev){
+    var b = ev.target.closest && ev.target.closest("[data-azione=modifica]");
+    if(b && ADMIN.utente && corrente) apriEditor(corrente.id);
+  });
+
+  // ---- file del sito ----
+  var FI = { path:null, sha:null, sporco:false };
+  var TESTUALI = /\.(html?|json|md|css|js|ya?ml|txt|xml|svg|webmanifest)$/i;
+  $("filebtn").addEventListener("click", function(ev){
+    ev.preventDefault();
+    var sel = $("fi-elenco"); sel.innerHTML = '<option value="">…</option>'; $("fi-testo").value = ""; $("fi-testo").disabled = true;
+    $("f-file").querySelector("button[type=submit]").disabled = true; $("fi-errore").textContent = ""; FI = { path:null, sha:null, sporco:false };
+    apri("dlg-file");
+    Promise.all([gh("/repos/"+REPO+"/contents/?ref="+RAMO), gh("/repos/"+REPO+"/contents/reports?ref="+RAMO)]).then(function(ls){
+      var nomi = ls[0].concat(ls[1]).filter(function(f){ return f.type === "file" && TESTUALI.test(f.name); })
+                     .map(function(f){ return f.path; }).sort();
+      sel.innerHTML = '<option value="">—</option>' + nomi.map(function(n){ return '<option>'+esc(n)+'</option>'; }).join("");
+    }).catch(function(e){ $("fi-errore").textContent = "Elenco non disponibile: "+e.message; });
+  });
+  $("fi-elenco").addEventListener("change", function(){
+    var path = this.value, ta = $("fi-testo"), bt = $("f-file").querySelector("button[type=submit]");
+    if(FI.sporco && !window.confirm("Scartare le modifiche a "+FI.path+"?")){ this.value = FI.path || ""; return; }
+    ta.value = ""; ta.disabled = true; bt.disabled = true; $("fi-errore").textContent = "";
+    if(!path) return;
+    leggiFile(path).then(function(f){
+      FI = { path:path, sha:f.sha, sporco:false };
+      ta.value = f.testo; ta.disabled = false; bt.disabled = false;
+      $("fi-messaggio").value = "Modifica di " + path;
+    }).catch(function(e){ $("fi-errore").textContent = "Non riesco ad aprire il file: "+e.message; });
+  });
+  $("fi-testo").addEventListener("input", function(){ FI.sporco = true; });
+  $("fi-chiudi").addEventListener("click", function(){
+    if(FI.sporco && !window.confirm("Scartare le modifiche a "+FI.path+"?")) return;
+    FI.sporco = false; chiudi($("dlg-file"));
+  });
+  $("f-file").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var bt = this.querySelector("button[type=submit]"), err = $("fi-errore"), testo = $("fi-testo").value;
+    if(!FI.path) return;
+    if(/\.json$/i.test(FI.path)){ try{ JSON.parse(testo); }catch(e){ err.textContent = "JSON non valido: "+e.message; return; } }
+    bt.disabled = true; err.textContent = "";
+    scriviFile(FI.path, testo, FI.sha, $("fi-messaggio").value.trim() || ("Modifica di "+FI.path)).then(function(r){
+      FI.sha = r && r.content ? r.content.sha : FI.sha; FI.sporco = false;
+      var m = FI.path.match(/^reports\/(.+)\.json$/); if(m){ delete cache[m[1]]; if(m[1] === "index"){ try{ index = JSON.parse(testo); renderList(); }catch(e){} } }
+      avviso("Salvato " + FI.path + ". Il sito pubblicato si aggiorna entro qualche minuto.");
+    }).catch(function(e){
+      err.textContent = e.status === 409 ? "Il file è stato modificato altrove: riaprilo." : "Salvataggio non riuscito: "+e.message;
+    }).then(function(){ bt.disabled = false; });
+  });
+
+  // ---- coda delle letture: i lavori valutati non ancora letti e revisionati, per priorità ----
+  var CODA = null;
+  function caricaRapporto(id){
+    if(cache[id]) return Promise.resolve(cache[id]);
+    return (ADMIN.utente ? leggiDalRepository(id).then(function(x){ return x.obj; })
+      : fetch("reports/"+encodeURIComponent(id)+".json").then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }))
+      .then(function(e){ cache[id] = e; return e; });
+  }
+  function chiaveOpera(v){
+    function norm(s){ return String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(); }
+    var primo = String(v.autore || "").split(/,| e | and /)[0].trim().split(/\s+/).pop();
+    return norm(primo) + "|" + (v.anno || "") + "|" + norm(v.titolo);
+  }
+  function pesoVoce(v){ return (v.contatto == null ? 1 : v.contatto) * (v.portata == null ? 1 : v.portata); }
+  function distanza(v){ return v.valore == null ? -1 : Math.abs(v.valore - 50); }
+  function costruisciCoda(rapporti){
+    var m = {}, ordine = [];
+    rapporti.forEach(function(e){
+      var V = e.valutazione; if(!V) return;
+      var gruppi = V.sezioni ? V.sezioni.map(function(s, k){ return { sid:k, titolo:s.titolo, voci:s.voci || [] }; })
+                             : [{ sid:-1, titolo:null, voci:V.voci || [] }];
+      gruppi.forEach(function(g){
+        g.voci.forEach(function(v, i){
+          if(v.passaggio || !v.autore) return;
+          var k = chiaveOpera(v);
+          if(!m[k]){ m[k] = { luoghi:[], letto:false }; ordine.push(k); }
+          var L = m[k], luogo = { id:e.id, titolo:e.title, date:e.date || "", sid:g.sid, sezione:g.titolo, i:i, voce:v };
+          L.luoghi.push(luogo);
+          if(v.letto_autore === true) L.letto = true;
+          if(v.valore != null) L.peso = Math.max(L.peso || 0, pesoVoce(v));   // il contatto più alto fra i rapporti
+          if(!L.rif || luogo.date > L.rif.date) L.rif = luogo;   // la valutazione più recente è quella che vale
+        });
+      });
+    });
+    var tutti = ordine.map(function(k){ return m[k]; });
+    var aperti = tutti.filter(function(x){ return !x.letto; });
+    function valutato(x){ return x.rif.voce.valore != null; }
+    var coda = aperti.filter(valutato).sort(function(a, b){
+      var va = a.rif.voce, vb = b.rif.voce;
+      return ((b.peso || 0) - (a.peso || 0)) || (distanza(vb) - distanza(va)) || ((vb.citazioni || 0) - (va.citazioni || 0));
+    });
+    var nd = aperti.filter(function(x){ return !valutato(x); }).sort(function(a, b){
+      return (b.luoghi.length - a.luoghi.length) || ((b.rif.voce.citazioni || 0) - (a.rif.voce.citazioni || 0));
+    });
+    return { coda:coda.concat(nd), valutati:coda.length, letti:tutti.filter(function(x){ return x.letto; }) };
+  }
+  function cifra(x){ return String(Math.round(x*100)/100).replace(".", ","); }
+  function paintCoda(C){
+    CODA = C;
+    var host = document.getElementById("article");
+    function riga(x, n){
+      var v = x.rif.voce, val = v.valore == null ? "n.d." : v.valore;
+      var dove = x.luoghi.map(function(l){
+        return '<a href="#/'+esc(l.id)+'">'+esc(l.titolo)+'</a>'+(l.sezione ? ' · '+esc(l.sezione) : '');
+      }).join("; ");
+      return '<li>'
+        + '<div><div class="opera"><strong>'+esc(v.autore)+'</strong>, '+vTitolo(v)+(v.sede ? ', '+esc(v.sede) : '')+(v.anno ? ', '+v.anno : '')+'</div>'
+        + '<div class="dove">'+(v.valore == null ? '' : 'priorità '+cifra(x.peso || 0)+' · ')+dove+'</div>'
+        + ((v.premessa_fondamentale || v.motivo) ? '<details><summary>Premessa</summary><p>'
+            + esc(v.premessa_fondamentale ? v.premessa_fondamentale+' — '+(v.motivo || '') : v.motivo)+'</p></details>' : '')
+        + '</div>'
+        + '<div class="misura-coda"><span><span class="pallino" style="display:inline-block;width:.6rem;height:.6rem;border-radius:50%;margin-right:.35rem;background:'+vColore(v.valore)+'"></span>'+val+'</span>'
+        + (ADMIN.utente ? '<input type="checkbox" data-coda="'+n+'" aria-label="Letto e revisionato: '+esc(v.autore)+', '+esc(v.titolo)+'">' : '')
+        + '</div></li>';
+    }
+    var righe = C.coda.slice(0, C.valutati).map(riga).join("");
+    var righeNd = C.coda.slice(C.valutati).map(function(x, k){ return riga(x, C.valutati + k); }).join("");
+    var letti = C.letti.map(function(x){
+      var v = x.rif.voce; x.luoghi.forEach(function(l){ if(l.voce.letto_autore === true) v = l.voce; });
+      var r = v.revisione;
+      return '<li><strong>'+esc(v.autore)+'</strong>, «'+esc(v.titolo)+'», '+v.anno+' · '+(v.valore == null ? "n.d." : v.valore)
+        + (r && r.data ? ' · '+esc(r.data) : '')+'</li>';
+    }).join("");
+    host.innerHTML = '<div style="--accent:var(--anamnesi)">'
+      + '<h2 class="title">Coda delle letture</h2>'
+      + '<p class="coda-sintesi">'+C.coda.length+' da leggere · '+C.letti.length+' letti e revisionati</p>'
+      + (righe ? '<ol class="coda">'+righe+'</ol>' : '')
+      + (righeNd ? '<div class="coda-letti"><h3>Valore non determinato</h3></div><ol class="coda coda-nd">'+righeNd+'</ol>' : '')
+      + (letti ? '<div class="coda-letti"><h3>Letti e revisionati</h3><ul>'+letti+'</ul></div>' : '')
+      + '</div>';
+    document.title = "Coda delle letture — A(i)thena";
+  }
+  function openCoda(){
+    var host = document.getElementById("article");
+    document.getElementById("list").classList.add("off");
+    document.getElementById("reader").classList.add("on");
+    corrente = null;
+    if(!host.querySelector(".coda")){ window.scrollTo(0,0); host.innerHTML = '<p class="empty">Carico…</p>'; }
+    return Promise.all(index.map(function(e){ return caricaRapporto(e.id).catch(function(){ return null; }); }))
+      .then(function(rs){ paintCoda(costruisciCoda(rs.filter(Boolean))); });
+  }
+  document.getElementById("article").addEventListener("click", function(ev){
+    var c = ev.target;
+    if(!(c && c.matches && c.matches("input[data-coda]")) || !ADMIN.utente || !CODA) return;
+    ev.preventDefault();
+    var x = CODA.coda[+c.dataset.coda]; if(!x) return;
+    apriRevisione(x.rif.id, x.rif.sid, x.rif.i, x.rif.voce);
   });
 
   window.addEventListener("hashchange", route);
