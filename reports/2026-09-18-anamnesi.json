@@ -107,7 +107,7 @@
         "contatto": 0.9,
         "valore": 75,
         "motivo": "La premessa è accolta solo nella versione ristretta all'istante: là dove la percezione è attuale, nessuna garanzia serve. Ma l'inferenza dalla singola percezione alla regola è essa stessa una dimostrazione, e dunque ricade sotto la condizione che si voleva evitare: le conseguenze si rovesciano entro la premessa accolta.",
-        "letto_autore": false,
+        "letto_autore": true,
         "doi": null,
         "url": "https://www.semanticscholar.org/search?q=Foundationalism%2C%20Epistemic%20Principles%2C%20and%20the%20Cartesian%20Circle",
         "url_tipo": "ricerca",
@@ -119,6 +119,20 @@
           "lon": -71.4025,
           "fonte": "https://dornsife.usc.edu/james-van-cleve/",
           "nota": "CV: Brown University 1973-1987."
+        },
+        "revisione": {
+          "data": "2026-09-24",
+          "prima": {
+            "scala": 75,
+            "portata": 1,
+            "valore": 75
+          },
+          "dopo": {
+            "scala": 75,
+            "portata": 1,
+            "valore": 75
+          },
+          "ragioni": "Letto e revisionato da Manuel · valore rivisto da 75 a 85 (2026-09-24). Il valore 75 era ricostruito dall'esterno e leggeva la premessa di Van Cleve come accettabile nella versione ristretta all'istante. Letto il saggio per intero, il suo asse risulta la definitività: la certezza delle prime verità a priori è data a chi percepisce senza alcuna notizia, per il solo cadere sotto (A), e la regola della chiarezza e distinzione è dichiarata immediatamente giustificata (pp. 88–90). È l'opposto della tesi della Logica, per la quale la notizia del valore trascendentale non è immediata ma si guadagna dal tentativo di negarlo. Gli accordi restano, ma sono periferici: il dubbio senza ragioni certe, l'argomento della sufficienza per ciò che appare, la critica a Doney. Perciò la scala sale a 100 (contraddizione del presupposto) e la portata scende a 0,7: il valore passa da 75 a 85. La valutazione di Van Cleve è una sola: lo stesso 85 è articolato passaggio per passaggio nella sezione «Il saggio di Van Cleve» del valutatore dell'articolo su Van Cleve.\nTesto rivisto: «Il primo livello della scala di Van Cleve richiede già Dio» — Testo corretto e rivisto dall'autore il 23–24/9"
         }
       },
       {
