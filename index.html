@@ -198,6 +198,35 @@ footer.site a{color:var(--ink-soft)}
   .valutatore .pallino{ display:inline-block; width:.6rem; height:.6rem; border-radius:50%; margin-right:.4rem; }
   .valutatore .letto-fisso[data-stato="true"]{ color:#1a7f37; font-weight:600; }
   .valutatore .letto-fisso[data-stato="false"]{ color:#8b3a1a; }
+  .valutatore .letto-admin{ display:inline-flex; gap:.35rem; align-items:center; cursor:pointer; }
+  .valutatore .letto-admin input{ width:1.05rem; height:1.05rem; margin:0; accent-color:#1a7f37; cursor:pointer; }
+  footer.site .redazione{ margin-top:1.4rem; }
+  footer.site .redazione a{ cursor:pointer; }
+  dialog.redazione{ border:1px solid var(--rule); border-radius:6px; background:var(--bg); color:var(--ink);
+    padding:1.3rem 1.4rem; width:min(32rem, calc(100vw - 32px)); box-shadow:var(--shadow);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; font-size:.92rem; line-height:1.5; }
+  dialog.redazione::backdrop{ background:rgba(20,19,15,.45); }
+  dialog.redazione h3{ margin:0 0 .5rem; font-size:1.05rem; }
+  dialog.redazione p{ margin:.4rem 0; }
+  dialog.redazione .aiuto{ font-size:.82rem; color:var(--ink-faint); }
+  dialog.redazione label{ display:block; margin:.8rem 0 0; font-size:.82rem; color:var(--ink-soft); }
+  dialog.redazione input:not([type=checkbox]), dialog.redazione select, dialog.redazione textarea{
+    display:block; width:100%; margin-top:.25rem; font:inherit; font-size:.95rem; color:var(--ink);
+    background:var(--bg-alt); border:1px solid var(--rule); border-radius:4px; padding:.45rem .55rem; }
+  dialog.redazione label.riga{ display:flex; gap:.5rem; align-items:center; }
+  dialog.redazione .campi{ display:grid; grid-template-columns:1fr 1fr auto; gap:.8rem; align-items:end; }
+  dialog.redazione .campi label{ margin:0; }
+  dialog.redazione output{ font-variant-numeric:tabular-nums; font-size:1.5rem; font-weight:600; line-height:1; padding-bottom:.35rem; min-width:3.2rem; text-align:right; }
+  dialog.redazione .azioni{ display:flex; justify-content:flex-end; gap:.6rem; margin-top:1.2rem; }
+  dialog.redazione button{ font:inherit; padding:.45rem .95rem; border-radius:4px; border:1px solid var(--rule);
+    background:transparent; color:var(--ink); cursor:pointer; }
+  dialog.redazione button.primario{ background:var(--anamnesi); border-color:var(--anamnesi); color:var(--bg); }
+  dialog.redazione button[disabled]{ opacity:.55; cursor:progress; }
+  dialog.redazione .errore{ color:#c0392b; min-height:1.2em; margin:.6rem 0 0; font-size:.85rem; }
+  .avviso-redazione{ position:fixed; left:50%; bottom:1.2rem; transform:translateX(-50%); z-index:20;
+    background:var(--ink); color:var(--bg); padding:.6rem 1rem; border-radius:4px; max-width:calc(100vw - 32px);
+    font-family:ui-sans-serif,system-ui,-apple-system,sans-serif; font-size:.88rem; box-shadow:var(--shadow); }
+  @media (max-width:33rem){ dialog.redazione .campi{ grid-template-columns:1fr 1fr; } }
   .valutatore .vtitolo{ font-size:1.05rem; margin:0 0 1rem; }
   .valutatore .vsezione{ margin:0 0 2.2rem; }
   .valutatore .vsezione + .vsezione{ border-top:1px solid var(--rule,#ddd); padding-top:1.4rem; }
@@ -268,7 +297,53 @@ footer.site a{color:var(--ink-soft)}
       Testo di riferimento: Manuel Leoni, <i>Logica</i>, Fondazione Hannah, Gallarate, prima edizione 2024.
       · <a href="logica.html">Leggi il testo</a>
     </p>
+    <p class="redazione"><a href="#" id="redbtn" role="button">Accesso redazione</a></p>
   </footer>
+
+<dialog class="redazione" id="dlg-accesso" aria-labelledby="acc-tit">
+  <form id="f-accesso">
+    <h3 id="acc-tit">Accesso redazione</h3>
+    <p class="aiuto">Incolla il token GitHub creato per questo repository
+      (<a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">creane uno</a>:
+      tipo <em>fine-grained</em>, solo il repository Fondazione-Hannah, permesso <em>Contents: Read and write</em>).
+      Il token resta in questo browser e serve a salvare le modifiche nel repository a tuo nome.</p>
+    <label>Token<input type="password" id="acc-token" autocomplete="off" spellcheck="false" required></label>
+    <label class="riga"><input type="checkbox" id="acc-ricorda" checked> Ricorda su questo dispositivo</label>
+    <p class="errore" id="acc-errore" role="alert"></p>
+    <div class="azioni"><button type="button" data-chiudi>Annulla</button><button type="submit" class="primario">Entra</button></div>
+  </form>
+</dialog>
+
+<dialog class="redazione" id="dlg-revisione" aria-labelledby="rev-tit">
+  <form id="f-revisione">
+    <h3 id="rev-tit">Letto e revisionato da Manuel</h3>
+    <p id="rev-chi"></p>
+    <p class="aiuto" id="rev-attuale"></p>
+    <div class="campi">
+      <label>Scala
+        <select id="rev-scala">
+          <option value="0">0 · concordia</option><option value="25">25</option><option value="50">50</option>
+          <option value="75">75</option><option value="100">100 · contraddizione</option><option value="nd">n.d.</option>
+        </select></label>
+      <label>Portata<input type="number" id="rev-portata" min="0" max="1" step="0.05" required></label>
+      <output id="rev-valore" aria-label="Valore risultante"></output>
+    </div>
+    <label>Ragioni della revisione<textarea id="rev-ragioni" rows="4"></textarea></label>
+    <label>Testo rivisto, titolo (facoltativo)<input id="rev-tt"></label>
+    <label>Testo rivisto, indirizzo (facoltativo)<input id="rev-tu" placeholder="index.html#/2026-09-23-van-cleve"></label>
+    <p class="errore" id="rev-errore" role="alert"></p>
+    <div class="azioni"><button type="button" data-chiudi>Annulla</button><button type="submit" class="primario">Salva nel repository</button></div>
+  </form>
+</dialog>
+
+<dialog class="redazione" id="dlg-togli" aria-labelledby="tog-tit">
+  <form id="f-togli">
+    <h3 id="tog-tit">Togliere la spunta?</h3>
+    <p id="tog-testo"></p>
+    <p class="errore" id="tog-errore" role="alert"></p>
+    <div class="azioni"><button type="button" data-chiudi>Annulla</button><button type="submit" class="primario">Togli e salva</button></div>
+  </form>
+</dialog>
 
 </div>
 
@@ -391,12 +466,14 @@ footer.site a{color:var(--ink-soft)}
   function vRevisione(r){
     if(!r) return "";
     var tr = r.testo_rivisto;
-    return '<div class="revisione"><strong>Letto e revisionato da Manuel · valore rivisto da '
-      + (r.prima && r.prima.valore !== undefined ? r.prima.valore : "—") + ' a '
-      + (r.dopo && r.dopo.valore !== undefined ? r.dopo.valore : "—") + '</strong>'
+    var pv = r.prima && r.prima.valore !== undefined ? r.prima.valore : undefined,
+        dv = r.dopo && r.dopo.valore !== undefined ? r.dopo.valore : undefined;
+    function nd(x){ return x === null ? "n.d." : x === undefined ? "—" : x; }
+    return '<div class="revisione"><strong>Letto e revisionato da Manuel · '
+      + (pv !== undefined && pv === dv ? 'valore confermato ('+nd(dv)+')' : 'valore rivisto da '+nd(pv)+' a '+nd(dv)) + '</strong>'
       + (r.data ? ' <span class="data">('+esc(r.data)+')</span>' : '')
-      + '. ' + esc(r.ragioni)
-      + (tr ? ' <span class="testo">Testo rivisto: <a href="'+esc(tr.url)+'">«'+esc(tr.titolo)+'»</a>'
+      + (r.ragioni ? '. ' + esc(r.ragioni) : '.')
+      + (tr ? ' <span class="testo">Testo rivisto: '+(tr.url ? '<a href="'+esc(tr.url)+'">«'+esc(tr.titolo)+'»</a>' : '«'+esc(tr.titolo)+'»')
               + (tr.stato ? ' — '+esc(tr.stato) : '') + '</span>' : '')
       + '</div>';
   }
@@ -407,10 +484,10 @@ footer.site a{color:var(--ink-soft)}
       + (s.prima && s.prima.valore !== undefined ? '; prima: '+(s.prima.valore === null ? "n.d." : s.prima.valore) : '') + '.</div>';
   }
 
-  function vBlocco(V, titolo, nota, voci, E, rev){
+  function vBlocco(V, titolo, nota, voci, E, rev, sid){
     var agg = E.aggregato;
     var letti = voci.filter(function(v){ return v.letto_autore === true; }).length;
-    var righe = voci.map(function(v){
+    var righe = voci.map(function(v, i){
       var et = v.valore === null ? "n.d." : v.valore;
       var cit = (v.citazioni === null || v.citazioni === undefined) ? "—" : v.citazioni;
       var chi = v.passaggio
@@ -420,7 +497,7 @@ footer.site a{color:var(--ink-soft)}
         + '<td>'+chi+'</td>'
         + (v.passaggio ? '' : '<td class="v">'+cit+'</td>')
         + '<td>'+(v.premessa_fondamentale ? esc(v.premessa_fondamentale)+' — '+esc(v.motivo) : esc(v.motivo))+vRevisione(v.revisione)+vSovrascritta(v.sovrascritta)+'</td>'
-        + (v.passaggio ? '' : '<td class="v"><span class="letto-fisso" data-stato="'+v.letto_autore+'">'+vSegno(v.letto_autore)+'</span></td>')
+        + (v.passaggio ? '' : '<td class="v">'+vLetto(v, sid, i)+'</td>')
         + '<td class="v"><span class="pallino" style="background:'+vColore(v.valore)+'"></span>'+et+'</td>'
         + '</tr>';
     }).join("");
@@ -443,6 +520,15 @@ footer.site a{color:var(--ink-soft)}
           : "Letti e revisionati da Manuel: <strong>"+letti+"</strong> su "+voci.length+".") + '</p>')
       + '<details><summary>Valutazione voce per voce</summary>'
       + '<table><thead>'+testa+'</thead><tbody>'+righe+'</tbody></table></details></div>';
+  }
+
+  function vLetto(v, sid, i){
+    if(ADMIN.utente && sid !== undefined && sid !== null){
+      return '<label class="letto-admin"><input type="checkbox" data-sez="'+sid+'" data-voce="'+i+'"'
+        + (v.letto_autore === true ? ' checked' : '')
+        + ' aria-label="Letto e revisionato da Manuel: '+esc(v.autore)+', '+esc(v.titolo)+'"><span>'+vSegno(v.letto_autore)+'</span></label>';
+    }
+    return '<span class="letto-fisso" data-stato="'+v.letto_autore+'">'+vSegno(v.letto_autore)+'</span>';
   }
 
   function vMetodo(m, sezioni){
@@ -468,13 +554,13 @@ footer.site a{color:var(--ink-soft)}
     if(V.sezioni && V.sezioni.length){
       return '<section class="valutatore">'
         + "<h2 class=\"vtitolo\">Valutatore d'impatto</h2>"
-        + V.sezioni.map(function(s){ return vBlocco(V, s.titolo, s.nota, s.voci, s.esito, s.revisione); }).join("")
+        + V.sezioni.map(function(s, k){ return vBlocco(V, s.titolo, s.nota, s.voci, s.esito, s.revisione, k); }).join("")
         + '<details class="vmetodo"><summary>Metodo</summary><div class="metodo">'+vMetodo(V.metodo, V.sezioni)+'</div></details>'
         + '</section>';
     }
     if(!V.esito) return "";
     return '<section class="valutatore">'
-      + vBlocco(V, "Valutatore d'impatto", "Misura dell'apporto polemico rispetto ai lavori più citati sullo stesso argomento.", V.voci, V.esito)
+      + vBlocco(V, "Valutatore d'impatto", "Misura dell'apporto polemico rispetto ai lavori più citati sullo stesso argomento.", V.voci, V.esito, null, -1)
       + '<details><summary>Metodo</summary><div class="metodo">'+vMetodo(V.metodo, null)+'</div></details>'
       + '</section>';
   }
@@ -485,6 +571,7 @@ footer.site a{color:var(--ink-soft)}
     document.getElementById("reader").classList.add("on");
     window.scrollTo(0,0);
     function paint(e){
+      corrente = e;
       var r = ROLE[e.agent] || {name:e.agent, role:"", color:"var(--ink)"};
       var html = '<div style="--accent:'+r.color+'">'
         + '<div class="byline"><span>'+esc(r.name)+'</span><span class="role">'+dataLunga(e.date)+'</span></div>'
@@ -514,8 +601,9 @@ footer.site a{color:var(--ink-soft)}
     }
     if(cache[id]){ paint(cache[id]); return; }
     host.innerHTML = '<p class="empty">Carico il testo…</p>';
-    fetch("reports/" + encodeURIComponent(id) + ".json")
-      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    (ADMIN.utente ? leggiDalRepository(id).then(function(x){ return x.obj; })
+      : fetch("reports/" + encodeURIComponent(id) + ".json")
+          .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }))
       .then(function(e){ cache[id] = e; paint(e); })
       .catch(function(){ host.innerHTML = '<p class="empty">Non riesco a caricare questo report.</p>'; });
   }
@@ -580,8 +668,210 @@ footer.site a{color:var(--ink-soft)}
     if(location.hash === prima) openReport(id);   // se il frammento non cambia (anteprima in cornice)
   });
 
+  // ---- redazione: accesso con token GitHub; le modifiche sono commit sul repository ----
+  var REPO = "Manus-Lions/Fondazione-Hannah", RAMO = "gh-pages", CHIAVE = "aithena-redazione";
+  var ADMIN = { token:null, utente:null }, corrente = null, inCorso = null;
+  function leggiToken(){ try{ return localStorage.getItem(CHIAVE) || sessionStorage.getItem(CHIAVE); }catch(e){ return null; } }
+  function salvaToken(t, ricorda){ try{ (ricorda ? localStorage : sessionStorage).setItem(CHIAVE, t); }catch(e){} }
+  function cancellaToken(){ try{ localStorage.removeItem(CHIAVE); sessionStorage.removeItem(CHIAVE); }catch(e){} }
+  function gh(path, opt){
+    opt = opt || {};
+    opt.headers = { "Accept":"application/vnd.github+json", "Authorization":"Bearer "+ADMIN.token,
+                    "X-GitHub-Api-Version":"2022-11-28", "Content-Type":"application/json" };
+    return fetch("https://api.github.com"+path, opt).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(j){
+        if(!r.ok){ var e = new Error(j.message || ("HTTP "+r.status)); e.status = r.status; throw e; }
+        return j;
+      });
+    });
+  }
+  function daBase64(b){
+    var s = atob(String(b).replace(/\s/g,"")), u = new Uint8Array(s.length);
+    for(var i=0;i<s.length;i++) u[i] = s.charCodeAt(i);
+    return new TextDecoder().decode(u);
+  }
+  function aBase64(t){
+    var u = new TextEncoder().encode(t), s = "";
+    for(var i=0;i<u.length;i+=0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i+0x8000));
+    return btoa(s);
+  }
+  function percorso(id){ return "/repos/"+REPO+"/contents/reports/"+encodeURIComponent(id)+".json"; }
+  function leggiDalRepository(id){
+    return gh(percorso(id)+"?ref="+RAMO+"&t="+Date.now()).then(function(f){ return { sha:f.sha, obj:JSON.parse(daBase64(f.content)) }; });
+  }
+  function scriviNelRepository(id, muta, messaggio){
+    return leggiDalRepository(id).then(function(f){
+      muta(f.obj);
+      return gh(percorso(id), { method:"PUT", body:JSON.stringify({
+        message:messaggio, content:aBase64(JSON.stringify(f.obj, null, 2)), sha:f.sha, branch:RAMO }) })
+        .then(function(){ return f.obj; });
+    });
+  }
+  function verificaAccesso(token){
+    ADMIN.token = token;
+    return gh("/repos/"+REPO).then(function(j){
+      if(j.permissions && j.permissions.push === false) throw new Error("Questo token non può scrivere nel repository.");
+      return gh("/user");
+    }).then(function(u){ ADMIN.utente = u.login || "redazione"; return ADMIN.utente; });
+  }
+  function aggiornaPiede(){
+    var b = document.getElementById("redbtn");
+    b.textContent = ADMIN.utente ? "Redazione: "+ADMIN.utente+" · Esci" : "Accesso redazione";
+  }
+  function ridisegna(fresco){
+    var h = (location.hash || "").replace(/^#\/?/, "");
+    if(!h) return;
+    if(fresco) delete cache[h];
+    if(!fresco && !cache[h]) return;
+    // conserva posizione e tabelle aperte quando il rapporto è già in memoria
+    var y = window.scrollY, aperti = Array.prototype.map.call(document.querySelectorAll("#article details"), function(d){ return d.open; });
+    openReport(h);
+    if(!fresco){
+      Array.prototype.forEach.call(document.querySelectorAll("#article details"), function(d, k){ if(aperti[k]) d.open = true; });
+      window.scrollTo(0, y);
+    }
+  }
+  function avviso(testo){
+    var d = document.createElement("div"); d.className = "avviso-redazione"; d.setAttribute("role","status");
+    d.textContent = testo; document.body.appendChild(d);
+    setTimeout(function(){ d.remove(); }, 5000);
+  }
+  function apri(id){ var d = document.getElementById(id); if(d.showModal) d.showModal(); else d.setAttribute("open",""); }
+  function chiudi(d){ if(d.close) d.close(); else d.removeAttribute("open"); }
+  Array.prototype.forEach.call(document.querySelectorAll("dialog.redazione [data-chiudi]"), function(b){
+    b.addEventListener("click", function(){ chiudi(b.closest("dialog")); });
+  });
+
+  document.getElementById("redbtn").addEventListener("click", function(ev){
+    ev.preventDefault();
+    if(ADMIN.utente){
+      ADMIN.token = null; ADMIN.utente = null; cancellaToken(); aggiornaPiede(); ridisegna();
+      avviso("Sei uscito dalla redazione.");
+      return;
+    }
+    document.getElementById("acc-errore").textContent = "";
+    document.getElementById("acc-token").value = "";
+    apri("dlg-accesso");
+  });
+  document.getElementById("f-accesso").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var f = ev.target, bt = f.querySelector("button[type=submit]"), err = document.getElementById("acc-errore");
+    var tok = document.getElementById("acc-token").value.trim();
+    if(!tok) return;
+    bt.disabled = true; err.textContent = "";
+    verificaAccesso(tok).then(function(u){
+      salvaToken(tok, document.getElementById("acc-ricorda").checked);
+      chiudi(document.getElementById("dlg-accesso")); aggiornaPiede(); ridisegna(true);
+      avviso("Accesso eseguito come "+u+".");
+    }).catch(function(e){
+      ADMIN.token = null; ADMIN.utente = null;
+      err.textContent = e.status === 401 ? "Token non valido o scaduto." : "Accesso non riuscito: "+e.message;
+    }).then(function(){ bt.disabled = false; });
+  });
+
+  // valore e aggregati, con le stesse regole dei rapporti
+  function valoreDa(scala, portata){ return scala === null ? null : Math.round((50 + (scala-50)*portata)*10)/10; }
+  function ricalcolaEsito(V, sid){
+    var sez = sid >= 0 ? V.sezioni[sid] : null, voci = sez ? sez.voci : V.voci, E = sez ? sez.esito : V.esito;
+    var val = voci.filter(function(v){ return v.valore !== null && v.valore !== undefined; }), num = 0, den = 0;
+    val.forEach(function(v){
+      var w = (v.contatto == null ? 1 : v.contatto) * (sez ? (v.portata == null ? 1 : v.portata) : 1);
+      num += v.valore*w; den += w;
+    });
+    E.aggregato = den ? Math.round(num/den) : null;
+    E.valutate = val.length; E.non_determinate = voci.length - val.length;
+  }
+  function voceIn(obj, sid, i){
+    var V = obj.valutazione;
+    return sid >= 0 ? V.sezioni[sid].voci[i] : V.voci[i];
+  }
+  function stessaVoce(a, b){ return a && b && a.autore === b.autore && a.titolo === b.titolo && a.anno === b.anno; }
+  function oggi(){ var d = new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+  function nomeVoce(v){ return v.autore+", «"+v.titolo+"» ("+v.anno+")"; }
+
+  function aggiornaAnteprima(){
+    var s = document.getElementById("rev-scala").value, p = parseFloat(document.getElementById("rev-portata").value);
+    var v = valoreDa(s === "nd" ? null : +s, isNaN(p) ? 0 : p);
+    document.getElementById("rev-valore").textContent = v === null ? "n.d." : v;
+  }
+  document.getElementById("rev-scala").addEventListener("change", aggiornaAnteprima);
+  document.getElementById("rev-portata").addEventListener("input", aggiornaAnteprima);
+
+  document.getElementById("article").addEventListener("click", function(ev){
+    var c = ev.target;
+    if(!(c && c.matches && c.matches("input[data-voce]")) || !ADMIN.utente || !corrente) return;
+    ev.preventDefault();
+    var sid = +c.dataset.sez, i = +c.dataset.voce, v = voceIn(corrente, sid, i);
+    inCorso = { id:corrente.id, sid:sid, i:i, voce:v };
+    if(v.letto_autore === true){
+      var pr = v.revisione && v.revisione.prima;
+      document.getElementById("tog-testo").textContent = nomeVoce(v) + " tornerà «non letto»"
+        + (pr ? " e al valore precedente alla revisione ("+(pr.valore === null ? "n.d." : pr.valore)+")." : ".");
+      document.getElementById("tog-errore").textContent = "";
+      apri("dlg-togli");
+      return;
+    }
+    document.getElementById("rev-chi").textContent = nomeVoce(v);
+    document.getElementById("rev-attuale").textContent = "Valutazione attuale: scala "
+      + (v.scala === null ? "n.d." : v.scala) + ", portata " + v.portata + ", valore " + (v.valore === null ? "n.d." : v.valore)
+      + ". Lascia i numeri come sono per confermarla.";
+    document.getElementById("rev-scala").value = v.scala === null ? "nd" : String(v.scala);
+    document.getElementById("rev-portata").value = v.portata;
+    document.getElementById("rev-ragioni").value = "";
+    document.getElementById("rev-tt").value = "";
+    document.getElementById("rev-tu").value = "";
+    document.getElementById("rev-errore").textContent = "";
+    aggiornaAnteprima();
+    apri("dlg-revisione");
+  });
+
+  function salva(dialogo, errId, muta, messaggio, fatto){
+    var bt = dialogo.querySelector("button[type=submit]"), err = document.getElementById(errId), x = inCorso;
+    bt.disabled = true; err.textContent = "";
+    scriviNelRepository(x.id, function(obj){
+      if(!stessaVoce(voceIn(obj, x.sid, x.i), x.voce)) throw new Error("il rapporto nel repository è cambiato: ricarica la pagina e riprova.");
+      muta(obj, voceIn(obj, x.sid, x.i));
+      ricalcolaEsito(obj.valutazione, x.sid);
+    }, messaggio).then(function(obj){
+      cache[x.id] = obj; chiudi(dialogo); ridisegna();
+      avviso(fatto + " Il sito pubblicato si aggiorna entro qualche minuto.");
+    }).catch(function(e){
+      err.textContent = e.status === 409 ? "Il file è stato modificato nel frattempo: riprova." : "Salvataggio non riuscito: "+e.message;
+    }).then(function(){ bt.disabled = false; });
+  }
+
+  document.getElementById("f-revisione").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var s = document.getElementById("rev-scala").value, p = parseFloat(document.getElementById("rev-portata").value);
+    var err = document.getElementById("rev-errore");
+    if(isNaN(p) || p < 0 || p > 1){ err.textContent = "La portata va da 0 a 1."; return; }
+    var scala = s === "nd" ? null : +s, ragioni = document.getElementById("rev-ragioni").value.trim();
+    var tt = document.getElementById("rev-tt").value.trim(), tu = document.getElementById("rev-tu").value.trim();
+    var v0 = inCorso.voce, nuovo = valoreDa(scala, p);
+    if(nuovo !== v0.valore && !ragioni){ err.textContent = "Il valore cambia: scrivi le ragioni della modifica."; return; }
+    salva(document.getElementById("dlg-revisione"), "rev-errore", function(obj, v){
+      var prima = { scala:v.scala, portata:v.portata, valore:v.valore };
+      v.scala = scala; v.portata = p; v.valore = nuovo; v.letto_autore = true;
+      v.revisione = { data:oggi(), prima:prima, dopo:{ scala:scala, portata:p, valore:nuovo }, ragioni:ragioni };
+      if(tt || tu) v.revisione.testo_rivisto = { titolo:tt || tu, url:tu || undefined };
+    }, "Letto e revisionato: " + nomeVoce(v0) + " [" + inCorso.id + "]", "Salvato: letto e revisionato.");
+  });
+
+  document.getElementById("f-togli").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var v0 = inCorso.voce;
+    salva(document.getElementById("dlg-togli"), "tog-errore", function(obj, v){
+      var pr = v.revisione && v.revisione.prima;
+      if(pr){ v.scala = pr.scala; v.portata = pr.portata; v.valore = pr.valore; }
+      delete v.revisione; v.letto_autore = false;
+    }, "Tolta la spunta «letto e revisionato»: " + nomeVoce(v0) + " [" + inCorso.id + "]", "Spunta tolta.");
+  });
+
   window.addEventListener("hashchange", route);
 
+  var tokenSalvato = leggiToken();
+  (tokenSalvato ? verificaAccesso(tokenSalvato).catch(function(){ ADMIN.token = null; ADMIN.utente = null; cancellaToken(); })
+                : Promise.resolve()).then(function(){ aggiornaPiede(); if(ADMIN.utente) ridisegna(true); });
   fetch("reports/index.json")
     .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
     .then(function(d){ index = d; renderList(); route(); })
