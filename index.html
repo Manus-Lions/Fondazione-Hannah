@@ -288,6 +288,10 @@ footer.site a{color:var(--ink-soft)}
     });
   }
   function inl(s){
+    // collegamenti [testo](indirizzo): solo indirizzi relativi o http(s)
+    s = s.replace(/\[([^\]\^][^\]]*)\]\(((?:https?:\/\/|[a-z0-9_-]+\.html)[^\s)]*)\)/gi, function(m, testo, url){
+      return '<a class="rimando" href="'+url+'" target="_blank" rel="noopener">'+testo+'</a>';
+    });
     return s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
             .replace(/\*([^*]+)\*/g, "<em>$1</em>")
             .replace(/`([^`]+)`/g, "$1");
