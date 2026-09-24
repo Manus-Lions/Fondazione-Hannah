@@ -107,7 +107,7 @@
         "contatto": 0.9,
         "valore": 75,
         "motivo": "La premessa è accolta solo nella versione ristretta all'istante: là dove la percezione è attuale, nessuna garanzia serve. Ma l'inferenza dalla singola percezione alla regola è essa stessa una dimostrazione, e dunque ricade sotto la condizione che si voleva evitare: le conseguenze si rovesciano entro la premessa accolta.",
-        "letto_autore": false,
+        "letto_autore": true,
         "doi": null,
         "url": "https://www.semanticscholar.org/search?q=Foundationalism%2C%20Epistemic%20Principles%2C%20and%20the%20Cartesian%20Circle",
         "url_tipo": "ricerca",
@@ -119,6 +119,20 @@
           "lon": -71.4025,
           "fonte": "https://dornsife.usc.edu/james-van-cleve/",
           "nota": "CV: Brown University 1973-1987."
+        },
+        "revisione": {
+          "data": "2026-09-24",
+          "prima": {
+            "scala": 75,
+            "portata": 1,
+            "valore": 75
+          },
+          "dopo": {
+            "scala": 75,
+            "portata": 1,
+            "valore": 75
+          },
+          "ragioni": "Letto e revisionato da Manuel · valore confermato (75) (2026-09-24). . La premessa dell'autore è dichiaratamente la definitività (scala 100), e il tema è epistemologico, dunque in piena attinenza alla Logica, ma il dualismo gnoseologico dell'autore smarca il contributo da una riflessione propriamente ontologica: assegno dunque una portata di 0.8, per un totale di 90. La \"premessa fondamentale\" elaborata dell'agente, inoltre, non aveva considerato che il contributo dato da Dio, secondo Cartesio, è lo stesso contributo che rende funzionale la premessa di Van Cleve, nella sua centrale distinzione tra proposizione (A) e (B) [si consulti il testo]. Da ciò è dovuto seguire una sostanziale revisione dell'analisi condotta dall'agente (commento completamente prodotto da Manuel)"
         }
       },
       {
