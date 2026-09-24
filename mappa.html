@@ -128,30 +128,71 @@
     }
     return "#111";
   }
-  function segno(x){ return x === true ? "letto" : x === false ? "non letto" : ""; }
+  function segno(x){ return x === true ? "letto e revisionato" : x === false ? "non letto" : ""; }
 
   // ---- raccolta: index.json → ogni report → valutazione.voci con affiliazione ----
+  function vociDi(V){
+    // formato a una sezione: V.voci; a tre sezioni: V.sezioni[].voci.
+    // La sezione sul saggio esaminato (voci con «passaggio») entra come un solo lavoro, con il suo aggregato.
+    if(V.sezioni && V.sezioni.length){
+      var out = [];
+      V.sezioni.forEach(function(s){
+        var vv = s.voci || [];
+        if(vv.length && vv[0].passaggio){
+          var p = vv[0];
+          out.push({ v: { autore:p.autore, titolo:p.titolo, anno:p.anno, sede:p.sede, doi:p.doi, url:p.url,
+                          valore:(s.esito ? s.esito.aggregato : null), contatto:1, portata:1,
+                          letto_autore:p.letto_autore, affiliazione:p.affiliazione, revisione:s.revisione },
+                     sezione:s.titolo, peso:1 });
+        } else {
+          vv.forEach(function(v){ out.push({ v:v, sezione:s.titolo, peso:pesoVoce(v, true) }); });
+        }
+      });
+      return out;
+    }
+    return (V.voci || []).map(function(v){ return { v:v, sezione:null, peso:pesoVoce(v, false) }; });
+  }
+  function pesoVoce(v, conPortata){
+    var c = (v.contatto === null || v.contatto === undefined) ? 1 : v.contatto;
+    var p = (conPortata && v.portata !== null && v.portata !== undefined) ? v.portata : 1;
+    return c * p;
+  }
+
+  // ---- raccolta: index.json → ogni report → valutazione (voci o sezioni) con affiliazione ----
   function raccogli(reports){
-    var atenei = {};
+    var atenei = {}, lavori = {}, ordine = [];
+    // una sola valutazione per lavoro: se lo stesso lavoro compare in più rapporti, si tiene
+    // la voce letta e revisionata, altrimenti quella del rapporto più recente
     reports.forEach(function(r){
       var V = r.valutazione;
-      if(!V || !V.voci) return;
-      V.voci.forEach(function(v){
-        var a = v.affiliazione;
+      if(!V) return;
+      vociDi(V).forEach(function(x){
+        var k = [x.v.autore, x.v.titolo, x.v.anno].join("|").toLowerCase();
+        var c = { v:x.v, report:r, sezione:x.sezione, peso:x.peso };
+        if(!lavori[k]){ lavori[k] = c; ordine.push(k); return; }
+        var prec = lavori[k];
+        if(x.v.letto_autore === true && prec.v.letto_autore !== true){ lavori[k] = c; return; }
+        if(prec.v.letto_autore === true && x.v.letto_autore !== true) return;
+        if((r.date || "") > (prec.report.date || "")) lavori[k] = c;
+      });
+    });
+    ordine.forEach(function(k){
+      var x = lavori[k], r = x.report;
+      (function(){
+        var a = x.v.affiliazione;
         if(!a || a.lat === null || a.lat === undefined || a.lon === null || a.lon === undefined) return;
         var k = a.ror || a.nome;
         if(!k) return;
         var n = atenei[k] || (atenei[k] = {
           ror:k, nome:a.nome || k, paese:a.paese || "", lat:a.lat, lon:a.lon, voci:[] });
-        n.voci.push({ v:v, report:r });
-      });
+        n.voci.push({ v:x.v, report:r, sezione:x.sezione, peso:x.peso });
+      })();
     });
     return Object.keys(atenei).map(function(k){
       var n = atenei[k], num = 0, den = 0;
       n.voci.forEach(function(x){
         if(x.v.valore === null || x.v.valore === undefined) return;
-        var c = (x.v.contatto === null || x.v.contatto === undefined) ? 1 : x.v.contatto;
-        num += x.v.valore * c; den += c;
+        num += x.v.valore * x.peso; den += x.peso;
       });
       n.media = den ? Math.round(num/den) : null;
       return n;
@@ -179,8 +220,14 @@
         +   '<span class="pallino" style="background:'+colore(v.valore)+'"></span>'
         +   '<span class="punteggio">'+et+'</span>'
         +   (l ? '<span>· '+l+'</span>' : '')
-        +   ' <a href="index.html#/'+esc(x.report.id)+'">'+esc(x.report.titolo_lavoro || x.report.id)+'</a>'
+        +   ' <a href="index.html#/'+esc(x.report.id)+'">'+esc(x.report.titolo_lavoro || x.report.title || x.report.id)+'</a>'
+        +   (x.sezione ? ' <span>· '+esc(x.sezione)+'</span>' : '')
         + '</span>'
+        + (v.revisione
+            ? '<span class="chiosa"><strong>Letto e revisionato da Manuel: rivisto da '+(v.revisione.prima ? v.revisione.prima.valore : '—')
+              +' a '+(v.revisione.dopo ? v.revisione.dopo.valore : '—')+'.</strong> '+esc(v.revisione.ragioni)
+              + (v.revisione.testo_rivisto ? ' <a href="'+esc(v.revisione.testo_rivisto.url)+'">Testo rivisto</a>' : '')
+              + '</span>' : '')
         + (v.affiliazione && (v.affiliazione.nota || v.affiliazione.fonte)
             ? '<span class="chiosa">'
               + (v.affiliazione.nota ? esc(v.affiliazione.nota)+' ' : '')
@@ -218,7 +265,7 @@
       n.voci.forEach(function(x){
         tot++;
         if(x.v.valore === null || x.v.valore === undefined){ nd++; return; }
-        var c = (x.v.contatto === null || x.v.contatto === undefined) ? 1 : x.v.contatto;
+        var c = x.peso;
         num += x.v.valore*c; den += c;
         n.peso += x.v.valore * c / 100;
       });

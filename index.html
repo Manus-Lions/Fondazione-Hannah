@@ -189,6 +189,13 @@ footer.site a{color:var(--ink-soft)}
   .valutatore .pallino{ display:inline-block; width:.6rem; height:.6rem; border-radius:50%; margin-right:.4rem; }
   .valutatore .letto-fisso[data-stato="true"]{ color:#1a7f37; font-weight:600; }
   .valutatore .letto-fisso[data-stato="false"]{ color:#8b3a1a; }
+  .valutatore .vtitolo{ font-size:1.05rem; margin:0 0 1rem; }
+  .valutatore .vsezione{ margin:0 0 2.2rem; }
+  .valutatore .vsezione + .vsezione{ border-top:1px solid var(--rule,#ddd); padding-top:1.4rem; }
+  .valutatore .revisione{ margin:.7rem 0 0; padding:.55rem .75rem; border-left:3px solid #1a7f37; background:rgba(26,127,55,.06); font-size:.86rem; }
+  .valutatore .revisione .data{ opacity:.6; }
+  .valutatore .revisione .testo{ display:block; margin-top:.3rem; }
+  .valutatore .sovrascritta{ margin:.5rem 0 0; font-size:.8rem; opacity:.7; font-style:italic; }
   .valutatore .metodo{ font-size:.84rem; opacity:.72; margin-top:1.3rem; }
   .valutatore .metodo p{ margin:.5rem 0; }
   @media (max-width:33rem){
@@ -354,22 +361,68 @@ footer.site a{color:var(--ink-soft)}
       + '>'+t+'</a>';
   }
 
-  function valutatore(V){
-    if(!V || !V.esito) return "";
-    var agg = V.esito.aggregato;
-    var letti = V.voci.filter(function(v){ return v.letto_autore === true; }).length;
-    var righe = V.voci.map(function(v){
+  function vRevisione(r){
+    if(!r) return "";
+    var tr = r.testo_rivisto;
+    return '<div class="revisione"><strong>Letto e revisionato da Manuel · valore rivisto da '
+      + (r.prima && r.prima.valore !== undefined ? r.prima.valore : "—") + ' a '
+      + (r.dopo && r.dopo.valore !== undefined ? r.dopo.valore : "—") + '</strong>'
+      + (r.data ? ' <span class="data">('+esc(r.data)+')</span>' : '')
+      + '. ' + esc(r.ragioni)
+      + (tr ? ' <span class="testo">Testo rivisto: <a href="'+esc(tr.url)+'">«'+esc(tr.titolo)+'»</a>'
+              + (tr.stato ? ' — '+esc(tr.stato) : '') + '</span>' : '')
+      + '</div>';
+  }
+
+  function vSovrascritta(s){
+    if(!s) return "";
+    return '<div class="sovrascritta">Valutazione sovrascritta il '+esc(s.data)+' dalla '+esc(s.da)
+      + (s.prima && s.prima.valore !== undefined ? '; prima: '+(s.prima.valore === null ? "n.d." : s.prima.valore) : '') + '.</div>';
+  }
+
+  function vBlocco(V, titolo, nota, voci, E, rev){
+    var agg = E.aggregato;
+    var letti = voci.filter(function(v){ return v.letto_autore === true; }).length;
+    var righe = voci.map(function(v){
       var et = v.valore === null ? "n.d." : v.valore;
+      var cit = (v.citazioni === null || v.citazioni === undefined) ? "—" : v.citazioni;
+      var chi = v.passaggio
+        ? '<strong>'+esc(v.passaggio)+'</strong>'
+        : '<strong>'+esc(v.autore)+'</strong>, '+vTitolo(v)+(v.sede ? ', '+esc(v.sede) : '')+', '+v.anno;
       return '<tr>'
-        + '<td><strong>'+esc(v.autore)+'</strong>, '+vTitolo(v)+', '+esc(v.sede)+', '+v.anno+'</td>'
-        + '<td class="v">'+v.citazioni+'</td>'
-        + '<td>'+(v.premessa_fondamentale ? esc(v.premessa_fondamentale)+' — '+esc(v.motivo) : esc(v.motivo))+'</td>'
-        + '<td class="v"><span class="letto-fisso" data-stato="'+v.letto_autore+'">'+vSegno(v.letto_autore)+'</span></td>'
+        + '<td>'+chi+'</td>'
+        + (v.passaggio ? '' : '<td class="v">'+cit+'</td>')
+        + '<td>'+(v.premessa_fondamentale ? esc(v.premessa_fondamentale)+' — '+esc(v.motivo) : esc(v.motivo))+vRevisione(v.revisione)+vSovrascritta(v.sovrascritta)+'</td>'
+        + (v.passaggio ? '' : '<td class="v"><span class="letto-fisso" data-stato="'+v.letto_autore+'">'+vSegno(v.letto_autore)+'</span></td>')
         + '<td class="v"><span class="pallino" style="background:'+vColore(v.valore)+'"></span>'+et+'</td>'
         + '</tr>';
     }).join("");
-    var m = V.metodo;
-    var metodo = '<p><strong>Corpus.</strong> '+esc(m.fonte_corpus)+' '+esc(m.filtro)+'</p>'
+    var perPassaggi = voci.length && voci[0].passaggio;
+    var testa = perPassaggi
+      ? '<tr><th>Passaggio</th><th>Premessa e valutazione</th><th>Valore</th></tr>'
+      : '<tr><th>Lavoro</th><th>Cit.</th><th>Premessa fondamentale</th><th>Letto e revisionato da Manuel</th><th>Valore</th></tr>';
+    return '<div class="vsezione">'
+      + '<h3>'+esc(titolo)+'</h3>'
+      + '<p class="nota">'+esc(nota)+'</p>'
+      + '<div class="misura"><div class="cifra" style="color:'+vColore(agg)+'">'+(agg === null ? "n.d." : agg)+'<small>/100</small></div>'
+      + '<div class="didascalia">'+(agg === null ? "n.d." : vNome(V,agg).toLowerCase())+' · '+E.valutate
+        + (perPassaggi ? ' passaggi valutati' : ' lavori valutati')+', '+E.non_determinate+' n.d.</div></div>'
+      + '<div class="barra"><div class="ago" style="left:'+(agg === null ? 50 : agg)+'%"></div></div>'
+      + '<div class="estremi"><span>0 · concordia</span><span>50</span><span>100 · contraddizione</span></div>'
+      + '<p class="lettura">'+esc(E.lettura)+'</p>'
+      + vRevisione(rev)
+      + (perPassaggi ? '' : '<p class="verifica">' + (letti === 0
+          ? "Nessuna lettura e revisione di Manuel confermata: i valori registrano un rapporto fra tesi ricostruito dall'esterno, non un confronto avvenuto."
+          : "Letti e revisionati da Manuel: <strong>"+letti+"</strong> su "+voci.length+".") + '</p>')
+      + '<details><summary>Valutazione voce per voce</summary>'
+      + '<table><thead>'+testa+'</thead><tbody>'+righe+'</tbody></table></details></div>';
+  }
+
+  function vMetodo(m, sezioni){
+    return (sezioni ? sezioni.map(function(s){
+          return '<p><strong>'+esc(s.titolo)+'.</strong> '+esc(s.fonte_corpus)+'</p>'; }).join("")
+        : '<p><strong>Corpus.</strong> '+esc(m.fonte_corpus)+' '+esc(m.filtro)+'</p>')
+      + (sezioni ? '<p><strong>Filtro.</strong> '+esc(m.filtro)+'</p>' : '')
       + '<p><strong>Limite.</strong> '+esc(m.limite_dichiarato)+'</p>'
       + '<p><strong>Scala.</strong> ' + m.scala.map(function(s){
             return (s.valore === null ? "n.d." : s.valore) + " — " + esc(s.senso).replace(/\.$/,"").toLowerCase();
@@ -378,25 +431,25 @@ footer.site a{color:var(--ink-soft)}
         + ' <em>Portata</em>: '+esc(m.modulazione.portata)
         + ' <em>Contatto</em>: '+esc(m.modulazione.contatto)+'</p>'
       + '<p><strong>Aggregato.</strong> '+esc(m.aggregato)+'</p>'
-      + "<p><strong>Verifica dell'autore.</strong> Ogni voce indica se Manuel ha letto quel lavoro. "
-        + "Dove la lettura è confermata il valore misura un confronto avvenuto; altrove un rapporto fra tesi "
+      + "<p><strong>Verifica dell'autore.</strong> Ogni voce indica se Manuel ha letto e revisionato quel lavoro. "
+        + "Dove lettura e revisione sono confermate il valore misura un confronto avvenuto; altrove un rapporto fra tesi "
         + "ricostruito dall'esterno.</p>";
+  }
+
+  function valutatore(V){
+    if(!V) return "";
+    if(V.sezioni && V.sezioni.length){
+      return '<section class="valutatore">'
+        + "<h2 class=\"vtitolo\">Valutatore d'impatto</h2>"
+        + V.sezioni.map(function(s){ return vBlocco(V, s.titolo, s.nota, s.voci, s.esito, s.revisione); }).join("")
+        + '<details class="vmetodo"><summary>Metodo</summary><div class="metodo">'+vMetodo(V.metodo, V.sezioni)+'</div></details>'
+        + '</section>';
+    }
+    if(!V.esito) return "";
     return '<section class="valutatore">'
-      + "<h3>Valutatore d'impatto</h3>"
-      + '<p class="nota">Misura dell\'apporto polemico rispetto ai lavori più citati sullo stesso argomento.</p>'
-      + '<div class="misura"><div class="cifra" style="color:'+vColore(agg)+'">'+agg+'<small>/100</small></div>'
-      + '<div class="didascalia">'+vNome(V,agg).toLowerCase()+' · '+V.esito.valutate+' lavori valutati, '
-        + V.esito.non_determinate+' n.d.</div></div>'
-      + '<div class="barra"><div class="ago" style="left:'+agg+'%"></div></div>'
-      + '<div class="estremi"><span>0 · concordia</span><span>50</span><span>100 · contraddizione</span></div>'
-      + '<p class="lettura">'+esc(V.esito.lettura)+'</p>'
-      + '<p class="verifica">' + (letti === 0
-          ? "Nessuna lettura di Manuel confermata: i valori registrano un rapporto fra tesi ricostruito dall'esterno, non un confronto avvenuto."
-          : "Letto da Manuel: <strong>"+letti+"</strong> su "+V.voci.length+".") + '</p>'
-      + '<details><summary>Corpus e valutazione voce per voce</summary>'
-      + '<table><thead><tr><th>Lavoro</th><th>Cit.</th><th>Premessa fondamentale</th>'
-        + '<th>Letto da Manuel</th><th>Valore</th></tr></thead><tbody>'+righe+'</tbody></table>'
-      + '<div class="metodo">'+metodo+'</div></details></section>';
+      + vBlocco(V, "Valutatore d'impatto", "Misura dell'apporto polemico rispetto ai lavori più citati sullo stesso argomento.", V.voci, V.esito)
+      + '<details><summary>Metodo</summary><div class="metodo">'+vMetodo(V.metodo, null)+'</div></details>'
+      + '</section>';
   }
 
   function openReport(id){
