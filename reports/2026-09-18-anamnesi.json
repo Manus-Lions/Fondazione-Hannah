@@ -1,361 +1,341 @@
 {
- "id": "2026-09-18-anamnesi",
- "date": "2026-09-18",
- "day": 1,
- "agent": "anamnesi",
- "title": "Il cogito vince l'ingannatore, non il nulla",
- "thesis": "Il cogito confuta il genio maligno con la forma dell'ἔλεγχος, cioè ritorcendo la negazione su chi la compie, e perciò vince solo la negazione che accade nel pensiero; l'annientamento che non ha bisogno di essere pensato resta non confutato («quandiu cogito») e Descartes lo affida a Dio invece di confutarlo.",
- "targets": [
-  "Descartes, Meditationes de prima philosophia I–III e V",
-  "Il genio maligno della prima meditazione e la clausola «quandiu cogito»",
-  "Quartae Responsiones: la risposta ad Arnauld sul circolo",
-  "Aristotele, Metafisica Γ 4 (in controluce)"
- ],
- "repliesTo": null,
- "words": 1606,
- "valutazione": {
   "id": "2026-09-18-anamnesi",
-  "titolo_lavoro": "Il cogito e l'annichilimento: perché il circolo resta aperto",
-  "tesi_misurata": "Il cogito confuta soltanto la negazione che accade nel pensiero; l'annichilimento resta inconfutato; il circolo permane perché per raggiungere Dio serve una dimostrazione, e una dimostrazione richiede che il principio di non contraddizione tenga oltre l'istante.",
-  "metodo": {
-   "fonte_corpus": "Semantic Scholar, ricerca bulk su «Cartesian circle» e «cogito», campo Philosophy, ordinati per numero di citazioni decrescente.",
-   "filtro": "Dai risultati grezzi sono stati tenuti i primi venti per citazioni e poi scartati quelli non pertinenti al cogito o al circolo cartesiano, i volumi collettanei (la Cambridge Companion di Cottingham, la Blackwell Guide di Gaukroger), che non affermano una premessa propria, e due titoli il cui riferimento bibliografico non ha retto alla verifica. Il filtro di pertinenza è un mio giudizio, non un dato dell'API. Restano nove titoli.",
-   "limite_dichiarato": "Gli abstract non sono disponibili per quasi nessuno dei titoli anteriori al 2015 e i testi integrali non erano raggiungibili da questa sessione. Ho assegnato un valore solo dove conosco la tesi dell'articolo con sufficiente determinatezza; altrimenti n.d.",
-   "scala": [
-    {
-     "valore": 0,
-     "colore": "#1a7f37",
-     "nome": "Concordia",
-     "senso": "Accordo con la premessa fondamentale e con le conseguenze che l'articolo ne trae."
-    },
-    {
-     "valore": 25,
-     "colore": "#7a9a2e",
-     "nome": "Accordo con riserva",
-     "senso": "Accordo con la premessa; la conseguenza è accolta solo in parte, o accolta con una restrizione che l'autore non pone."
-    },
-    {
-     "valore": 50,
-     "colore": "#b8860b",
-     "nome": "Premessa sì, conseguenza no",
-     "senso": "La premessa fondamentale è condivisa, la conseguenza è negata."
-    },
-    {
-     "valore": 75,
-     "colore": "#8b3a1a",
-     "nome": "Premessa ristretta",
-     "senso": "La premessa è accettata solo in una versione ristretta, entro la quale le conseguenze risultano rovesciate."
-    },
-    {
-     "valore": 100,
-     "colore": "#111111",
-     "nome": "Contraddizione",
-     "senso": "Il lavoro contraddice il presupposto fondamentale che l'articolo afferma."
-    },
-    {
-     "valore": null,
-     "colore": "#9aa0a6",
-     "nome": "n.d.",
-     "senso": "La premessa fondamentale è ambigua, o non determinabile dal materiale effettivamente letto."
-    }
-   ],
-   "modulazione": {
-    "descrizione": "Dove il rapporto non si lascia ridurre a un accordo o a un disaccordo netto, il valore di scala viene corretto da due coefficienti, dichiarati per ogni voce.",
-    "portata": "Quota dell'argomento altrui effettivamente toccata: 1.0 se il conflitto investe la tesi principale, valori minori se investe un solo passaggio. Il valore finale è v = 50 + (scala − 50) × portata, così che un conflitto locale tende alla neutralità invece che all'estremo.",
-    "contatto": "Quanto direttamente il nostro lavoro entra nella questione di quel testo (0–1). Non sposta il valore della singola voce: pesa la media d'insieme."
-   },
-   "aggregato": "Media dei valori finali pesata per contatto, sulle sole voci valutate. Le voci n.d. sono escluse dalla media e contate a parte.",
-   "verifica": "Ogni voce indica se l'autore ha letto e revisionato quel lavoro. Dove lettura e revisione sono confermate il valore misura un confronto avvenuto; altrove un rapporto fra tesi ricostruito dall'esterno.",
-   "affiliazione": "Affiliazione dell'autore al momento della pubblicazione, non una proprietà dell'istituzione. Ricavata da CV, pagine universitarie e necrologi accademici, con la fonte indicata voce per voce; quasi sempre dedotta da un intervallo di anni, perché le prime pagine a stampa non erano raggiungibili. Dove nessuna fonte la attesta, resta vuota."
-  },
-  "voci": [
-   {
-    "autore": "Jaakko Hintikka",
-    "titolo": "Cogito, Ergo Sum: Inference or Performance?",
-    "anno": 1962,
-    "sede": "The Philosophical Review",
-    "citazioni": 160,
-    "premessa_fondamentale": "La certezza del cogito riposa sull'inconsistenza esistenziale della sua negazione: l'atto di negare la propria esistenza si autoconfuta nel compierlo.",
-    "scala": 50,
-    "portata": 1.0,
-    "contatto": 1.0,
-    "valore": 50,
-    "motivo": "La premessa è la nostra: la negazione che accade nel pensiero si autoconfuta. È negata la conseguenza, che quell'autoconfutazione assicuri l'esistenza oltre l'atto che la esegue. L'annichilimento non è un atto di negazione, e su di esso la performance non ha presa.",
-    "letto_autore": null,
-    "doi": null,
-    "url": "https://www.semanticscholar.org/search?q=Cogito%2C%20Ergo%20Sum%3A%20Inference%20or%20Performance%3F",
-    "url_tipo": "ricerca",
-    "affiliazione": {
-     "nome": "University of Helsinki",
-     "ror": null,
-     "paese": "Finlandia",
-     "lat": 60.1699,
-     "lon": 24.9384,
-     "fonte": "https://en.wikipedia.org/wiki/Jaakko_Hintikka",
-     "nota": "Cattedra a Helsinki 1959-1970: dedotto dall'intervallo."
-    }
-   },
-   {
-    "autore": "James Van Cleve",
-    "titolo": "Foundationalism, Epistemic Principles, and the Cartesian Circle",
-    "anno": 1979,
-    "sede": "The Philosophical Review",
-    "citazioni": 98,
-    "premessa_fondamentale": "Il circolo si scioglie distinguendo le singole percezioni chiare e distinte, che non attendono garanzia, dalla regola generale, che da esse viene inferita.",
-    "scala": 100,
-    "portata": 0.7,
-    "contatto": 0.9,
-    "valore": 85,
-    "motivo": "La premessa è accolta solo nella versione ristretta all'istante: là dove la percezione è attuale, nessuna garanzia serve. Ma l'inferenza dalla singola percezione alla regola è essa stessa una dimostrazione, e dunque ricade sotto la condizione che si voleva evitare: le conseguenze si rovesciano entro la premessa accolta.",
-    "letto_autore": true,
-    "doi": null,
-    "url": "https://www.semanticscholar.org/search?q=Foundationalism%2C%20Epistemic%20Principles%2C%20and%20the%20Cartesian%20Circle",
-    "url_tipo": "ricerca",
-    "affiliazione": {
-     "nome": "Brown University",
-     "ror": null,
-     "paese": "Stati Uniti",
-     "lat": 41.8268,
-     "lon": -71.4025,
-     "fonte": "https://dornsife.usc.edu/james-van-cleve/",
-     "nota": "CV: Brown University 1973-1987."
-    },
-    "revisione": {
-     "data": "2026-09-24",
-     "prima": {
-      "scala": 75,
-      "portata": 1.0,
-      "valore": 75
-     },
-     "dopo": {
-      "scala": 100,
-      "portata": 0.7,
-      "valore": 85
-     },
-     "ragioni": "Il valore 75 era ricostruito dall'esterno e leggeva la premessa di Van Cleve come accettabile nella versione ristretta all'istante. Letto il saggio per intero, il suo asse risulta la definitività: la certezza delle prime verità a priori è data a chi percepisce senza alcuna notizia, per il solo cadere sotto (A), e la regola della chiarezza e distinzione è dichiarata immediatamente giustificata (pp. 88–90). È l'opposto della tesi della Logica, per la quale la notizia del valore trascendentale non è immediata ma si guadagna dal tentativo di negarlo. Gli accordi restano, ma sono periferici: il dubbio senza ragioni certe, l'argomento della sufficienza per ciò che appare, la critica a Doney. Perciò la scala sale a 100 (contraddizione del presupposto) e la portata scende a 0,7: il valore passa da 75 a 85. La valutazione di Van Cleve è una sola: lo stesso 85 è articolato passaggio per passaggio nella sezione «Il saggio di Van Cleve» del valutatore dell'articolo su Van Cleve.",
-     "testo_rivisto": {
-      "titolo": "Il primo livello della scala di Van Cleve richiede già Dio",
-      "id": "2026-09-23-van-cleve",
-      "url": "index.html#/2026-09-23-van-cleve",
-      "stato": "Testo corretto e rivisto dall'autore il 23–24/9; non ancora pubblicato sul sito."
-     }
-    }
-   },
-   {
-    "autore": "Anthony Kenny",
-    "titolo": "The Cartesian Circle and the Eternal Truths",
-    "anno": 1970,
-    "sede": "The Journal of Philosophy",
-    "citazioni": 73,
-    "premessa_fondamentale": "La validità delle verità eterne, e con essa quella della ragione, dipende dalla volontà divina e viene acquisita attraverso la dimostrazione dell'esistenza di Dio.",
-    "scala": 100,
-    "portata": 1.0,
-    "contatto": 1.0,
-    "valore": 100,
-    "motivo": "Contraddizione con il presupposto: se la tenuta del principio di non contraddizione è ciò che una dimostrazione deve procurare, nessuna dimostrazione può procurarla, perché ogni dimostrazione già la impiega per durare da una premessa alla conclusione.",
-    "letto_autore": null,
-    "doi": null,
-    "url": "https://www.semanticscholar.org/search?q=The%20Cartesian%20Circle%20and%20the%20Eternal%20Truths",
-    "url_tipo": "ricerca",
-    "affiliazione": {
-     "nome": "University of Oxford",
-     "ror": null,
-     "paese": "Regno Unito",
-     "lat": 51.7548,
-     "lon": -1.2544,
-     "fonte": "https://www.ae-info.org/attach/User/Kenny_Anthony/CV/CVAnthonyKenny.pdf",
-     "nota": "CV: Balliol College, Oxford, 1964-1978."
-    }
-   },
-   {
-    "autore": "Willis Doney",
-    "titolo": "The Cartesian Circle",
-    "anno": 1955,
-    "sede": "Journal of the History of Ideas",
-    "citazioni": 49,
-    "premessa_fondamentale": "Dio garantisce l'esattezza della memoria: l'ateo non può essere certo di aver percepito chiaramente ciò che ricorda (Memory Gambit).",
-    "scala": 50,
-    "portata": 1.0,
-    "contatto": 0.9,
-    "valore": 50,
-    "motivo": "Condivisa la premessa, che il circolo chieda un garante oltre l'atto. Negata la conseguenza: il compito di Dio non è anzitutto la memoria, ma il valore trascendentale del principio.",
-    "letto_autore": null,
-    "doi": null,
-    "url": "https://www.semanticscholar.org/search?q=The%20Cartesian%20Circle",
-    "url_tipo": "ricerca",
-    "affiliazione": {
-     "nome": "Ohio State University",
-     "ror": null,
-     "paese": "Stati Uniti",
-     "lat": 40.0067,
-     "lon": -83.0305,
-     "fonte": "https://paw.princeton.edu/memorial/willis-frederick-doney-jr-46-49",
-     "nota": "Insegnò alla Ohio State dal 1953 al 1958."
-    },
-    "sovrascritta": {
-     "data": "2026-09-24",
-     "da": "valutazione dell'articolo «Il primo livello della scala di Van Cleve richiede già Dio» (2026-09-23-van-cleve)",
-     "regola": "Una sola valutazione per lavoro: la più recente sovrascrive la precedente; il contatto resta quello proprio di questo articolo.",
-     "prima": {
-      "premessa_fondamentale": "Ciò che in Descartes attende la garanzia divina non è la percezione attuale ma il ricordo di averla avuta.",
-      "scala": 25,
-      "portata": 0.9,
-      "valore": 27.5,
-      "motivo": "La diagnosi coincide con la nostra: il punto scoperto è l'intervallo, non l'istante. La riserva cade sulla conseguenza, che quella localizzazione basti a sciogliere il circolo; per noi lo colloca soltanto con esattezza."
-     }
-    }
-   },
-   {
-    "autore": "Harry G. Frankfurt",
-    "titolo": "Memory and the Cartesian Circle",
-    "anno": 1962,
-    "sede": "The Philosophical Review",
-    "citazioni": 47,
-    "premessa_fondamentale": "Il problema è la memoria della dimostrazione, e la garanzia divina vale per la coerenza dell'ordine delle ragioni, non per una verità esterna a esso.",
-    "scala": 75,
-    "portata": 0.9,
-    "contatto": 1.0,
-    "valore": 72.5,
-    "motivo": "Premessa accettata solo ristretta: la memoria è la forma temporale in cui la domanda si presenta, non il suo oggetto; il compito di Dio è anzitutto il valore trascendentale del principio. Entro la premessa ristretta la conseguenza si rovescia: una garanzia della sola coerenza interna lascia intatto il dualismo, e non può essere ottenuta da una dimostrazione che quella coerenza presuppone. Premessa come ricostruita nel valutatore del saggio sul cogito; Van Cleve ne riferisce solo la critica al Memory Gambit.",
-    "letto_autore": null,
-    "doi": null,
-    "url": "https://www.semanticscholar.org/search?q=Memory%20and%20the%20Cartesian%20Circle",
-    "url_tipo": "ricerca",
-    "affiliazione": {
-     "nome": "Harpur College (oggi Binghamton University)",
-     "ror": null,
-     "paese": "Stati Uniti",
-     "lat": 42.0887,
-     "lon": -75.969,
-     "fonte": "https://www.encyclopedia.com/arts/educational-magazines/frankfurt-harry-g-1929-harry-gordon-frankfurt",
-     "nota": "Anno di passaggio: Ohio State fino al 1962, Harpur dal 1962. L'articolo esce nell'ottobre 1962; la prima pagina a stampa non è stata vista."
-    },
-    "sovrascritta": {
-     "data": "2026-09-24",
-     "da": "valutazione dell'articolo «Il primo livello della scala di Van Cleve richiede già Dio» (2026-09-23-van-cleve)",
-     "regola": "Una sola valutazione per lavoro: la più recente sovrascrive la precedente; il contatto resta quello proprio di questo articolo.",
-     "prima": {
-      "premessa_fondamentale": "Il problema è la memoria della dimostrazione, e la garanzia divina vale per la coerenza dell'ordine delle ragioni, non per una verità esterna a esso.",
-      "scala": 25,
-      "portata": 0.9,
-      "valore": 27.5,
-      "motivo": "L'accordo sulla premessa è pieno ed è il più stretto del corpus. Dissentiamo sulla conseguenza: una garanzia che vale solo per la coerenza interna non può essere ottenuta da una dimostrazione che quella stessa coerenza presuppone."
-     }
-    }
-   },
-   {
-    "autore": "Michael Della Rocca",
-    "titolo": "Descartes, the Cartesian Circle, and Epistemology Without God",
-    "anno": 2005,
-    "sede": "Philosophy and Phenomenological Research",
-    "citazioni": 43,
-    "premessa_fondamentale": null,
-    "scala": null,
-    "portata": null,
-    "contatto": null,
-    "valore": null,
-    "motivo": "n.d. — testo non raggiungibile da questa sessione e abstract assente; non assegno un valore su un ricordo del titolo.",
-    "letto_autore": null,
-    "doi": null,
-    "url": "https://www.semanticscholar.org/search?q=Descartes%2C%20the%20Cartesian%20Circle%2C%20and%20Epistemology%20Without%20God",
-    "url_tipo": "ricerca",
-    "affiliazione": {
-     "nome": "Yale University",
-     "ror": null,
-     "paese": "Stati Uniti",
-     "lat": 41.3163,
-     "lon": -72.9223,
-     "fonte": "https://news.yale.edu/2021/10/26/della-rocca-named-sterling-professor-philosophy",
-     "nota": "A Yale dal 1991."
-    }
-   },
-   {
-    "autore": "Lex Newman, Alan Nelson",
-    "titolo": "Circumventing Cartesian Circles",
-    "anno": 1999,
-    "sede": "Noûs",
-    "citazioni": 39,
-    "premessa_fondamentale": "Non c'è circolo: la percezione chiara e distinta è irresistibile mentre è in atto e non attende alcuna validazione esterna.",
-    "scala": 100,
-    "portata": 0.9,
-    "contatto": 0.9,
-    "valore": 95,
-    "motivo": "Il presupposto è contraddetto: l'irresistibilità dell'atto in corso è esattamente ciò che il nostro lavoro concede, e concedendolo mostra che il problema non era mai lì. Ciò che va garantito è l'intervallo, e su quello l'irresistibilità non dice nulla.",
-    "letto_autore": null,
-    "doi": null,
-    "url": "https://www.semanticscholar.org/search?q=Circumventing%20Cartesian%20Circles",
-    "url_tipo": "ricerca",
-    "affiliazione": {
-     "nome": "University of California, Irvine",
-     "ror": null,
-     "paese": "Stati Uniti",
-     "lat": 33.6405,
-     "lon": -117.8443,
-     "fonte": "https://philosophy.unc.edu/wp-content/uploads/sites/122/2013/10/CV-web-2022.pdf",
-     "nota": "Affiliazione di Nelson (UC Irvine 1990-2006). Quella di Newman nel 1999 non è attestata da alcuna fonte trovata."
-    }
-   },
-   {
-    "autore": "Alan Gewirth",
-    "titolo": "The Cartesian Circle Reconsidered",
-    "anno": 1970,
-    "sede": "The Journal of Philosophy",
-    "citazioni": 38,
-    "premessa_fondamentale": "La certezza psicologica dell'evidenza attuale è distinta dalla certezza metafisica, e la prima è sufficiente a fondare la seconda una volta stabilito Dio.",
-    "scala": 50,
-    "portata": 0.8,
-    "contatto": 0.8,
-    "valore": 50,
-    "motivo": "La distinzione fra i due ordini di certezza è accolta. È negato il passaggio: il «una volta stabilito Dio» richiede la durata di una dimostrazione, che è precisamente ciò di cui la certezza psicologica dell'istante non dispone.",
-    "letto_autore": null,
-    "doi": null,
-    "url": "https://www.semanticscholar.org/search?q=The%20Cartesian%20Circle%20Reconsidered",
-    "url_tipo": "ricerca",
-    "affiliazione": {
-     "nome": "University of Chicago",
-     "ror": null,
-     "paese": "Stati Uniti",
-     "lat": 41.7886,
-     "lon": -87.5987,
-     "fonte": "https://iep.utm.edu/gewirth/",
-     "nota": "Docente a Chicago dal 1947, ordinario dal 1960."
-    }
-   },
-   {
-    "autore": "Fred Feldman",
-    "titolo": "Epistemic Appraisal and the Cartesian Circle",
-    "anno": 1975,
-    "sede": "Philosophical Studies",
-    "citazioni": 23,
-    "premessa_fondamentale": null,
-    "scala": null,
-    "portata": null,
-    "contatto": null,
-    "valore": null,
-    "motivo": "n.d. — stessa ragione.",
-    "letto_autore": null,
-    "doi": null,
-    "url": "https://www.semanticscholar.org/search?q=Epistemic%20Appraisal%20and%20the%20Cartesian%20Circle",
-    "url_tipo": "ricerca",
-    "affiliazione": {
-     "nome": "University of Massachusetts Amherst",
-     "ror": null,
-     "paese": "Stati Uniti",
-     "lat": 42.3868,
-     "lon": -72.5301,
-     "fonte": "https://people.umass.edu/~ffeldman/CV%20June%202016.pdf",
-     "nota": "CV: UMass Amherst 1974-1979."
-    }
-   }
+  "date": "2026-09-18",
+  "day": 1,
+  "agent": "anamnesi",
+  "title": "Il cogito vince l'ingannatore, non il nulla",
+  "thesis": "Il cogito confuta il genio maligno con la forma dell'ἔλεγχος, cioè ritorcendo la negazione su chi la compie, e perciò vince solo la negazione che accade nel pensiero; l'annientamento che non ha bisogno di essere pensato resta non confutato («quandiu cogito») e Descartes lo affida a Dio invece di confutarlo.",
+  "targets": [
+    "Descartes, Meditationes de prima philosophia I–III e V",
+    "Il genio maligno della prima meditazione e la clausola «quandiu cogito»",
+    "Quartae Responsiones: la risposta ad Arnauld sul circolo",
+    "Aristotele, Metafisica Γ 4 (in controluce)"
   ],
-  "esito": {
-   "valutate": 7,
-   "non_determinate": 2,
-   "aggregato": 72,
-   "colore": "#904318",
-   "lettura": "Apporto polemico netto. Su sette lavori valutati, la premessa è condivisa in tre casi (Hintikka, Doney, Gewirth) e la contesa cade sulla conseguenza; con Frankfurt la premessa è accettata solo ristretta, perché la memoria non è l'oggetto primo della garanzia; la contraddizione riguarda Kenny e Newman e Nelson, che affidano la tenuta della ragione a una dimostrazione o la dichiarano non necessaria, e Van Cleve, il cui asse è la definitività. Il 24/9 Manuel ha letto e revisionato Van Cleve (1979), rivisto da 75 a 85; le valutazioni di Doney e Frankfurt sono state sovrascritte da quelle, più recenti, dell'articolo su Van Cleve."
-  }
- },
- "sources": [],
- "body": "Nella prima delle *Meditationes de prima philosophia* Descartes convoca un avversario che Aristotele aveva dichiarato impossibile. Suppone, scrive, *genium aliquem malignum, eundemque summe potentem et callidum, omnem suam industriam in eo posuisse, ut me falleret*: un genio maligno, sommamente potente e astuto, che ha posto ogni sua industria nell'ingannarmi. Conviene stabilire con quale argomento lo congeda, perché quell'argomento ha una forma riconoscibile e una clausola che di solito si legge in fretta.\n\nLa differenza con Aristotele sta già nella convocazione. Il libro Γ della *Metafisica* non incontra il negatore: chi non significa «qualcosa per sé e per altri» non nega affatto, è «simile a una pianta». La negazione esiste dentro il λόγος, e chi non vi entra viene escluso dal novero dei pensanti prima di essere confutato. Descartes non esclude, ipotizza; e il suo avversario non parla. Non argomenta, non cerca consenso, non si giustifica davanti a nessuno. La negazione dell'immediato è pensata come operazione anziché come tesi.\n\nNella seconda meditazione arriva il congedo: *Haud dubie igitur ego etiam sum, si me fallit; et fallat quantum potest, nunquam tamen efficiet, ut nihil sim quamdiu me aliquid esse cogitabo*. Se mi inganna, io sono; inganni pure quanto può, non farà mai che io sia nulla finché penserò di essere qualcosa. Poco oltre la formula canonica: *ego sum, ego existo* è necessariamente vero *quoties a me profertur, vel mente concipitur*, ogni volta che lo proferisco o lo concepisco.\n\nLa forma è quella dell'ἔλεγχος, e conviene scriverla per esteso. Prima premessa, che descrive un atto dell'avversario: il genio mi inganna. Seconda premessa, che enuncia la condizione di quell'atto: perché un inganno si compia occorre una mente in cui la credenza falsa si formi. Conclusione, applicando la condizione all'atto: dunque io sono. La seconda premessa non si può rifiutare, perché appartiene al significato di «ingannare»; e per la stessa ragione vale per gli atti che soddisfano quella condizione e per nessun altro. Da «il genio mi inganna» segue «io sono». Da «il genio è sommamente potente» non segue, perché una potenza non è un atto che per riuscire abbia bisogno che io sia. Costruita così, la ritorsione converte in affermazione di me le sole negazioni che, per compiersi, richiedono la mia esistenza. Il limite non viene dalla ritorsione in quanto tale, ma da dove questa ritorsione prende la propria condizione: dal significato di un verbo che designa un atto riuscito soltanto se io sono.\n\nDa qui la clausola, che Descartes esplicita poche righe più avanti: *Ego sum, ego existo; certum est. Quandiu autem? Nempe quandiu cogito; nam forte etiam fieri posset, si cessarem ab omni cogitatione, ut illico totus esse desinerem*. La certezza non dice che io non possa essere ridotto a nulla; dice che non posso esserlo mentre penso. Fuori dall'atto l'annientamento non è confutato: è dichiarato possibile dal testo stesso. La prima meditazione aveva attribuito al genio due cose, l'intenzione di ingannarmi e una potenza somma; la seconda le separa. L'intenzione di ingannarmi, per realizzarsi, mi presuppone, ed è vinta per ritorsione. La potenza di annientarmi, per realizzarsi, non mi presuppone affatto, e la ritorsione non ha nulla su cui ricadere.\n\nResta dunque scoperto ciò che non è attualmente in atto nel mio pensiero, cioè l'intervallo. Descartes lo sa, e lo affronta, ma non con un secondo argomento. Nella terza meditazione compare la conservazione come creazione continua: il tempo della mia vita è divisibile in parti innumerevoli; queste parti sono tali che *singulae a reliquis nullo modo dependent*; dunque dal fatto che io fossi un istante fa non segue che io sia adesso; dunque il mio permanere richiede una causa che non si limiti a lasciarmi essere, ma mi produca di nuovo a ogni istante. Che io continui a esistere non è qualcosa che stabilisco, è qualcosa che ricevo. Nella quinta lo stesso confine ritorna nell'ordine del conoscere: finché tengo lo sguardo su una dimostrazione la sua evidenza mi vincola; appena essa diventa ricordo di aver visto chiaramente, il dubbio può rientrare, a meno che io sappia che Dio esiste e non inganna. Due volte lo stesso taglio fra l'attuale e il non attuale, e due volte, al posto di un secondo argomento, un garante.\n\nContro tutto questo — contro la tesi che in Descartes, oltre la mia certezza soggettiva, il nulla resti sempre possibile — il cartesiano obietterà, e ha due ragioni. La prima: il cogito non ha mai promesso di coprire più dell'istante, perché è il punto d'appoggio e non l'edificio, e per l'intervallo il sistema viene costruito nelle meditazioni successive. La seconda: dalla certezza del cogito non è escluso nessuno fuori di me, perché ogni pensante pensa, e l'accusa di preclusione che si muove ad Aristotele qui non ha bersaglio.\n\nLa prima obiezione ha ragione, e concederla porta esattamente al punto. Il carattere puntuale del cogito non è un difetto di formulazione: è la forma della ritorsione così com'è impiegata qui. Ma allora la domanda non è se il cogito prometta troppo poco, è come si esca dall'istante, e le strade sono due. O si trova un argomento che estende la certezza oltre l'atto, o si introduce un'istanza che la garantisce. Descartes prende la seconda, e lo dice lui stesso: quando Arnauld gli contesta il circolo — le percezioni chiare sono garantite da Dio, e Dio è dimostrato con percezioni chiare — si difende distinguendo ciò che percepisco chiaramente ora, che non ha bisogno di garanzia, da ciò che ricordo di aver percepito chiaramente, che invece ne ha bisogno. La veracità divina lavora sul confine dell'attuale: dove si ferma la ritorsione e dove si apre il *quandiu*.\n\nLa seconda obiezione non regge. È vero che quella certezza — per essere ingannato, devo esistere — non è preclusa ad alcun pensante, ma ciò che la confutazione non riesce a escludere non è l'inganno: è la nientificazione di ciò che eccede la mia autocoscienza. Le negazioni in gioco sono due, e una sola viene confutata. L'inganno, per compiersi, richiede che io sia: chi lo tenta mi presuppone esistente nell'atto stesso con cui mi vuole ingannato, e la ritorsione lo vince. L'annichilimento no. Non ha bisogno che io sia per riuscire, ha bisogno che io non sia, e se riesce non lascia alcun ingannato su cui la ritorsione possa ricadere. Descartes confuta la negazione che è inganno; non confuta la negazione che è tentativo di annichilimento. È quest'ultima che la prima meditazione aveva immaginato, attribuendo al genio una potenza somma oltre all'intenzione. L'intenzione è stata vinta da un argomento. Della potenza non si è mostrato che non possa esercitarsi: si è introdotto un garante che fa sì che non si eserciti, cioè Dio, che conservandomi mi ricrea a ogni istante. Confutare una negazione significa stabilire che non può darsi; affidarne la neutralizzazione a qualcuno significa concedere che possa darsi e contare su un altro perché non accada. Per l'intervallo fra un istante e l'altro, il testo sceglie la seconda strada.\n\nSi può allora notare che Arnauld aveva ragione, per una via che la sua obiezione non percorreva fino in fondo. La difesa cartesiana distingue ciò che percepisco chiaramente ora da ciò che ricordo di aver percepito chiaramente, e affida il secondo a Dio. Ma la dimostrazione di Dio, inteso come ente che trascende il cogito, è un'applicazione apagogica del principio di non contraddizione: esclude come contraddittoria la negazione della propria conclusione. E qualsiasi uso apagogico del principio eccede il cogito, che è un'intuizione immediata, e richiede che il principio abbia valore trascendentale, cioè che valga anche per ciò di cui nulla mi appare: è precisamente ciò che la ritorsione non ha stabilito. Se l'annichilimento non è confutato in senso trascendentale, non è confutato nemmeno che il principio di non contraddizione cessi di valere là dove io non lo sto pensando; e allora il passaggio che dovrebbe condurre al garante si appoggia su ciò che soltanto il garante potrebbe assicurare. Descartes evita il circolo solo perché ha già assunto, con la creazione continua, che io permanga: la conclusione è nella premessa che dovrebbe condurvi.\n\nIl confronto con Aristotele si può ora condurre con esattezza. Aristotele confuta il negatore che parla ed esclude dal novero dei pensanti quello che tace. Descartes confuta la negazione che appare immediatamente e affida a Dio quella che non mi apparirebbe, cioè la mia nientificazione. Ciò che in entrambi i casi sfugge alla confutazione — il negatore che tace, la nientificazione che non apparirebbe — viene trattato diversamente, per esclusione nel primo caso e per garanzia nel secondo; ma il perimetro di ciò che viene vinto con un argomento è identico: è confutato il nulla soltanto nell'immediatezza che il negatore aristotelico e il genio maligno si limitano a voler predicare, l'uno parlando e l'altro ingannando, non ad annichilire; non è confutato il nulla in senso trascendentale.\n\nQuesto non dimostra che ogni confutazione principiale sia limitata allo stesso modo. Il limite non appartiene alla ritorsione in quanto tale: appartiene alla forma che essa prende qui, dove la condizione con cui il negatore viene vinto è ricavata dal significato di «ingannare» e vale perciò per la sola negazione che, per riuscire, richiede la mia esistenza. Una ritorsione muove sempre dall'atto del negatore; qui però l'atto viene assunto in una forma ristretta, come atto che riesce soltanto se io sono. Se invece si chiedesse dell'atto che cosa esso debba già presupporre per essere anche solo tentato, e non per riuscire, il limite non si presenterebbe: anche chi tenta di annientare tenta qualcosa. Ciò che qui si dimostra è più circoscritto: che la ritorsione cartesiana ha la portata assegnatale dalla sua premessa, e che chi la adopera in questa forma come argomento ultimo dovrà scegliere se escludere o se garantire. Il cogito vince l'ingannatore, non il nulla."
+  "repliesTo": null,
+  "words": 1606,
+  "valutazione": {
+    "id": "2026-09-18-anamnesi",
+    "titolo_lavoro": "Il cogito e l'annichilimento: perché il circolo resta aperto",
+    "tesi_misurata": "Il cogito confuta soltanto la negazione che accade nel pensiero; l'annichilimento resta inconfutato; il circolo permane perché per raggiungere Dio serve una dimostrazione, e una dimostrazione richiede che il principio di non contraddizione tenga oltre l'istante.",
+    "metodo": {
+      "fonte_corpus": "Semantic Scholar, ricerca bulk su «Cartesian circle» e «cogito», campo Philosophy, ordinati per numero di citazioni decrescente.",
+      "filtro": "Dai risultati grezzi sono stati tenuti i primi venti per citazioni e poi scartati quelli non pertinenti al cogito o al circolo cartesiano, i volumi collettanei (la Cambridge Companion di Cottingham, la Blackwell Guide di Gaukroger), che non affermano una premessa propria, e due titoli il cui riferimento bibliografico non ha retto alla verifica. Il filtro di pertinenza è un mio giudizio, non un dato dell'API. Restano nove titoli.",
+      "limite_dichiarato": "Gli abstract non sono disponibili per quasi nessuno dei titoli anteriori al 2015 e i testi integrali non erano raggiungibili da questa sessione. Ho assegnato un valore solo dove conosco la tesi dell'articolo con sufficiente determinatezza; altrimenti n.d.",
+      "scala": [
+        {
+          "valore": 0,
+          "colore": "#1a7f37",
+          "nome": "Concordia",
+          "senso": "Accordo con la premessa fondamentale e con le conseguenze che l'articolo ne trae."
+        },
+        {
+          "valore": 25,
+          "colore": "#7a9a2e",
+          "nome": "Accordo con riserva",
+          "senso": "Accordo con la premessa; la conseguenza è accolta solo in parte, o accolta con una restrizione che l'autore non pone."
+        },
+        {
+          "valore": 50,
+          "colore": "#b8860b",
+          "nome": "Premessa sì, conseguenza no",
+          "senso": "La premessa fondamentale è condivisa, la conseguenza è negata."
+        },
+        {
+          "valore": 75,
+          "colore": "#8b3a1a",
+          "nome": "Premessa ristretta",
+          "senso": "La premessa è accettata solo in una versione ristretta, entro la quale le conseguenze risultano rovesciate."
+        },
+        {
+          "valore": 100,
+          "colore": "#111111",
+          "nome": "Contraddizione",
+          "senso": "Il lavoro contraddice il presupposto fondamentale che l'articolo afferma."
+        },
+        {
+          "valore": null,
+          "colore": "#9aa0a6",
+          "nome": "n.d.",
+          "senso": "La premessa fondamentale è ambigua, o non determinabile dal materiale effettivamente letto."
+        }
+      ],
+      "modulazione": {
+        "descrizione": "Dove il rapporto non si lascia ridurre a un accordo o a un disaccordo netto, il valore di scala viene corretto da due coefficienti, dichiarati per ogni voce.",
+        "portata": "Quota dell'argomento altrui effettivamente toccata: 1.0 se il conflitto investe la tesi principale, valori minori se investe un solo passaggio. Il valore finale è v = 50 + (scala − 50) × portata, così che un conflitto locale tende alla neutralità invece che all'estremo.",
+        "contatto": "Quanto direttamente il nostro lavoro entra nella questione di quel testo (0–1). Non sposta il valore della singola voce: pesa la media d'insieme."
+      },
+      "aggregato": "Media dei valori finali pesata per contatto, sulle sole voci valutate. Le voci n.d. sono escluse dalla media e contate a parte.",
+      "verifica": "Ogni voce indica se l'autore ha letto e revisionato quel lavoro. Dove lettura e revisione sono confermate il valore misura un confronto avvenuto; altrove un rapporto fra tesi ricostruito dall'esterno.",
+      "affiliazione": "Affiliazione dell'autore al momento della pubblicazione, non una proprietà dell'istituzione. Ricavata da CV, pagine universitarie e necrologi accademici, con la fonte indicata voce per voce; quasi sempre dedotta da un intervallo di anni, perché le prime pagine a stampa non erano raggiungibili. Dove nessuna fonte la attesta, resta vuota."
+    },
+    "voci": [
+      {
+        "autore": "Jaakko Hintikka",
+        "titolo": "Cogito, Ergo Sum: Inference or Performance?",
+        "anno": 1962,
+        "sede": "The Philosophical Review",
+        "citazioni": 160,
+        "premessa_fondamentale": "La certezza del cogito riposa sull'inconsistenza esistenziale della sua negazione: l'atto di negare la propria esistenza si autoconfuta nel compierlo.",
+        "scala": 50,
+        "portata": 1,
+        "contatto": 1,
+        "valore": 50,
+        "motivo": "La premessa è la nostra: la negazione che accade nel pensiero si autoconfuta. È negata la conseguenza, che quell'autoconfutazione assicuri l'esistenza oltre l'atto che la esegue. L'annichilimento non è un atto di negazione, e su di esso la performance non ha presa.",
+        "letto_autore": null,
+        "doi": null,
+        "url": "https://www.semanticscholar.org/search?q=Cogito%2C%20Ergo%20Sum%3A%20Inference%20or%20Performance%3F",
+        "url_tipo": "ricerca",
+        "affiliazione": {
+          "nome": "University of Helsinki",
+          "ror": null,
+          "paese": "Finlandia",
+          "lat": 60.1699,
+          "lon": 24.9384,
+          "fonte": "https://en.wikipedia.org/wiki/Jaakko_Hintikka",
+          "nota": "Cattedra a Helsinki 1959-1970: dedotto dall'intervallo."
+        }
+      },
+      {
+        "autore": "James Van Cleve",
+        "titolo": "Foundationalism, Epistemic Principles, and the Cartesian Circle",
+        "anno": 1979,
+        "sede": "The Philosophical Review",
+        "citazioni": 98,
+        "premessa_fondamentale": "Il circolo si scioglie distinguendo le singole percezioni chiare e distinte, che non attendono garanzia, dalla regola generale, che da esse viene inferita.",
+        "scala": 75,
+        "portata": 1,
+        "contatto": 0.9,
+        "valore": 75,
+        "motivo": "La premessa è accolta solo nella versione ristretta all'istante: là dove la percezione è attuale, nessuna garanzia serve. Ma l'inferenza dalla singola percezione alla regola è essa stessa una dimostrazione, e dunque ricade sotto la condizione che si voleva evitare: le conseguenze si rovesciano entro la premessa accolta.",
+        "letto_autore": false,
+        "doi": null,
+        "url": "https://www.semanticscholar.org/search?q=Foundationalism%2C%20Epistemic%20Principles%2C%20and%20the%20Cartesian%20Circle",
+        "url_tipo": "ricerca",
+        "affiliazione": {
+          "nome": "Brown University",
+          "ror": null,
+          "paese": "Stati Uniti",
+          "lat": 41.8268,
+          "lon": -71.4025,
+          "fonte": "https://dornsife.usc.edu/james-van-cleve/",
+          "nota": "CV: Brown University 1973-1987."
+        }
+      },
+      {
+        "autore": "Anthony Kenny",
+        "titolo": "The Cartesian Circle and the Eternal Truths",
+        "anno": 1970,
+        "sede": "The Journal of Philosophy",
+        "citazioni": 73,
+        "premessa_fondamentale": "La validità delle verità eterne, e con essa quella della ragione, dipende dalla volontà divina e viene acquisita attraverso la dimostrazione dell'esistenza di Dio.",
+        "scala": 100,
+        "portata": 1,
+        "contatto": 1,
+        "valore": 100,
+        "motivo": "Contraddizione con il presupposto: se la tenuta del principio di non contraddizione è ciò che una dimostrazione deve procurare, nessuna dimostrazione può procurarla, perché ogni dimostrazione già la impiega per durare da una premessa alla conclusione.",
+        "letto_autore": null,
+        "doi": null,
+        "url": "https://www.semanticscholar.org/search?q=The%20Cartesian%20Circle%20and%20the%20Eternal%20Truths",
+        "url_tipo": "ricerca",
+        "affiliazione": {
+          "nome": "University of Oxford",
+          "ror": null,
+          "paese": "Regno Unito",
+          "lat": 51.7548,
+          "lon": -1.2544,
+          "fonte": "https://www.ae-info.org/attach/User/Kenny_Anthony/CV/CVAnthonyKenny.pdf",
+          "nota": "CV: Balliol College, Oxford, 1964-1978."
+        }
+      },
+      {
+        "autore": "Willis Doney",
+        "titolo": "The Cartesian Circle",
+        "anno": 1955,
+        "sede": "Journal of the History of Ideas",
+        "citazioni": 49,
+        "premessa_fondamentale": "Dio garantisce l'esattezza della memoria: l'ateo non può essere certo di aver percepito chiaramente ciò che ricorda (Memory Gambit).",
+        "scala": 50,
+        "portata": 1,
+        "contatto": 0.9,
+        "valore": 50,
+        "motivo": "Condivisa la premessa, che il circolo chieda un garante oltre l'atto. Negata la conseguenza: il compito di Dio non è anzitutto la memoria, ma il valore trascendentale del principio.",
+        "letto_autore": null,
+        "doi": null,
+        "url": "https://www.semanticscholar.org/search?q=The%20Cartesian%20Circle",
+        "url_tipo": "ricerca",
+        "affiliazione": {
+          "nome": "Ohio State University",
+          "ror": null,
+          "paese": "Stati Uniti",
+          "lat": 40.0067,
+          "lon": -83.0305,
+          "fonte": "https://paw.princeton.edu/memorial/willis-frederick-doney-jr-46-49",
+          "nota": "Insegnò alla Ohio State dal 1953 al 1958."
+        },
+        "sovrascritta": {
+          "data": "2026-09-24",
+          "da": "valutazione dell'articolo «Il primo livello della scala di Van Cleve richiede già Dio» (2026-09-23-van-cleve)",
+          "regola": "Una sola valutazione per lavoro: la più recente sovrascrive la precedente; il contatto resta quello proprio di questo articolo.",
+          "prima": {
+            "premessa_fondamentale": "Ciò che in Descartes attende la garanzia divina non è la percezione attuale ma il ricordo di averla avuta.",
+            "scala": 25,
+            "portata": 0.9,
+            "valore": 27.5,
+            "motivo": "La diagnosi coincide con la nostra: il punto scoperto è l'intervallo, non l'istante. La riserva cade sulla conseguenza, che quella localizzazione basti a sciogliere il circolo; per noi lo colloca soltanto con esattezza."
+          }
+        }
+      },
+      {
+        "autore": "Harry G. Frankfurt",
+        "titolo": "Memory and the Cartesian Circle",
+        "anno": 1962,
+        "sede": "The Philosophical Review",
+        "citazioni": 47,
+        "premessa_fondamentale": "Il problema è la memoria della dimostrazione, e la garanzia divina vale per la coerenza dell'ordine delle ragioni, non per una verità esterna a esso.",
+        "scala": 75,
+        "portata": 0.9,
+        "contatto": 1,
+        "valore": 72.5,
+        "motivo": "Premessa accettata solo ristretta: la memoria è la forma temporale in cui la domanda si presenta, non il suo oggetto; il compito di Dio è anzitutto il valore trascendentale del principio. Entro la premessa ristretta la conseguenza si rovescia: una garanzia della sola coerenza interna lascia intatto il dualismo, e non può essere ottenuta da una dimostrazione che quella coerenza presuppone. Premessa come ricostruita nel valutatore del saggio sul cogito; Van Cleve ne riferisce solo la critica al Memory Gambit.",
+        "letto_autore": null,
+        "doi": null,
+        "url": "https://www.semanticscholar.org/search?q=Memory%20and%20the%20Cartesian%20Circle",
+        "url_tipo": "ricerca",
+        "affiliazione": {
+          "nome": "Harpur College (oggi Binghamton University)",
+          "ror": null,
+          "paese": "Stati Uniti",
+          "lat": 42.0887,
+          "lon": -75.969,
+          "fonte": "https://www.encyclopedia.com/arts/educational-magazines/frankfurt-harry-g-1929-harry-gordon-frankfurt",
+          "nota": "Anno di passaggio: Ohio State fino al 1962, Harpur dal 1962. L'articolo esce nell'ottobre 1962; la prima pagina a stampa non è stata vista."
+        },
+        "sovrascritta": {
+          "data": "2026-09-24",
+          "da": "valutazione dell'articolo «Il primo livello della scala di Van Cleve richiede già Dio» (2026-09-23-van-cleve)",
+          "regola": "Una sola valutazione per lavoro: la più recente sovrascrive la precedente; il contatto resta quello proprio di questo articolo.",
+          "prima": {
+            "premessa_fondamentale": "Il problema è la memoria della dimostrazione, e la garanzia divina vale per la coerenza dell'ordine delle ragioni, non per una verità esterna a esso.",
+            "scala": 25,
+            "portata": 0.9,
+            "valore": 27.5,
+            "motivo": "L'accordo sulla premessa è pieno ed è il più stretto del corpus. Dissentiamo sulla conseguenza: una garanzia che vale solo per la coerenza interna non può essere ottenuta da una dimostrazione che quella stessa coerenza presuppone."
+          }
+        }
+      },
+      {
+        "autore": "Michael Della Rocca",
+        "titolo": "Descartes, the Cartesian Circle, and Epistemology Without God",
+        "anno": 2005,
+        "sede": "Philosophy and Phenomenological Research",
+        "citazioni": 43,
+        "premessa_fondamentale": null,
+        "scala": null,
+        "portata": null,
+        "contatto": null,
+        "valore": null,
+        "motivo": "n.d. — testo non raggiungibile da questa sessione e abstract assente; non assegno un valore su un ricordo del titolo.",
+        "letto_autore": null,
+        "doi": null,
+        "url": "https://www.semanticscholar.org/search?q=Descartes%2C%20the%20Cartesian%20Circle%2C%20and%20Epistemology%20Without%20God",
+        "url_tipo": "ricerca",
+        "affiliazione": {
+          "nome": "Yale University",
+          "ror": null,
+          "paese": "Stati Uniti",
+          "lat": 41.3163,
+          "lon": -72.9223,
+          "fonte": "https://news.yale.edu/2021/10/26/della-rocca-named-sterling-professor-philosophy",
+          "nota": "A Yale dal 1991."
+        }
+      },
+      {
+        "autore": "Lex Newman, Alan Nelson",
+        "titolo": "Circumventing Cartesian Circles",
+        "anno": 1999,
+        "sede": "Noûs",
+        "citazioni": 39,
+        "premessa_fondamentale": "Non c'è circolo: la percezione chiara e distinta è irresistibile mentre è in atto e non attende alcuna validazione esterna.",
+        "scala": 100,
+        "portata": 0.9,
+        "contatto": 0.9,
+        "valore": 95,
+        "motivo": "Il presupposto è contraddetto: l'irresistibilità dell'atto in corso è esattamente ciò che il nostro lavoro concede, e concedendolo mostra che il problema non era mai lì. Ciò che va garantito è l'intervallo, e su quello l'irresistibilità non dice nulla.",
+        "letto_autore": null,
+        "doi": null,
+        "url": "https://www.semanticscholar.org/search?q=Circumventing%20Cartesian%20Circles",
+        "url_tipo": "ricerca",
+        "affiliazione": {
+          "nome": "University of California, Irvine",
+          "ror": null,
+          "paese": "Stati Uniti",
+          "lat": 33.6405,
+          "lon": -117.8443,
+          "fonte": "https://philosophy.unc.edu/wp-content/uploads/sites/122/2013/10/CV-web-2022.pdf",
+          "nota": "Affiliazione di Nelson (UC Irvine 1990-2006). Quella di Newman nel 1999 non è attestata da alcuna fonte trovata."
+        }
+      },
+      {
+        "autore": "Alan Gewirth",
+        "titolo": "The Cartesian Circle Reconsidered",
+        "anno": 1970,
+        "sede": "The Journal of Philosophy",
+        "citazioni": 38,
+        "premessa_fondamentale": "La certezza psicologica dell'evidenza attuale è distinta dalla certezza metafisica, e la prima è sufficiente a fondare la seconda una volta stabilito Dio.",
+        "scala": 50,
+        "portata": 0.8,
+        "contatto": 0.8,
+        "valore": 50,
+        "motivo": "La distinzione fra i due ordini di certezza è accolta. È negato il passaggio: il «una volta stabilito Dio» richiede la durata di una dimostrazione, che è precisamente ciò di cui la certezza psicologica dell'istante non dispone.",
+        "letto_autore": null,
+        "doi": null,
+        "url": "https://www.semanticscholar.org/search?q=The%20Cartesian%20Circle%20Reconsidered",
+        "url_tipo": "ricerca",
+        "affiliazione": {
+          "nome": "University of Chicago",
+          "ror": null,
+          "paese": "Stati Uniti",
+          "lat": 41.7886,
+          "lon": -87.5987,
+          "fonte": "https://iep.utm.edu/gewirth/",
+          "nota": "Docente a Chicago dal 1947, ordinario dal 1960."
+        }
+      },
+      {
+        "autore": "Fred Feldman",
+        "titolo": "Epistemic Appraisal and the Cartesian Circle",
+        "anno": 1975,
+        "sede": "Philosophical Studies",
+        "citazioni": 23,
+        "premessa_fondamentale": null,
+        "scala": null,
+        "portata": null,
+        "contatto": null,
+        "valore": null,
+        "motivo": "n.d. — stessa ragione.",
+        "letto_autore": null,
+        "doi": null,
+        "url": "https://www.semanticscholar.org/search?q=Epistemic%20Appraisal%20and%20the%20Cartesian%20Circle",
+        "url_tipo": "ricerca",
+        "affiliazione": {
+          "nome": "University of Massachusetts Amherst",
+          "ror": null,
+          "paese": "Stati Uniti",
+          "lat": 42.3868,
+          "lon": -72.5301,
+          "fonte": "https://people.umass.edu/~ffeldman/CV%20June%202016.pdf",
+          "nota": "CV: UMass Amherst 1974-1979."
+        }
+      }
+    ],
+    "esito": {
+      "valutate": 7,
+      "non_determinate": 2,
+      "aggregato": 71,
+      "colore": "#904318",
+      "lettura": "Apporto polemico netto. Su sette lavori valutati, la premessa è condivisa in tre casi (Hintikka, Doney, Gewirth) e la contesa cade sulla conseguenza; con Frankfurt la premessa è accettata solo ristretta, perché la memoria non è l'oggetto primo della garanzia; la contraddizione riguarda Kenny e Newman e Nelson, che affidano la tenuta della ragione a una dimostrazione o la dichiarano non necessaria, e Van Cleve, il cui asse è la definitività. Il 24/9 Manuel ha letto e revisionato Van Cleve (1979), rivisto da 75 a 85; le valutazioni di Doney e Frankfurt sono state sovrascritte da quelle, più recenti, dell'articolo su Van Cleve."
+    }
+  },
+  "sources": [],
+  "body": "Nella prima delle *Meditationes de prima philosophia* Descartes convoca un avversario che Aristotele aveva dichiarato impossibile. Suppone, scrive, *genium aliquem malignum, eundemque summe potentem et callidum, omnem suam industriam in eo posuisse, ut me falleret*: un genio maligno, sommamente potente e astuto, che ha posto ogni sua industria nell'ingannarmi. Conviene stabilire con quale argomento lo congeda, perché quell'argomento ha una forma riconoscibile e una clausola che di solito si legge in fretta.\n\nLa differenza con Aristotele sta già nella convocazione. Il libro Γ della *Metafisica* non incontra il negatore: chi non significa «qualcosa per sé e per altri» non nega affatto, è «simile a una pianta». La negazione esiste dentro il λόγος, e chi non vi entra viene escluso dal novero dei pensanti prima di essere confutato. Descartes non esclude, ipotizza; e il suo avversario non parla. Non argomenta, non cerca consenso, non si giustifica davanti a nessuno. La negazione dell'immediato è pensata come operazione anziché come tesi.\n\nNella seconda meditazione arriva il congedo: *Haud dubie igitur ego etiam sum, si me fallit; et fallat quantum potest, nunquam tamen efficiet, ut nihil sim quamdiu me aliquid esse cogitabo*. Se mi inganna, io sono; inganni pure quanto può, non farà mai che io sia nulla finché penserò di essere qualcosa. Poco oltre la formula canonica: *ego sum, ego existo* è necessariamente vero *quoties a me profertur, vel mente concipitur*, ogni volta che lo proferisco o lo concepisco.\n\nLa forma è quella dell'ἔλεγχος, e conviene scriverla per esteso. Prima premessa, che descrive un atto dell'avversario: il genio mi inganna. Seconda premessa, che enuncia la condizione di quell'atto: perché un inganno si compia occorre una mente in cui la credenza falsa si formi. Conclusione, applicando la condizione all'atto: dunque io sono. La seconda premessa non si può rifiutare, perché appartiene al significato di «ingannare»; e per la stessa ragione vale per gli atti che soddisfano quella condizione e per nessun altro. Da «il genio mi inganna» segue «io sono». Da «il genio è sommamente potente» non segue, perché una potenza non è un atto che per riuscire abbia bisogno che io sia. Costruita così, la ritorsione converte in affermazione di me le sole negazioni che, per compiersi, richiedono la mia esistenza. Il limite non viene dalla ritorsione in quanto tale, ma da dove questa ritorsione prende la propria condizione: dal significato di un verbo che designa un atto riuscito soltanto se io sono.\n\nDa qui la clausola, che Descartes esplicita poche righe più avanti: *Ego sum, ego existo; certum est. Quandiu autem? Nempe quandiu cogito; nam forte etiam fieri posset, si cessarem ab omni cogitatione, ut illico totus esse desinerem*. La certezza non dice che io non possa essere ridotto a nulla; dice che non posso esserlo mentre penso. Fuori dall'atto l'annientamento non è confutato: è dichiarato possibile dal testo stesso. La prima meditazione aveva attribuito al genio due cose, l'intenzione di ingannarmi e una potenza somma; la seconda le separa. L'intenzione di ingannarmi, per realizzarsi, mi presuppone, ed è vinta per ritorsione. La potenza di annientarmi, per realizzarsi, non mi presuppone affatto, e la ritorsione non ha nulla su cui ricadere.\n\nResta dunque scoperto ciò che non è attualmente in atto nel mio pensiero, cioè l'intervallo. Descartes lo sa, e lo affronta, ma non con un secondo argomento. Nella terza meditazione compare la conservazione come creazione continua: il tempo della mia vita è divisibile in parti innumerevoli; queste parti sono tali che *singulae a reliquis nullo modo dependent*; dunque dal fatto che io fossi un istante fa non segue che io sia adesso; dunque il mio permanere richiede una causa che non si limiti a lasciarmi essere, ma mi produca di nuovo a ogni istante. Che io continui a esistere non è qualcosa che stabilisco, è qualcosa che ricevo. Nella quinta lo stesso confine ritorna nell'ordine del conoscere: finché tengo lo sguardo su una dimostrazione la sua evidenza mi vincola; appena essa diventa ricordo di aver visto chiaramente, il dubbio può rientrare, a meno che io sappia che Dio esiste e non inganna. Due volte lo stesso taglio fra l'attuale e il non attuale, e due volte, al posto di un secondo argomento, un garante.\n\nContro tutto questo — contro la tesi che in Descartes, oltre la mia certezza soggettiva, il nulla resti sempre possibile — il cartesiano obietterà, e ha due ragioni. La prima: il cogito non ha mai promesso di coprire più dell'istante, perché è il punto d'appoggio e non l'edificio, e per l'intervallo il sistema viene costruito nelle meditazioni successive. La seconda: dalla certezza del cogito non è escluso nessuno fuori di me, perché ogni pensante pensa, e l'accusa di preclusione che si muove ad Aristotele qui non ha bersaglio.\n\nLa prima obiezione ha ragione, e concederla porta esattamente al punto. Il carattere puntuale del cogito non è un difetto di formulazione: è la forma della ritorsione così com'è impiegata qui. Ma allora la domanda non è se il cogito prometta troppo poco, è come si esca dall'istante, e le strade sono due. O si trova un argomento che estende la certezza oltre l'atto, o si introduce un'istanza che la garantisce. Descartes prende la seconda, e lo dice lui stesso: quando Arnauld gli contesta il circolo — le percezioni chiare sono garantite da Dio, e Dio è dimostrato con percezioni chiare — si difende distinguendo ciò che percepisco chiaramente ora, che non ha bisogno di garanzia, da ciò che ricordo di aver percepito chiaramente, che invece ne ha bisogno. La veracità divina lavora sul confine dell'attuale: dove si ferma la ritorsione e dove si apre il *quandiu*.\n\nLa seconda obiezione non regge. È vero che quella certezza — per essere ingannato, devo esistere — non è preclusa ad alcun pensante, ma ciò che la confutazione non riesce a escludere non è l'inganno: è la nientificazione di ciò che eccede la mia autocoscienza. Le negazioni in gioco sono due, e una sola viene confutata. L'inganno, per compiersi, richiede che io sia: chi lo tenta mi presuppone esistente nell'atto stesso con cui mi vuole ingannato, e la ritorsione lo vince. L'annichilimento no. Non ha bisogno che io sia per riuscire, ha bisogno che io non sia, e se riesce non lascia alcun ingannato su cui la ritorsione possa ricadere. Descartes confuta la negazione che è inganno; non confuta la negazione che è tentativo di annichilimento. È quest'ultima che la prima meditazione aveva immaginato, attribuendo al genio una potenza somma oltre all'intenzione. L'intenzione è stata vinta da un argomento. Della potenza non si è mostrato che non possa esercitarsi: si è introdotto un garante che fa sì che non si eserciti, cioè Dio, che conservandomi mi ricrea a ogni istante. Confutare una negazione significa stabilire che non può darsi; affidarne la neutralizzazione a qualcuno significa concedere che possa darsi e contare su un altro perché non accada. Per l'intervallo fra un istante e l'altro, il testo sceglie la seconda strada.\n\nSi può allora notare che Arnauld aveva ragione, per una via che la sua obiezione non percorreva fino in fondo. La difesa cartesiana distingue ciò che percepisco chiaramente ora da ciò che ricordo di aver percepito chiaramente, e affida il secondo a Dio. Ma la dimostrazione di Dio, inteso come ente che trascende il cogito, è un'applicazione apagogica del principio di non contraddizione: esclude come contraddittoria la negazione della propria conclusione. E qualsiasi uso apagogico del principio eccede il cogito, che è un'intuizione immediata, e richiede che il principio abbia valore trascendentale, cioè che valga anche per ciò di cui nulla mi appare: è precisamente ciò che la ritorsione non ha stabilito. Se l'annichilimento non è confutato in senso trascendentale, non è confutato nemmeno che il principio di non contraddizione cessi di valere là dove io non lo sto pensando; e allora il passaggio che dovrebbe condurre al garante si appoggia su ciò che soltanto il garante potrebbe assicurare. Descartes evita il circolo solo perché ha già assunto, con la creazione continua, che io permanga: la conclusione è nella premessa che dovrebbe condurvi.\n\nIl confronto con Aristotele si può ora condurre con esattezza. Aristotele confuta il negatore che parla ed esclude dal novero dei pensanti quello che tace. Descartes confuta la negazione che appare immediatamente e affida a Dio quella che non mi apparirebbe, cioè la mia nientificazione. Ciò che in entrambi i casi sfugge alla confutazione — il negatore che tace, la nientificazione che non apparirebbe — viene trattato diversamente, per esclusione nel primo caso e per garanzia nel secondo; ma il perimetro di ciò che viene vinto con un argomento è identico: è confutato il nulla soltanto nell'immediatezza che il negatore aristotelico e il genio maligno si limitano a voler predicare, l'uno parlando e l'altro ingannando, non ad annichilire; non è confutato il nulla in senso trascendentale.\n\nQuesto non dimostra che ogni confutazione principiale sia limitata allo stesso modo. Il limite non appartiene alla ritorsione in quanto tale: appartiene alla forma che essa prende qui, dove la condizione con cui il negatore viene vinto è ricavata dal significato di «ingannare» e vale perciò per la sola negazione che, per riuscire, richiede la mia esistenza. Una ritorsione muove sempre dall'atto del negatore; qui però l'atto viene assunto in una forma ristretta, come atto che riesce soltanto se io sono. Se invece si chiedesse dell'atto che cosa esso debba già presupporre per essere anche solo tentato, e non per riuscire, il limite non si presenterebbe: anche chi tenta di annientare tenta qualcosa. Ciò che qui si dimostra è più circoscritto: che la ritorsione cartesiana ha la portata assegnatale dalla sua premessa, e che chi la adopera in questa forma come argomento ultimo dovrà scegliere se escludere o se garantire. Il cogito vince l'ingannatore, non il nulla."
 }
