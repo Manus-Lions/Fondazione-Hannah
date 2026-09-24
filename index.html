@@ -161,6 +161,15 @@ footer.site a{color:var(--ink-soft)}
   article.card{padding:1.2rem 1.1rem}
 }
 
+  sup.rinvio{ font-size:.7em; line-height:0; }
+  sup.rinvio a{ color:var(--accent, inherit); text-decoration:none; padding:0 .1em; }
+  sup.rinvio a:hover{ text-decoration:underline; }
+  .note-testo{ margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--rule,#ddd); font-size:.86rem; }
+  .note-testo h3{ font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; opacity:.7; }
+  .note-testo ol{ padding-left:1.6rem; }
+  .note-testo li{ margin:.35rem 0; }
+  .note-testo a.ritorno{ text-decoration:none; opacity:.6; }
+  .evidenza{ background:rgba(184,134,11,.18); transition:background .3s; }
   /* ---- valutatore d'impatto ---- */
   .valutatore{ border-top:2px solid var(--ink); margin-top:3rem; padding-top:1.4rem; }
   .valutatore h3{ font-size:1rem; font-weight:600; margin:0 0 .15rem; }
@@ -278,15 +287,29 @@ footer.site a{color:var(--ink-soft)}
       return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];
     });
   }
+  function inl(s){
+    return s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+            .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+            .replace(/`([^`]+)`/g, "$1");
+  }
   function md(t){
-    return esc(t).split(/\n\s*\n/).map(function(p){
+    // note a piè di pagina: definizioni «[^n]: testo» a inizio riga, richiami «[^n]» nel testo
+    var note = [];
+    t = String(t).replace(/^\[\^(\d+)\]:[ \t]*(.+)$/gm, function(m, n, testo){ note.push([n, testo]); return ""; });
+    var corpo = esc(t).split(/\n\s*\n/).map(function(p){
       p = p.trim();
       if(!p) return "";
-      p = p.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-           .replace(/\*([^*]+)\*/g, "<em>$1</em>")
-           .replace(/\n/g, " ");
+      p = inl(p).replace(/\n/g, " ")
+        .replace(/\[\^(\d+)\]/g, '<sup class="rinvio"><a href="#" id="rif-$1" data-nota="$1">$1</a></sup>');
       return "<p>" + p + "</p>";
     }).join("");
+    if(note.length){
+      corpo += '<section class="note-testo"><h3>Note</h3><ol>' + note.map(function(x){
+        return '<li id="nota-'+x[0]+'" value="'+x[0]+'">'+inl(esc(x[1]))
+          + ' <a href="#" class="ritorno" data-rif="'+x[0]+'" aria-label="Torna al testo">↩</a></li>';
+      }).join("") + '</ol></section>';
+    }
+    return corpo;
   }
   function dataLunga(iso){
     var p = iso.split("-");
@@ -504,6 +527,15 @@ footer.site a{color:var(--ink-soft)}
     if(h) openReport(h); else closeReport();
   }
 
+  document.getElementById("article").addEventListener("click", function(ev){
+    var a = ev.target.closest("a[data-nota], a[data-rif]");
+    if(!a) return;
+    ev.preventDefault();
+    var dest = a.dataset.nota ? document.getElementById("nota-"+a.dataset.nota)
+                              : document.getElementById("rif-"+a.dataset.rif);
+    if(dest){ dest.scrollIntoView({behavior:"smooth", block:"center"});
+              dest.classList.add("evidenza"); setTimeout(function(){ dest.classList.remove("evidenza"); }, 1600); }
+  });
   document.getElementById("entries").addEventListener("click", function(ev){
     var c = ev.target.closest("article.card");
     if(c) location.hash = "/" + c.dataset.id;
