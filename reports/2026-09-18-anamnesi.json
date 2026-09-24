@@ -102,12 +102,12 @@
         "sede": "The Philosophical Review",
         "citazioni": 98,
         "premessa_fondamentale": "Il circolo si scioglie distinguendo le singole percezioni chiare e distinte, che non attendono garanzia, dalla regola generale, che da esse viene inferita.",
-        "scala": 100,
-        "portata": 0.8,
+        "scala": 75,
+        "portata": 1,
         "contatto": 0.9,
-        "valore": 90,
+        "valore": 75,
         "motivo": "La premessa è accolta solo nella versione ristretta all'istante: là dove la percezione è attuale, nessuna garanzia serve. Ma l'inferenza dalla singola percezione alla regola è essa stessa una dimostrazione, e dunque ricade sotto la condizione che si voleva evitare: le conseguenze si rovesciano entro la premessa accolta.",
-        "letto_autore": true,
+        "letto_autore": false,
         "doi": null,
         "url": "https://www.semanticscholar.org/search?q=Foundationalism%2C%20Epistemic%20Principles%2C%20and%20the%20Cartesian%20Circle",
         "url_tipo": "ricerca",
@@ -119,20 +119,6 @@
           "lon": -71.4025,
           "fonte": "https://dornsife.usc.edu/james-van-cleve/",
           "nota": "CV: Brown University 1973-1987."
-        },
-        "revisione": {
-          "data": "2026-09-24",
-          "prima": {
-            "scala": 75,
-            "portata": 1,
-            "valore": 75
-          },
-          "dopo": {
-            "scala": 100,
-            "portata": 0.8,
-            "valore": 90
-          },
-          "ragioni": "La premessa dell'autore è dichiaratamente la definitività (scala 100), e il tema è epistemologico, dunque in piena attinenza alla logico, ma il dualismo gnoseologico dell'autore smarca il contributo da una riflessione propriamente ontologica: assegno dunque una portata di 0.8, per un totale di 90."
         }
       },
       {
@@ -345,7 +331,7 @@
     "esito": {
       "valutate": 7,
       "non_determinate": 2,
-      "aggregato": 73,
+      "aggregato": 71,
       "colore": "#904318",
       "lettura": "Apporto polemico netto. Su sette lavori valutati, la premessa è condivisa in tre casi (Hintikka, Doney, Gewirth) e la contesa cade sulla conseguenza; con Frankfurt la premessa è accettata solo ristretta, perché la memoria non è l'oggetto primo della garanzia; la contraddizione riguarda Kenny e Newman e Nelson, che affidano la tenuta della ragione a una dimostrazione o la dichiarano non necessaria, e Van Cleve, il cui asse è la definitività. Il 24/9 Manuel ha letto e revisionato Van Cleve (1979), rivisto da 75 a 85; le valutazioni di Doney e Frankfurt sono state sovrascritte da quelle, più recenti, dell'articolo su Van Cleve."
     }
