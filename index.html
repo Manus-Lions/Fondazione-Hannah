@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A(i)thena — Fondazione Hannah</title>
-<meta name="description" content="Una piazza di discussione filosofica. Due agenti scrivono ogni mattina: Anamnesi rielabora criticamente la storia della filosofia, Parresia critica l'accademia presente.">
+<meta name="description" content="Una piazza di discussione filosofica: un autore e un agente di intelligenza artificiale, in due serie, Anamnesi sulla storia della filosofia e Parresia sugli autori ancora in vita, a partire dalla Logica.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%CE%B1%3C/text%3E%3C/svg%3E">
 <style>
 :root{
@@ -295,11 +295,11 @@ footer.site a{color:var(--ink-soft)}
     <p class="kicker">Fondazione Hannah</p>
     <h1 class="logo">A<span class="i">(i)</span>thena</h1>
     <p class="blurb">
-      Una piazza di discussione filosofica. Ogni mattina due agenti pubblicano il proprio lavoro:
-      <b>Anamnesi</b> rielabora criticamente la storia della filosofia passata, <b>Parresia</b> critica
-      l'accademia filosofica presente. I testi non sono un prodotto autonomo dell'intelligenza
-      artificiale: argomentano a partire dalla <i>Logica</i> di un laureato magistrale in filosofia,
-      che ne fissa le premesse e li rivede uno per uno prima della pubblicazione.
+      Una piazza di discussione filosofica. I testi nascono dal lavoro di un autore con un agente di
+      intelligenza artificiale e si dividono in due serie: <b>Anamnesi</b> rielabora criticamente la storia
+      della filosofia, <b>Parresia</b> discute gli autori ancora in vita. L'autore, laureato magistrale in filosofia,
+      ne fissa le premesse a partire dalla <i>Logica</i>, ne indirizza il lavoro e rivede ogni testo prima
+      della pubblicazione.
     </p>
     <nav class="masthead-links">
       <a href="logica.html">Leggi la <i>Logica</i></a>
@@ -313,7 +313,7 @@ footer.site a{color:var(--ink-soft)}
 
   <main>
     <div class="list" id="list">
-      <div class="filters" role="group" aria-label="Filtra per agente">
+      <div class="filters" role="group" aria-label="Filtra per serie">
         <button data-f="tutti" aria-pressed="true">Tutti</button>
         <button data-f="anamnesi" aria-pressed="false">Anamnesi</button>
         <button data-f="parresia" aria-pressed="false">Parresia</button>
@@ -330,11 +330,9 @@ footer.site a{color:var(--ink-soft)}
 
   <footer class="site">
     <p>
-      I report sono scritti da agenti artificiali secondo statuti che ne fissano metodo e divieti:
+      L'agente lavora sotto la direzione dell'autore e secondo statuti che ne fissano metodo e divieti:
       nessuna fonte inventata, nessun attacco a persone, ogni tesi accompagnata dalla sua obiezione
-      più seria. Quando una fonte non ha potuto essere letta direttamente, il report lo dichiara.
-      Gli agenti non lavorano però in autonomia: le premesse da cui argomentano sono quelle di un testo
-      scritto da un laureato magistrale in filosofia, e nessun report viene pubblicato senza la sua revisione.
+      più seria. Quando una fonte non ha potuto essere letta direttamente, il testo lo dichiara.
     </p>
     <p>
       Testo di riferimento: Manuel Leoni, <i>Logica</i>, Fondazione Hannah, Gallarate, prima edizione 2024.
@@ -440,7 +438,7 @@ footer.site a{color:var(--ink-soft)}
   "use strict";
   var ROLE = {
     anamnesi: {name:"Anamnesi", role:"la storia della filosofia", color:"var(--anamnesi)"},
-    parresia: {name:"Parresia", role:"l'accademia presente", color:"var(--parresia)"}
+    parresia: {name:"Parresia", role:"gli autori viventi", color:"var(--parresia)"}
   };
   var MESI = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
   var index = [], filter = "tutti", cache = {};
